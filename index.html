@@ -79,7 +79,7 @@
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Timeline Line - Dark Mode */
+        /* Timeline Line - Dark Mode (Now perfectly centered) */
         .timeline-line {
             background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.15) 10%, rgba(255,255,255,0.15) 90%, rgba(255,255,255,0));
         }
@@ -99,13 +99,28 @@
         .icon-white-bg {
              background: linear-gradient(135deg, #F9FAFB, #D1D5DB); color: black;
         }
+        
+        /* New custom class for media container height */
+        .media-container {
+            /* 30% taller than before (using arbitrary values to enforce height) */
+            height: 200px;
+        }
+        @media (min-width: 640px) {
+            .media-container {
+                height: 280px; /* Small screens */
+            }
+        }
+        @media (min-width: 768px) {
+            .media-container {
+                height: 350px; /* Medium screens and up */
+            }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-blue-500 selection:text-white relative">
 
     <!-- Ambient Background Animation (Dark Mode Tuned) -->
     <div class="fixed inset-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
-        <!-- Removed purple and indigo blobs to eliminate the purpleish gradient as requested -->
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[100px] opacity-10 animate-blob"></div>
     </div>
 
@@ -136,11 +151,11 @@
                     </span>
                 </div>
                 
-                <!-- START: User Photo (Actual image path 'pic.png' without extra styling) -->
+                <!-- START: User Photo (Shape modification: rounded-full replaced with rounded-2xl) -->
                 <div class="flex justify-center my-8">
                     <img 
                         src="pic.png" 
-                        class="w-32 h-32 object-cover shadow-xl"
+                        class="w-32 h-32 rounded-2xl object-cover shadow-xl"
                         alt="Martin Barbieri Profile Photo"
                     />
                 </div>
@@ -291,7 +306,7 @@
         </div>
     </section>
 
-    <!-- AI Experiences Timeline -->
+    <!-- AI Experiences Timeline (Single Column, Centered, Max Width) -->
     <section id="ai-track" class="py-24 px-4 relative">
         <div class="max-w-4xl mx-auto">
             <!-- Updated Section Title -->
@@ -299,27 +314,24 @@
             <!-- Updated Intro Text -->
             <p class="text-center text-gray-400 mb-20 max-w-xl mx-auto reveal">Showcasing my capabilities using Artificial Intelligence to solve complex problems, building digital products that fulfill user and business needs.</p>
 
-            <div class="relative">
-                <!-- Vertical Line -->
-                <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-px timeline-line transform md:-translate-x-1/2"></div>
+            <!-- Main Timeline Container - Constrained to 3xl for very wide cards -->
+            <div class="relative max-w-3xl mx-auto"> 
+                <!-- Vertical Line - Permanently centered and Z-0 to stay behind content -->
+                <div class="absolute left-1/2 top-0 bottom-0 w-px timeline-line transform -translate-x-1/2 z-0"></div>
 
-                <!-- AI Experience Item 1: AI Automation & Workflow (Right Tag / Left Card) -->
+                <!-- AI Experience Item 1: AI Automation & Workflow -->
                 <div class="relative mb-16 md:mb-24 reveal">
-                    <div class="flex flex-col md:flex-row items-center w-full group">
-                        <!-- Date/Tag (Desktop Right) -->
-                        <div class="w-full md:w-1/2 md:pl-12 order-1 md:order-2 mb-4 md:mb-0 text-left">
+                    <div class="flex flex-col items-center w-full group">
+                        <!-- Date/Tag (Centered) - Now acts as the dot center -->
+                        <div class="mb-4 md:mb-8 text-center relative z-10">
                             <span class="inline-block px-3 py-1 bg-purple-900/40 border border-purple-500/30 text-purple-300 rounded-full text-xs font-semibold">Workflow Orchestration</span>
                         </div>
                         
-                        <!-- Dot -->
-                        <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-4 h-4 bg-purple-500 rounded-full border-4 border-black shadow-[0_0_10px_rgba(168,85,247,0.5)] z-10 group-hover:scale-125 transition-transform duration-300"></div>
-
-                        <!-- Card (Desktop Left) -->
-                        <div class="w-full md:w-1/2 pl-20 md:pl-0 md:pr-12 order-2 md:order-1">
-                            <div class="glass-card p-6 md:p-8 rounded-3xl text-left">
+                        <!-- Card (Full Width within max-w-3xl container) - Added relative z-10 for stacking context -->
+                        <div class="w-full px-4 sm:px-8 md:px-12 relative z-10">
+                            <div class="glass-card p-6 md:p-8 rounded-3xl text-center">
                                 <!-- START: Media Container 1 (Automatización) -->
                                 <div class="media-container mb-4 overflow-hidden rounded-xl border border-white/10">
-                                    <!-- ACTUALIZADO: .mov a .mp4 -->
                                     <video 
                                         src="n8n.mp4" 
                                         alt="Demo of AI Automation & Workflow with n8n" 
@@ -333,7 +345,7 @@
                                 <!-- END: Media Container 1 -->
                                 <h3 class="text-xl font-bold text-white">AI Automation & Workflow</h3>
                                 <p class="text-purple-400 font-medium mb-3">n8n, Zapier & Sheet Integration</p>
-                                <p class="text-gray-400 text-sm leading-relaxed">
+                                <p class="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto">
                                     Implemented AI automation workflows using n8n (and/or Zapier) to process form input results, trigger email funnel communications, and log structured data directly into a Sheets document for business intelligence.
                                 </p>
                             </div>
@@ -341,23 +353,19 @@
                     </div>
                 </div>
 
-                <!-- AI Experience Item 2: AI Native UX/UI Design (Left Tag / Right Card - NEW SPLIT) -->
+                <!-- AI Experience Item 2: AI Native UX/UI Design -->
                 <div class="relative mb-16 md:mb-24 reveal">
-                    <div class="flex flex-col md:flex-row items-center w-full group">
-                        <!-- Date/Tag (Desktop Left) -->
-                        <div class="w-full md:w-1/2 md:pr-12 order-1 mb-4 md:mb-0 text-left md:text-right">
+                    <div class="flex flex-col items-center w-full group">
+                        <!-- Date/Tag (Centered) - Now acts as the dot center -->
+                        <div class="mb-4 md:mb-8 text-center relative z-10">
                              <span class="inline-block px-3 py-1 bg-rose-900/40 border border-rose-500/30 text-rose-300 rounded-full text-xs font-semibold">UX/UI Feature Design</span>
                         </div>
                         
-                        <!-- Dot -->
-                        <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-4 h-4 bg-rose-500 rounded-full border-4 border-black shadow-[0_0_10px_rgba(244,63,94,0.5)] z-10 group-hover:scale-125 transition-transform duration-300"></div>
-
-                        <!-- Card (Desktop Right) -->
-                        <div class="w-full md:w-1/2 pl-20 md:pl-12 order-2">
-                            <div class="glass-card p-6 md:p-8 rounded-3xl text-left">
+                        <!-- Card (Full Width within max-w-3xl container) - Added relative z-10 for stacking context -->
+                        <div class="w-full px-4 sm:px-8 md:px-12 relative z-10">
+                            <div class="glass-card p-6 md:p-8 rounded-3xl text-center">
                                 <!-- START: Media Container 2 (UX/UI Diseño) -->
                                 <div class="media-container mb-4 overflow-hidden rounded-xl border border-white/10">
-                                    <!-- ACTUALIZADO: .mov a .mp4 -->
                                     <video 
                                         src="figma.mp4" 
                                         alt="Demo of AI-Native UX/UI Design in Figma" 
@@ -371,7 +379,7 @@
                                 <!-- END: Media Container 2 -->
                                 <h3 class="text-xl font-bold text-white">AI-Native UX/UI Design</h3>
                                 <p class="text-rose-400 font-medium mb-3">Figma & Prototyping</p>
-                                <p class="text-gray-400 text-sm leading-relaxed">
+                                <p class="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto">
                                     Designed several AI UI features in Figma, including a customer support bot and an AI product comparison tool, leveraging Lovable for idea prototyping and concept validation.
                                 </p>
                             </div>
@@ -379,23 +387,19 @@
                     </div>
                 </div>
 
-                <!-- AI Experience Item 3: AI-Powered Product Content (Right Tag / Left Card - FLIPPED) -->
+                <!-- AI Experience Item 3: AI-Powered Product Content -->
                 <div class="relative mb-16 md:mb-24 reveal">
-                    <div class="flex flex-col md:flex-row items-center w-full group">
-                        <!-- Date/Tag (Desktop Right) -->
-                        <div class="w-full md:w-1/2 md:pl-12 order-1 md:order-2 mb-4 md:mb-0 text-left">
+                    <div class="flex flex-col items-center w-full group">
+                        <!-- Date/Tag (Centered) - Now acts as the dot center -->
+                        <div class="mb-4 md:mb-8 text-center relative z-10">
                             <span class="inline-block px-3 py-1 bg-teal-900/40 border border-teal-500/30 text-teal-300 rounded-full text-xs font-semibold">E-commerce Visual Content</span>
                         </div>
                         
-                        <!-- Dot -->
-                        <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-4 h-4 bg-teal-500 rounded-full border-4 border-black shadow-[0_0_10px_rgba(20,184,166,0.5)] z-10 group-hover:scale-125 transition-transform duration-300"></div>
-
-                        <!-- Card (Desktop Left) -->
-                        <div class="w-full md:w-1/2 pl-20 md:pl-0 md:pr-12 order-2 md:order-1">
-                            <div class="glass-card p-6 md:p-8 rounded-3xl text-left">
+                        <!-- Card (Full Width within max-w-3xl container) - Added relative z-10 for stacking context -->
+                        <div class="w-full px-4 sm:px-8 md:px-12 relative z-10">
+                            <div class="glass-card p-6 md:p-8 rounded-3xl text-center">
                                 <!-- START: Media Container 3 (Contenido de Producto) -->
                                 <div class="media-container mb-4 overflow-hidden rounded-xl border border-white/10">
-                                    <!-- ACTUALIZADO: .mov a .mp4 -->
                                     <video 
                                         src="flora.mp4" 
                                         alt="Demo of AI-Powered Product Content Generation with Flora" 
@@ -405,12 +409,11 @@
                                         muted 
                                         playsinline
                                     ></video>
-                                    <!-- Note: .mov files may have limited browser support compared to .mp4 or .webm. Ensure the file is accessible in the root/correct path. -->
                                 </div>
                                 <!-- END: Media Container 3 -->
                                 <h3 class="text-xl font-bold text-white">AI-Powered Product Content</h3>
                                 <p class="text-teal-400 font-medium mb-3">Image & Video Generation with Flora</p>
-                                <p class="text-gray-400 text-sm leading-relaxed">
+                                <p class="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto">
                                     Managed end-to-end content generation for a PDP (Product Detail Page), including cleaning raw product photography, placing it in a realistic scenario, and generating a promotional video, all leveraged by Flora.
                                 </p>
                             </div>
@@ -418,23 +421,19 @@
                     </div>
                 </div>
 
-                <!-- AI Experience Item 4: E-commerce AI UI Guide (Left Tag / Right Card - NEW SPLIT) -->
+                <!-- AI Experience Item 4: E-commerce AI UI Guide -->
                  <div class="relative mb-16 md:mb-24 reveal">
-                    <div class="flex flex-col md:flex-row items-center w-full group">
-                        <!-- Date/Tag (Desktop Left) -->
-                        <div class="w-full md:w-1/2 md:pr-12 order-1 mb-4 md:mb-0 text-left md:text-right">
-                             <span class="inline-block px-3 py-1 bg-indigo-900/40 border border-indigo-500/30 text-indigo-300 rounded-full text-xs font-semibold">Internal Documentation</span>
+                    <div class="flex flex-col items-center w-full group">
+                        <!-- Date/Tag (Centered) - Now acts as the dot center. Changed chip text to "AI Documentation" -->
+                        <div class="mb-4 md:mb-8 text-center relative z-10">
+                             <span class="inline-block px-3 py-1 bg-indigo-900/40 border border-indigo-500/30 text-indigo-300 rounded-full text-xs font-semibold">AI Documentation</span>
                         </div>
                         
-                        <!-- Dot -->
-                        <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-4 h-4 bg-indigo-500 rounded-full border-4 border-black shadow-[0_0_10px_rgba(99,102,241,0.5)] z-10 group-hover:scale-125 transition-transform duration-300"></div>
-
-                        <!-- Card (Desktop Right) -->
-                        <div class="w-full md:w-1/2 pl-20 md:pl-12 order-2">
-                            <div class="glass-card p-6 md:p-8 rounded-3xl text-left">
+                        <!-- Card (Full Width within max-w-3xl container) - Added relative z-10 for stacking context -->
+                        <div class="w-full px-4 sm:px-8 md:px-12 relative z-10">
+                            <div class="glass-card p-6 md:p-8 rounded-3xl text-center">
                                 <!-- START: Media Container 4 (Guía de E-commerce AI) -->
                                 <div class="media-container mb-4 overflow-hidden rounded-xl border border-white/10">
-                                    <!-- ACTUALIZADO: .mov a .mp4 -->
                                     <video 
                                         src="guide.mp4" 
                                         alt="Demo of E-commerce AI UI Guide" 
@@ -448,7 +447,7 @@
                                 <!-- END: Media Container 4 -->
                                 <h3 class="text-xl font-bold text-white">E-commerce AI UI Guide</h3>
                                 <p class="text-indigo-400 font-medium mb-3">Guidelines and Standard Practices</p>
-                                <p class="text-gray-400 text-sm leading-relaxed">
+                                <p class="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto">
                                     Researched and documented internal E-commerce AI guidelines and design standards to ensure team consistency, safety, and brand alignment across all AI-driven user interfaces.
                                 </p>
                             </div>
@@ -456,23 +455,19 @@
                     </div>
                 </div>
 
-                <!-- AI Experience Item 5: Social Media Prompt Engineering (Right Tag / Left Card) -->
+                <!-- AI Experience Item 5: Social Media Prompt Engineering -->
                 <div class="relative reveal">
-                    <div class="flex flex-col md:flex-row items-center w-full group">
-                        <!-- Date/Tag (Desktop Right) -->
-                        <div class="w-full md:w-1/2 md:pl-12 order-1 md:order-2 mb-4 md:mb-0 text-left">
+                    <div class="flex flex-col items-center w-full group">
+                        <!-- Date/Tag (Centered) - Now acts as the dot center -->
+                        <div class="mb-4 md:mb-8 text-center relative z-10">
                             <span class="inline-block px-3 py-1 bg-blue-900/40 border border-blue-500/30 text-blue-300 rounded-full text-xs font-semibold">Content Strategy</span>
                         </div>
                         
-                        <!-- Dot -->
-                        <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-4 h-4 bg-blue-500 rounded-full border-4 border-black shadow-[0_0_10px_rgba(59,130,246,0.5)] z-10 group-hover:scale-125 transition-transform duration-300"></div>
-
-                        <!-- Card (Desktop Left) -->
-                        <div class="w-full md:w-1/2 pl-20 md:pl-0 md:pr-12 order-2 md:order-1">
-                            <div class="glass-card p-6 md:p-8 rounded-3xl text-left">
+                        <!-- Card (Full Width within max-w-3xl container) - Added relative z-10 for stacking context -->
+                        <div class="w-full px-4 sm:px-8 md:px-12 relative z-10">
+                            <div class="glass-card p-6 md:p-8 rounded-3xl text-center">
                                 <!-- START: Media Container 5 (Social Media Prompt Engineering) -->
                                 <div class="media-container mb-4 overflow-hidden rounded-xl border border-white/10">
-                                    <!-- ACTUALIZADO: .mov a .mp4 -->
                                     <video 
                                         src="prompt.mp4" 
                                         alt="Demo of Social Media Prompt Engineering with Notion" 
@@ -485,10 +480,10 @@
                                 </div>
                                 <!-- END: Media Container 5 -->
                                 <!-- UPDATED: Title and Description -->
-                                <h3 class="text-xl font-bold text-white">Social Media Prompt Engineering</h3>
+                                <h3 class="text-xl font-bold text-white">Prompt Template for LLMs</h3>
                                 <p class="text-blue-400 font-medium mb-3">Notion Template for LLMs</p>
-                                <p class="text-gray-400 text-sm leading-relaxed">
-                                    Designed, tested, and refined LLM prompts within a Notion template system to generate comprehensive planning, creative ideas, text copy, and monthly calendars for social media channels.
+                                <p class="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto">
+                                    Designed, tested and refined LLM prompts creating a customized prompt template to generate comprehensive planning, creative ideas, text copy and monthly calendars for social media channels.
                                 </p>
                             </div>
                         </div>

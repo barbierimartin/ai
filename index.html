@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultoría AI - Transforma tu Negocio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0f;
+            color: #e4e4e7;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 30px 0;
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 15, 0.7);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-btn {
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(99, 102, 241, 0.5);
+        }
+
+        .cta-btn-outline {
+            background: transparent;
+            border: 2px solid rgba(99, 102, 241, 0.5);
+            box-shadow: none;
+        }
+
+        .cta-btn-outline:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: #6366f1;
+        }
+
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #a1a1aa;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .glass-card {
+            background: rgba(24, 24, 27, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+        }
+
+        .pains-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff, #c4b5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #a1a1aa;
+            font-size: 18px;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .pain-card {
+            background: rgba(24, 24, 27, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .pain-card:hover {
+            border-color: rgba(239, 68, 68, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .pain-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .pain-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #fca5a5;
+        }
+
+        .pain-card p {
+            color: #a1a1aa;
+            font-size: 15px;
+        }
+
+        .benefits-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, transparent, rgba(99, 102, 241, 0.03), transparent);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .benefit-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #e4e4e7;
+        }
+
+        .benefit-card p {
+            color: #a1a1aa;
+            font-size: 15px;
+        }
+
+        .process-section {
+            padding: 80px 0;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .step-card {
+            position: relative;
+            padding-left: 80px;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .step-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #e4e4e7;
+        }
+
+        .step-card p {
+            color: #a1a1aa;
+            font-size: 15px;
+        }
+
+        .step-highlight {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.1);
+            color: #4ade80;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .reviews-section {
+            padding: 80px 0;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .review-card {
+            background: rgba(24, 24, 27, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .review-text {
+            color: #d4d4d8;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .reviewer-info h4 {
+            font-size: 16px;
+            color: #e4e4e7;
+            margin-bottom: 2px;
+        }
+
+        .reviewer-info p {
+            font-size: 13px;
+            color: #71717a;
+        }
+
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 24px;
+            padding: 60px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-box h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .cta-box p {
+            font-size: 18px;
+            color: #a1a1aa;
+            margin-bottom: 40px;
+        }
+
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(99, 102, 241, 0.1);
+            color: #71717a;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">AI Consulting</div>
+            <a href="https://calendly.com" class="cta-btn" target="_blank">Agenda tu Llamada Gratis</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="floating">Transforma tu Negocio<br>con Inteligencia Artificial</h1>
+            <p>Consultoría personalizada 1 on 1 para implementar IA en tu empresa. Ahorra tiempo, reduce costos y multiplica tu eficiencia.</p>
+            <div class="hero-cta">
+                <a href="https://calendly.com" class="cta-btn" target="_blank">Llamada Gratuita de Diagnóstico</a>
+                <a href="#proceso" class="cta-btn cta-btn-outline">Cómo Funciona</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="pains-section">
+        <div class="container">
+            <h2 class="section-title">¿Te Identificas con Esto?</h2>
+            <p class="section-subtitle">Estos son los problemas más comunes que enfrentan pequeños negocios hoy en día</p>
+            
+            <div class="pains-grid">
+                <div class="pain-card">
+                    <div class="pain-icon">⏰</div>
+                    <h3>Pérdida de Tiempo</h3>
+                    <p>Horas perdidas en tareas repetitivas que no generan valor y te alejan de lo importante.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">💸</div>
+                    <h3>Costos Elevados</h3>
+                    <p>Gastos operativos altos por procesos manuales ineficientes que drenan tus recursos.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">😰</div>
+                    <h3>Sobrecarga de Trabajo</h3>
+                    <p>Tú y tu equipo trabajando al límite sin lograr escalar el negocio como desean.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">📉</div>
+                    <h3>Competencia Adelantándose</h3>
+                    <p>Ves como otros negocios adoptan IA y ganan ventaja mientras tú te quedas atrás.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">❓</div>
+                    <h3>No Sabes Por Dónde Empezar</h3>
+                    <p>La IA te parece complicada y no tienes claro cómo aplicarla a tu negocio específico.</p>
+                </div>
+                <div class="pain-card">
+                    <div class="pain-icon">🎯</div>
+                    <h3>Oportunidades Perdidas</h3>
+                    <p>Sabes que la IA puede ayudarte, pero no encuentras la solución adecuada para tu caso.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://calendly.com" class="cta-btn" target="_blank">Resolvamos Esto Juntos →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">La IA Acorta el Camino</h2>
+            <p class="section-subtitle">Resultados reales que impactan directamente en tu bottom line</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Ahorra 70% de Tiempo</h3>
+                    <p>Automatiza tareas repetitivas y enfócate en crecer tu negocio</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Reduce Costos</h3>
+                    <p>Optimiza procesos y reduce gastos operativos significativamente</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <h3>Aumenta Eficiencia</h3>
+                    <p>Multiplica la productividad de tu equipo sin contratar más personal</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Decisiones Inteligentes</h3>
+                    <p>Toma decisiones basadas en datos, no en intuición</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section" id="proceso">
+        <div class="container">
+            <h2 class="section-title">Cómo Funciona</h2>
+            <p class="section-subtitle">Un proceso simple y efectivo para transformar tu negocio</p>
+            
+            <div class="process-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Llamada de Diagnóstico</h3>
+                    <p>Agendamos una llamada gratuita de 30 minutos donde conoceré tu negocio, tus desafíos actuales y tus objetivos específicos.</p>
+                    <span class="step-highlight">100% GRATIS</span>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Análisis Personalizado</h3>
+                    <p>Identifico las áreas clave donde la IA puede generar mayor impacto en tu negocio y diseño una estrategia a medida.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Consultoría Práctica</h3>
+                    <p>En sesiones 1 on 1, te muestro exactamente cómo implementar soluciones de IA para resolver tus problemas específicos.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Implementación Guiada</h3>
+                    <p>Te acompaño en el proceso de implementación para asegurar que obtengas resultados reales y medibles.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews-section">
+        <div class="container">
+            <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
+            <p class="section-subtitle">Pequeños negocios que ya transformaron su operación con IA</p>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Implementamos las soluciones de IA y redujimos el tiempo de atención al cliente en un 65%. Ahora podemos enfocarnos en crecer el negocio en lugar de apagar incendios."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">MC</div>
+                        <div class="reviewer-info">
+                            <h4>María Contreras</h4>
+                            <p>Dueña, Tienda Online</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"La consultoría fue exactamente lo que necesitaba. En 3 semanas automatizamos procesos que nos tomaban horas diarias. El ROI fue inmediato."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">JS</div>
+                        <div class="reviewer-info">
+                            <h4>Juan Sánchez</h4>
+                            <p>Fundador, Agencia de Marketing</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"No tenía idea de cómo la IA podía aplicarse a mi restaurante. Ahora tengo sistemas que optimizan inventario y predicen demanda. Increíble."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">AP</div>
+                        <div class="reviewer-info">
+                            <h4>Ana Pérez</h4>
+                            <p>Propietaria, Restaurante</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Pasé de trabajar 12 horas al día a 6 gracias a la automatización inteligente. Mi equipo está más feliz y somos más rentables que nunca."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">RG</div>
+                        <div class="reviewer-info">
+                            <h4>Roberto Gómez</h4>
+                            <p>CEO, Startup SaaS</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"La mejor inversión que hice este año. Entendió perfecto mis necesidades y me dio soluciones prácticas que implementé de inmediato."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">LM</div>
+                        <div class="reviewer-info">
+                            <h4>Laura Martínez</h4>
+                            <p>Consultora Independiente</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Finalmente alguien que explica IA en términos que entiendo. Implementamos chatbots y automatización de emails con resultados sorprendentes."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">CF</div>
+                        <div class="reviewer-info">
+                            <h4>Carlos Fernández</h4>
+                            <p>Director, Ecommerce</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Comienza tu Transformación Hoy</h2>
+                <p>Agenda una llamada gratuita de 30 minutos y descubre cómo la IA puede revolucionar tu negocio</p>
+                <a href="https://calendly.com" class="cta-btn" target="_blank" style="font-size: 18px; padding: 16px 40px;">Agenda tu Llamada Gratis →</a>
+                <p style="margin-top: 20px; font-size: 14px;">Sin compromisos. 100% personalizado para tu negocio.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AI Consulting. Transformando negocios con inteligencia artificial.</p>
+        </div>
+    </footer>
+</body>
+</html>

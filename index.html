@@ -1,647 +1,513 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultoría AI - Transforma tu Negocio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <title>AI & UX Design Portfolio</title>
+    
+    <!-- Fonts: Inter (Closest to Apple's SF Pro) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            bg: '#050505',
+                            card: '#121212',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 10s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script> 
+
+    <style>
+        /* Base Styles */
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #0a0a0f;
-            color: #e4e4e7;
-            line-height: 1.6;
+            background-color: #050505; /* Deep Black/Grey */
+            color: #F5F5F7;
             overflow-x: hidden;
         }
 
-        .bg-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 20%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            padding: 30px 0;
-            backdrop-filter: blur(10px);
-            background: rgba(10, 10, 15, 0.7);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .cta-btn {
-            padding: 12px 28px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(99, 102, 241, 0.5);
-        }
-
-        .cta-btn-outline {
-            background: transparent;
-            border: 2px solid rgba(99, 102, 241, 0.5);
-            box-shadow: none;
-        }
-
-        .cta-btn-outline:hover {
-            background: rgba(99, 102, 241, 0.1);
-            border-color: #6366f1;
-        }
-
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 56px;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, #ffffff, #a5b4fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: #a1a1aa;
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
+        /* Dark Glassmorphism Utility Class */
+        .glass-panel {
+            background: rgba(30, 30, 30, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle border */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
 
         .glass-card {
-            background: rgba(24, 24, 27, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            transition: all 0.3s ease;
+            background: rgba(40, 40, 40, 0.3);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .glass-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(99, 102, 241, 0.4);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+            transform: translateY(-5px) scale(1.01);
+            background: rgba(60, 60, 60, 0.4);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .pains-section {
-            padding: 80px 0;
+        /* Timeline Line - Dark Mode */
+        .timeline-line {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.15) 10%, rgba(255,255,255,0.15) 90%, rgba(255,255,255,0));
         }
 
-        .section-title {
-            font-size: 42px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff, #c4b5fd);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* Scroll Animation Utilities */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .section-subtitle {
-            text-align: center;
-            color: #a1a1aa;
-            font-size: 18px;
-            margin-bottom: 60px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .pains-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .pain-card {
-            background: rgba(24, 24, 27, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            border-radius: 16px;
-            padding: 30px;
-            transition: all 0.3s ease;
-        }
-
-        .pain-card:hover {
-            border-color: rgba(239, 68, 68, 0.4);
-            transform: translateY(-5px);
-        }
-
-        .pain-icon {
-            font-size: 40px;
-            margin-bottom: 16px;
-        }
-
-        .pain-card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: #fca5a5;
-        }
-
-        .pain-card p {
-            color: #a1a1aa;
-            font-size: 15px;
-        }
-
-        .benefits-section {
-            padding: 80px 0;
-            background: linear-gradient(180deg, transparent, rgba(99, 102, 241, 0.03), transparent);
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .benefit-card {
-            text-align: center;
-            padding: 30px;
-        }
-
-        .benefit-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-        }
-
-        .benefit-card h3 {
-            font-size: 22px;
-            margin-bottom: 12px;
-            color: #e4e4e7;
-        }
-
-        .benefit-card p {
-            color: #a1a1aa;
-            font-size: 15px;
-        }
-
-        .process-section {
-            padding: 80px 0;
-        }
-
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .step-card {
-            position: relative;
-            padding-left: 80px;
-        }
-
-        .step-number {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 700;
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
-        }
-
-        .step-card h3 {
-            font-size: 22px;
-            margin-bottom: 12px;
-            color: #e4e4e7;
-        }
-
-        .step-card p {
-            color: #a1a1aa;
-            font-size: 15px;
-        }
-
-        .step-highlight {
-            display: inline-block;
-            background: rgba(34, 197, 94, 0.1);
-            color: #4ade80;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-top: 8px;
-        }
-
-        .reviews-section {
-            padding: 80px 0;
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .review-card {
-            background: rgba(24, 24, 27, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 16px;
-            padding: 30px;
-        }
-
-        .stars {
-            color: #fbbf24;
-            font-size: 18px;
-            margin-bottom: 16px;
-        }
-
-        .review-text {
-            color: #d4d4d8;
-            font-size: 15px;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .reviewer {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .reviewer-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 18px;
-        }
-
-        .reviewer-info h4 {
-            font-size: 16px;
-            color: #e4e4e7;
-            margin-bottom: 2px;
-        }
-
-        .reviewer-info p {
-            font-size: 13px;
-            color: #71717a;
-        }
-
-        .cta-section {
-            padding: 100px 0;
-            text-align: center;
-        }
-
-        .cta-box {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 24px;
-            padding: 60px 40px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta-box h2 {
-            font-size: 38px;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-
-        .cta-box p {
-            font-size: 18px;
-            color: #a1a1aa;
-            margin-bottom: 40px;
-        }
-
-        footer {
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid rgba(99, 102, 241, 0.1);
-            color: #71717a;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 36px;
-            }
-
-            .section-title {
-                font-size: 32px;
-            }
-
-            .hero p {
-                font-size: 18px;
-            }
-
-            .process-steps {
-                grid-template-columns: 1fr;
-            }
-
-            .reviews-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .floating {
-            animation: float 3s ease-in-out infinite;
+        /* Custom icon styling for white background, black lines */
+        .icon-white-bg {
+             background: linear-gradient(135deg, #F9FAFB, #D1D5DB); color: black;
         }
     </style>
 </head>
-<body>
-    <div class="bg-gradient"></div>
+<body class="antialiased selection:bg-blue-500 selection:text-white relative">
 
-    <header>
-        <nav class="container">
-            <div class="logo">AI Consulting</div>
-            <a href="https://calendly.com" class="cta-btn" target="_blank">Agenda tu Llamada Gratis</a>
-        </nav>
-    </header>
+    <!-- Ambient Background Animation (Dark Mode Tuned) -->
+    <div class="fixed inset-0 w-full h-full -z-10 overflow-hidden pointer-events-none">
+        <!-- Removed purple and indigo blobs to eliminate the purpleish gradient as requested -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[100px] opacity-10 animate-blob"></div>
+    </div>
 
-    <section class="hero">
-        <div class="container">
-            <h1 class="floating">Transforma tu Negocio<br>con Inteligencia Artificial</h1>
-            <p>Consultoría personalizada 1 on 1 para implementar IA en tu empresa. Ahorra tiempo, reduce costos y multiplica tu eficiencia.</p>
-            <div class="hero-cta">
-                <a href="https://calendly.com" class="cta-btn" target="_blank">Llamada Gratuita de Diagnóstico</a>
-                <a href="#proceso" class="cta-btn cta-btn-outline">Cómo Funciona</a>
+    <!-- Navigation (FIXED) -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4">
+        <div class="max-w-5xl mx-auto glass-panel rounded-full px-6 py-3 flex justify-between items-center">
+            <!-- Updated Navigation Title -->
+            <span class="font-bold text-lg tracking-tight text-white">Martin Barbieri</span>
+            <div class="flex space-x-6 text-sm font-medium text-gray-400">
+                <a href="#about" class="hover:text-white transition-colors">About</a>
+                <a href="#skills" class="hover:text-white transition-colors">Skills</a>
+                <!-- Updated Navigation Link -->
+                <a href="#ai-track" class="hover:text-white transition-colors">Experience</a>
+                <a href="#certifications" class="hover:text-white transition-colors">Certifications</a>
+                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (FIXED: Added pt-32 to push content below the fixed navigation bar) -->
+    <section id="about" class="min-h-screen pt-32 flex items-center justify-center px-4 relative">
+        <div class="max-w-4xl w-full text-center z-10">
+            <!-- Glass Card for Text (No Animation) -->
+            <div class="glass-panel p-12 md:p-16 rounded-[40px] shadow-2xl">
+                <div class="mb-6 inline-block">
+                    <span class="px-4 py-1.5 rounded-full bg-blue-900/30 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider">
+                        AI Product Design
+                    </span>
+                </div>
+                
+                <!-- START: User Photo using local file pic.png -->
+                <div class="flex justify-center my-8">
+                    <img 
+                        src="pic.png" 
+                        class="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-xl"
+                        alt="Martin Barbieri Profile Photo"
+                    />
+                </div>
+                <!-- END: User Photo -->
+
+                <!-- Reduced Name Size -->
+                <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-6">
+                    Martin Barbieri
+                </h1>
+                <!-- Updated Subtext -->
+                <p class="text-lg md:text-xl text-gray-400 font-light leading-relaxed max-w-3xl mx-auto mb-8">
+                    Senior Product Designer located in Buenos Aires, Argentina. Currently working remotely & globally merging human-centric design with AI innovation to build intelligent products.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <!-- Updated CTA Text -->
+                    <a href="#ai-track" class="px-8 py-3.5 bg-white text-black rounded-full font-medium hover:bg-gray-200 transition-all hover:scale-105 shadow-lg shadow-white/10">
+                        View AI Work Experience
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="pains-section">
-        <div class="container">
-            <h2 class="section-title">¿Te Identificas con Esto?</h2>
-            <p class="section-subtitle">Estos son los problemas más comunes que enfrentan pequeños negocios hoy en día</p>
+    <!-- Software & Skills Section -->
+    <section id="skills" class="py-24 px-4">
+        <div class="max-w-5xl mx-auto">
+            <!-- Updated Title -->
+            <h2 class="text-3xl font-bold text-center mb-16 tracking-tight text-white reveal">Software & Skills</h2>
             
-            <div class="pains-grid">
-                <div class="pain-card">
-                    <div class="pain-icon">⏰</div>
-                    <h3>Pérdida de Tiempo</h3>
-                    <p>Horas perdidas en tareas repetitivas que no generan valor y te alejan de lo importante.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Software Stack -->
+                <div class="glass-panel p-8 rounded-3xl reveal">
+                    <!-- Updated Subtitle -->
+                    <h3 class="text-lg font-semibold mb-6 text-gray-500 uppercase tracking-widest text-xs">Software</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        
+                        <!-- Figma -->
+                        <div class="flex flex-col items-center gap-2 group cursor-default">
+                            <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i data-lucide="figma" class="w-8 h-8"></i>
+                            </div>
+                            <span class="text-xs font-medium text-gray-400">Figma</span>
+                        </div>
+                        <!-- Claude (White/Black) -->
+                        <div class="flex flex-col items-center gap-2 group cursor-default">
+                            <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i data-lucide="bot" class="w-8 h-8"></i>
+                            </div>
+                            <span class="text-xs font-medium text-gray-400">Claude</span>
+                        </div>
+                        <!-- Gemini (White/Black) -->
+                        <div class="flex flex-col items-center gap-2 group cursor-default">
+                            <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i data-lucide="gem" class="w-8 h-8"></i>
+                            </div>
+                            <span class="text-xs font-medium text-gray-400">Gemini</span>
+                        </div>
+                        <!-- Lovable (White/Black) -->
+                        <div class="flex flex-col items-center gap-2 group cursor-default">
+                            <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i data-lucide="heart" class="w-8 h-8"></i>
+                            </div>
+                            <span class="text-xs font-medium text-gray-400">Lovable</span>
+                        </div>
+                         <!-- Flora (White/Black) -->
+                        <div class="flex flex-col items-center gap-2 group cursor-default">
+                            <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i data-lucide="leaf" class="w-8 h-8"></i>
+                            </div>
+                            <span class="text-xs font-medium text-gray-400">Flora</span>
+                        </div>
+                        <!-- n8n (White/Black) -->
+                        <div class="flex flex-col items-center gap-2 group cursor-default">
+                            <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i data-lucide="git-branch" class="w-8 h-8"></i>
+                            </div>
+                            <span class="text-xs font-medium text-gray-400">n8n</span>
+                        </div>
+                        <!-- Zapier (White/Black) -->
+                        <div class="flex flex-col items-center gap-2 group cursor-default">
+                            <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i data-lucide="zap" class="w-8 h-8"></i>
+                            </div>
+                            <span class="text-xs font-medium text-gray-400">Zapier</span>
+                        </div>
+                        <!-- ChatGPT (White/Black) -->
+                        <div class="flex flex-col items-center gap-2 group cursor-default">
+                            <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i data-lucide="message-square" class="w-8 h-8"></i>
+                            </div>
+                            <span class="text-xs font-medium text-gray-400">ChatGPT</span>
+                        </div>
+                         <!-- Nano Banana / Image Gen (White/Black) -->
+                        <div class="flex flex-col items-center gap-2 group cursor-default">
+                            <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i data-lucide="wand-2" class="w-8 h-8"></i>
+                            </div>
+                            <span class="text-xs font-medium text-gray-400">Nano Banana</span>
+                        </div>
+                        <!-- Runway (White/Black) -->
+                        <div class="flex flex-col items-center gap-2 group cursor-default">
+                            <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                                <i data-lucide="film" class="w-8 h-8"></i>
+                            </div>
+                            <span class="text-xs font-medium text-gray-400">Runway</span>
+                        </div>
+                        <!-- Midjourney (White/Black) -->
+                        <div class="flex flex-col items-center gap-2 group cursor-default">
+                            <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                                <i data-lucide="square-asterisk" class="w-8 h-8"></i>
+                            </div>
+                            <span class="text-xs font-medium text-gray-400">Midjourney</span>
+                        </div>
+                        <!-- Google AI Studio (White/Black) -->
+                        <div class="flex flex-col items-center gap-2 group cursor-default">
+                            <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                <i data-lucide="activity" class="w-8 h-8"></i>
+                            </div>
+                            <span class="text-xs font-medium text-gray-400">AI Studio</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="pain-card">
-                    <div class="pain-icon">💸</div>
-                    <h3>Costos Elevados</h3>
-                    <p>Gastos operativos altos por procesos manuales ineficientes que drenan tus recursos.</p>
-                </div>
-                <div class="pain-card">
-                    <div class="pain-icon">😰</div>
-                    <h3>Sobrecarga de Trabajo</h3>
-                    <p>Tú y tu equipo trabajando al límite sin lograr escalar el negocio como desean.</p>
-                </div>
-                <div class="pain-card">
-                    <div class="pain-icon">📉</div>
-                    <h3>Competencia Adelantándose</h3>
-                    <p>Ves como otros negocios adoptan IA y ganan ventaja mientras tú te quedas atrás.</p>
-                </div>
-                <div class="pain-card">
-                    <div class="pain-icon">❓</div>
-                    <h3>No Sabes Por Dónde Empezar</h3>
-                    <p>La IA te parece complicada y no tienes claro cómo aplicarla a tu negocio específico.</p>
-                </div>
-                <div class="pain-card">
-                    <div class="pain-icon">🎯</div>
-                    <h3>Oportunidades Perdidas</h3>
-                    <p>Sabes que la IA puede ayudarte, pero no encuentras la solución adecuada para tu caso.</p>
-                </div>
-            </div>
 
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="https://calendly.com" class="cta-btn" target="_blank">Resolvamos Esto Juntos →</a>
+                <!-- Skills List -->
+                <div class="glass-panel p-8 rounded-3xl reveal delay-100 flex flex-col justify-center">
+                    <!-- Updated Subtitle -->
+                    <h3 class="text-lg font-semibold mb-6 text-gray-500 uppercase tracking-widest text-xs">Skills</h3>
+                    <!-- Added justify-center here for centered chips -->
+                    <div class="flex flex-wrap gap-3 justify-center">
+                        <!-- Styles removed from these three to match the rest -->
+                        <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Prompt Engineering</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">AI Content Generation</span>
+                        <!-- Updated Skill -->
+                        <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">AI E-commerce</span>
+
+                        <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">UX Research</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">UI Design</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Prototyping</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Design Systems</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">AI Workflow Design</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Wireframing</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Product Strategy</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section class="benefits-section">
-        <div class="container">
-            <h2 class="section-title">La IA Acorta el Camino</h2>
-            <p class="section-subtitle">Resultados reales que impactan directamente en tu bottom line</p>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">⚡</div>
-                    <h3>Ahorra 70% de Tiempo</h3>
-                    <p>Automatiza tareas repetitivas y enfócate en crecer tu negocio</p>
+    <!-- AI Experiences Timeline -->
+    <section id="ai-track" class="py-24 px-4 relative">
+        <div class="max-w-4xl mx-auto">
+            <!-- Updated Section Title -->
+            <h2 class="text-3xl font-bold text-center mb-6 tracking-tight text-white reveal">AI Work Experience</h2>
+            <!-- Updated Intro Text -->
+            <p class="text-center text-gray-400 mb-20 max-w-xl mx-auto reveal">Showcasing my capabilities using Artificial Intelligence to solve complex problems, building digital products that fulfill user and business needs.</p>
+
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-px timeline-line transform md:-translate-x-1/2"></div>
+
+                <!-- AI Experience Item 1: AI Automation & Workflow (Right Tag / Left Card) -->
+                <div class="relative mb-16 md:mb-24 reveal">
+                    <div class="flex flex-col md:flex-row items-center w-full group">
+                        <!-- Date/Tag (Desktop Right) -->
+                        <div class="w-full md:w-1/2 md:pl-12 order-1 md:order-2 mb-4 md:mb-0 text-left">
+                            <span class="inline-block px-3 py-1 bg-purple-900/40 border border-purple-500/30 text-purple-300 rounded-full text-xs font-semibold">Workflow Orchestration</span>
+                        </div>
+                        
+                        <!-- Dot -->
+                        <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-4 h-4 bg-purple-500 rounded-full border-4 border-black shadow-[0_0_10px_rgba(168,85,247,0.5)] z-10 group-hover:scale-125 transition-transform duration-300"></div>
+
+                        <!-- Card (Desktop Left) -->
+                        <div class="w-full md:w-1/2 pl-20 md:pl-0 md:pr-12 order-2 md:order-1">
+                            <div class="glass-card p-6 md:p-8 rounded-3xl text-left">
+                                <h3 class="text-xl font-bold text-white">AI Automation & Workflow</h3>
+                                <p class="text-purple-400 font-medium mb-3">n8n, Zapier & Sheet Integration</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Implemented AI automation workflows using n8n (and/or Zapier) to process form input results, trigger email funnel communications, and log structured data directly into a Sheets document for business intelligence.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">💰</div>
-                    <h3>Reduce Costos</h3>
-                    <p>Optimiza procesos y reduce gastos operativos significativamente</p>
+
+                <!-- AI Experience Item 2: AI Native UX/UI Design (Left Tag / Right Card - NEW SPLIT) -->
+                <div class="relative mb-16 md:mb-24 reveal">
+                    <div class="flex flex-col md:flex-row items-center w-full group">
+                        <!-- Date/Tag (Desktop Left) -->
+                        <div class="w-full md:w-1/2 md:pr-12 order-1 mb-4 md:mb-0 text-left md:text-right">
+                             <span class="inline-block px-3 py-1 bg-rose-900/40 border border-rose-500/30 text-rose-300 rounded-full text-xs font-semibold">UX/UI Feature Design</span>
+                        </div>
+                        
+                        <!-- Dot -->
+                        <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-4 h-4 bg-rose-500 rounded-full border-4 border-black shadow-[0_0_10px_rgba(244,63,94,0.5)] z-10 group-hover:scale-125 transition-transform duration-300"></div>
+
+                        <!-- Card (Desktop Right) -->
+                        <div class="w-full md:w-1/2 pl-20 md:pl-12 order-2">
+                            <div class="glass-card p-6 md:p-8 rounded-3xl text-left">
+                                <h3 class="text-xl font-bold text-white">AI-Native UX/UI Design</h3>
+                                <p class="text-rose-400 font-medium mb-3">Figma & Prototyping</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Designed several AI UI features in Figma, including a customer support bot and an AI product comparison tool, leveraging Lovable for idea prototyping and concept validation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">📈</div>
-                    <h3>Aumenta Eficiencia</h3>
-                    <p>Multiplica la productividad de tu equipo sin contratar más personal</p>
+
+                <!-- AI Experience Item 3: AI-Powered Product Content (Right Tag / Left Card - FLIPPED) -->
+                <div class="relative mb-16 md:mb-24 reveal">
+                    <div class="flex flex-col md:flex-row items-center w-full group">
+                        <!-- Date/Tag (Desktop Right) -->
+                        <div class="w-full md:w-1/2 md:pl-12 order-1 md:order-2 mb-4 md:mb-0 text-left">
+                            <span class="inline-block px-3 py-1 bg-teal-900/40 border border-teal-500/30 text-teal-300 rounded-full text-xs font-semibold">E-commerce Visual Content</span>
+                        </div>
+                        
+                        <!-- Dot -->
+                        <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-4 h-4 bg-teal-500 rounded-full border-4 border-black shadow-[0_0_10px_rgba(20,184,166,0.5)] z-10 group-hover:scale-125 transition-transform duration-300"></div>
+
+                        <!-- Card (Desktop Left) -->
+                        <div class="w-full md:w-1/2 pl-20 md:pl-0 md:pr-12 order-2 md:order-1">
+                            <div class="glass-card p-6 md:p-8 rounded-3xl text-left">
+                                <h3 class="text-xl font-bold text-white">AI-Powered Product Content</h3>
+                                <p class="text-teal-400 font-medium mb-3">Image & Video Generation with Flora</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Managed end-to-end content generation for a PDP (Product Detail Page), including cleaning raw product photography, placing it in a realistic scenario, and generating a promotional video, all leveraged by Flora.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🎯</div>
-                    <h3>Decisiones Inteligentes</h3>
-                    <p>Toma decisiones basadas en datos, no en intuición</p>
+
+                <!-- AI Experience Item 4: E-commerce AI UI Guide (Left Tag / Right Card - NEW SPLIT) -->
+                 <div class="relative mb-16 md:mb-24 reveal">
+                    <div class="flex flex-col md:flex-row items-center w-full group">
+                        <!-- Date/Tag (Desktop Left) -->
+                        <div class="w-full md:w-1/2 md:pr-12 order-1 mb-4 md:mb-0 text-left md:text-right">
+                             <span class="inline-block px-3 py-1 bg-indigo-900/40 border border-indigo-500/30 text-indigo-300 rounded-full text-xs font-semibold">Internal Documentation</span>
+                        </div>
+                        
+                        <!-- Dot -->
+                        <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-4 h-4 bg-indigo-500 rounded-full border-4 border-black shadow-[0_0_10px_rgba(99,102,241,0.5)] z-10 group-hover:scale-125 transition-transform duration-300"></div>
+
+                        <!-- Card (Desktop Right) -->
+                        <div class="w-full md:w-1/2 pl-20 md:pl-12 order-2">
+                            <div class="glass-card p-6 md:p-8 rounded-3xl text-left">
+                                <h3 class="text-xl font-bold text-white">E-commerce AI UI Guide</h3>
+                                <p class="text-indigo-400 font-medium mb-3">Guidelines and Standard Practices</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Researched and documented internal E-commerce AI guidelines and design standards to ensure team consistency, safety, and brand alignment across all AI-driven user interfaces.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Experience Item 5: Social Media Copy Generation (Right Tag / Left Card) -->
+                <div class="relative reveal">
+                    <div class="flex flex-col md:flex-row items-center w-full group">
+                        <!-- Date/Tag (Desktop Right) -->
+                        <div class="w-full md:w-1/2 md:pl-12 order-1 md:order-2 mb-4 md:mb-0 text-left">
+                            <span class="inline-block px-3 py-1 bg-blue-900/40 border border-blue-500/30 text-blue-300 rounded-full text-xs font-semibold">Content Strategy</span>
+                        </div>
+                        
+                        <!-- Dot -->
+                        <div class="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-4 h-4 bg-blue-500 rounded-full border-4 border-black shadow-[0_0_10px_rgba(59,130,246,0.5)] z-10 group-hover:scale-125 transition-transform duration-300"></div>
+
+                        <!-- Card (Desktop Left) -->
+                        <div class="w-full md:w-1/2 pl-20 md:pl-0 md:pr-12 order-2 md:order-1">
+                            <div class="glass-card p-6 md:p-8 rounded-3xl text-left">
+                                <h3 class="text-xl font-bold text-white">Social Media Copy Generation</h3>
+                                <p class="text-blue-400 font-medium mb-3">Notion Template for LLMs</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Created a self-contained Notion template system that takes a simple product/subject input from marketing teams and uses integrated LLM APIs to produce consistent, brand-aligned text copy ready for social media posts.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section: Built with Gemini (UPDATED) -->
+    <section class="py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center glass-panel p-10 rounded-3xl reveal">
+            <h3 class="text-2xl font-bold text-white mb-4 flex items-center justify-center gap-3">
+                A Live Example
+            </h3>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                This website (including the responsive HTML, modern CSS styling and JavaScript interactivity) was built by myself using <b class="text-white font-semibold">Google Gemini</b>.
+            </p>
+            <!-- Diamond icon removed -->
+        </div>
+    </section>
+
+    <!-- Certifications Section (MOVED TO END) -->
+    <section id="certifications" class="py-24 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-16 tracking-tight text-white reveal">Certifications</h2>
+            <div class="glass-panel p-8 rounded-3xl reveal flex flex-col justify-center">
+                <!-- Added justify-center to center the chips -->
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Prompt Engineering at <b class="font-bold">IBM SkillsBuild</b></span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Technical SEO and AI at <b class="font-bold">Semrush</b></span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">SEO Certification Course at <b class="font-bold">Hubspot Academy</b></span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">User Experience Certificate at <b class="font-bold">Google</b></span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Digital Marketing at <b class="font-bold">Coder House</b></span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Digital Marketing at <b class="font-bold">Google Activate</b></span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="process-section" id="proceso">
-        <div class="container">
-            <h2 class="section-title">Cómo Funciona</h2>
-            <p class="section-subtitle">Un proceso simple y efectivo para transformar tu negocio</p>
-            
-            <div class="process-steps">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Llamada de Diagnóstico</h3>
-                    <p>Agendamos una llamada gratuita de 30 minutos donde conoceré tu negocio, tus desafíos actuales y tus objetivos específicos.</p>
-                    <span class="step-highlight">100% GRATIS</span>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Análisis Personalizado</h3>
-                    <p>Identifico las áreas clave donde la IA puede generar mayor impacto en tu negocio y diseño una estrategia a medida.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Consultoría Práctica</h3>
-                    <p>En sesiones 1 on 1, te muestro exactamente cómo implementar soluciones de IA para resolver tus problemas específicos.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <h3>Implementación Guiada</h3>
-                    <p>Te acompaño en el proceso de implementación para asegurar que obtengas resultados reales y medibles.</p>
-                </div>
+    <!-- Simple Footer -->
+    <footer id="contact" class="py-12 border-t border-white/10 glass-panel mt-20">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <!-- Updated Footer Heading -->
+            <h2 class="text-2xl font-bold mb-6 text-white">Get in touch</h2>
+            <div class="flex justify-center gap-6 mb-8">
+                <!-- LinkedIn icon/link updated with correct URL and target="_blank" -->
+                <a href="https://www.linkedin.com/in/barbierimartin/" target="_blank" class="p-3 bg-white/10 border border-white/20 rounded-full shadow-sm hover:scale-110 transition-transform text-white hover:bg-white hover:text-black">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
             </div>
-        </div>
-    </section>
-
-    <section class="reviews-section">
-        <div class="container">
-            <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
-            <p class="section-subtitle">Pequeños negocios que ya transformaron su operación con IA</p>
-            
-            <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"Implementamos las soluciones de IA y redujimos el tiempo de atención al cliente en un 65%. Ahora podemos enfocarnos en crecer el negocio en lugar de apagar incendios."</p>
-                    <div class="reviewer">
-                        <div class="reviewer-avatar">MC</div>
-                        <div class="reviewer-info">
-                            <h4>María Contreras</h4>
-                            <p>Dueña, Tienda Online</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"La consultoría fue exactamente lo que necesitaba. En 3 semanas automatizamos procesos que nos tomaban horas diarias. El ROI fue inmediato."</p>
-                    <div class="reviewer">
-                        <div class="reviewer-avatar">JS</div>
-                        <div class="reviewer-info">
-                            <h4>Juan Sánchez</h4>
-                            <p>Fundador, Agencia de Marketing</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"No tenía idea de cómo la IA podía aplicarse a mi restaurante. Ahora tengo sistemas que optimizan inventario y predicen demanda. Increíble."</p>
-                    <div class="reviewer">
-                        <div class="reviewer-avatar">AP</div>
-                        <div class="reviewer-info">
-                            <h4>Ana Pérez</h4>
-                            <p>Propietaria, Restaurante</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"Pasé de trabajar 12 horas al día a 6 gracias a la automatización inteligente. Mi equipo está más feliz y somos más rentables que nunca."</p>
-                    <div class="reviewer">
-                        <div class="reviewer-avatar">RG</div>
-                        <div class="reviewer-info">
-                            <h4>Roberto Gómez</h4>
-                            <p>CEO, Startup SaaS</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"La mejor inversión que hice este año. Entendió perfecto mis necesidades y me dio soluciones prácticas que implementé de inmediato."</p>
-                    <div class="reviewer">
-                        <div class="reviewer-avatar">LM</div>
-                        <div class="reviewer-info">
-                            <h4>Laura Martínez</h4>
-                            <p>Consultora Independiente</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="review-text">"Finalmente alguien que explica IA en términos que entiendo. Implementamos chatbots y automatización de emails con resultados sorprendentes."</p>
-                    <div class="reviewer">
-                        <div class="reviewer-avatar">CF</div>
-                        <div class="reviewer-info">
-                            <h4>Carlos Fernández</h4>
-                            <p>Director, Ecommerce</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-box">
-                <h2>Comienza tu Transformación Hoy</h2>
-                <p>Agenda una llamada gratuita de 30 minutos y descubre cómo la IA puede revolucionar tu negocio</p>
-                <a href="https://calendly.com" class="cta-btn" target="_blank" style="font-size: 18px; padding: 16px 40px;">Agenda tu Llamada Gratis →</a>
-                <p style="margin-top: 20px; font-size: 14px;">Sin compromisos. 100% personalizado para tu negocio.</p>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 AI Consulting. Transformando negocios con inteligencia artificial.</p>
+            <p class="text-sm text-gray-500">
+                © 2024 Martin Barbieri. All rights reserved.
+            </p>
         </div>
     </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+
+        // Smooth Scroll for Anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

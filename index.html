@@ -105,7 +105,6 @@
 
     <!-- Navigation (FIXED) - Updated for Mobile Responsiveness -->
     <nav class="fixed top-0 w-full z-50 px-6 py-4">
-        <!-- Removed extra background/rounding from #nav-links so it uses the main glass-panel background on mobile -->
         <div id="nav-container" class="max-w-5xl mx-auto glass-panel rounded-full md:rounded-3xl px-6 py-3 flex justify-between items-center flex-wrap transition-all duration-300">
             
             <!-- Logo/Name -->
@@ -117,21 +116,23 @@
             </button>
 
             <!-- Menu Links (Hidden on mobile by default, shown on desktop) -->
-            <!-- Updated class: Removed bg-white/5 and rounded-2xl to fix duplicate container issue on mobile -->
-            <div id="nav-links" class="hidden w-full md:flex md:w-auto mt-3 md:mt-0 md:bg-transparent md:p-0 p-4">
-                <div class="flex flex-col md:flex-row md:space-x-6 space-y-2 md:space-y-0 text-sm font-medium text-gray-400">
-                    <a href="#about" class="hover:text-white transition-colors">About</a>
-                    <a href="#skills" class="hover:text-white transition-colors">Skills</a>
-                    <a href="#ai-track" class="hover:text-white transition-colors">Work</a>
-                    <a href="#certifications" class="hover:text-white transition-colors">Certifications</a>
-                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            <!-- Updated: Removed padding (p-4) to clean up mobile wrapping/style -->
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto mt-3 md:mt-0 md:bg-transparent md:p-0">
+                <!-- Updated: Removed space-y-2 and added w-full for full-width links -->
+                <div class="flex flex-col md:flex-row md:space-x-6 text-sm font-medium text-gray-400 w-full">
+                    <!-- Updated: Added block, px-4, py-3 for better mobile link target size and spacing -->
+                    <a href="#about" class="block py-3 px-4 hover:text-white transition-colors">About</a>
+                    <a href="#skills" class="block py-3 px-4 hover:text-white transition-colors">Skills</a>
+                    <a href="#ai-track" class="block py-3 px-4 hover:text-white transition-colors">Work</a>
+                    <a href="#certifications" class="block py-3 px-4 hover:text-white transition-colors">Certifications</a>
+                    <a href="#contact" class="block py-3 px-4 hover:text-white transition-colors">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section - Reduced top padding on mobile (pt-24) to reduce space between nav and card -->
-    <section id="about" class="min-h-screen pt-24 md:pt-32 flex items-center justify-center px-4 relative">
+    <!-- Hero Section - Adjusted top padding on mobile (pt-20) to move closer to nav -->
+    <section id="about" class="min-h-screen pt-20 md:pt-32 flex items-center justify-center px-4 relative">
         <div class="max-w-4xl w-full text-center z-10 p-4 md:p-8">
             <!-- Restored the card container (glass-panel) -->
             <div class="glass-panel p-6 md:p-10 rounded-[3rem] max-w-xl mx-auto">
@@ -538,7 +539,7 @@
 
         // Hide menu on link click (only needed for mobile)
         document.querySelectorAll('#nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', function() {
                 // Check if it's a mobile view (links are stacked)
                 if (!navLinks.classList.contains('md:flex')) {
                      // Programmatically click the toggle button to close the menu

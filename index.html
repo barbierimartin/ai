@@ -103,32 +103,39 @@
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[100px] opacity-10 animate-blob"></div>
     </div>
 
-    <!-- Navigation (FIXED) - UPDATED FOR DECOUPLED ABSOLUTE MOBILE DROPDOWN -->
+    <!-- Navigation (FIXED) - RESTORED DESKTOP INTEGRATION -->
     <nav class="fixed top-0 w-full z-50 px-6 py-4">
         
-        <!-- Nav Container (Pill): This element now maintains a constant shape. -->
-        <!-- The 'relative' class was removed as the dropdown is no longer a child. -->
+        <!-- Nav Container (Pill) - Desktop layout container -->
         <div id="nav-container" class="max-w-5xl mx-auto glass-panel rounded-full px-6 py-3 flex justify-between items-center transition-all duration-300">
             
             <!-- Logo/Name -->
             <span class="font-bold text-lg tracking-tight text-white z-20">Martin Barbieri</span>
             
+            <!-- DESKTOP LINKS - Visible only on medium screens and up (integrated into the pill) -->
+            <div id="desktop-links" class="hidden md:flex md:space-x-4 text-sm font-medium text-gray-400">
+                <!-- Added rounded-xl to links for better hover contrast -->
+                <a href="#about" class="py-1 px-3 hover:text-white transition-colors rounded-xl">About</a>
+                <a href="#skills" class="py-1 px-3 hover:text-white transition-colors rounded-xl">Skills</a>
+                <a href="#ai-track" class="py-1 px-3 hover:text-white transition-colors rounded-xl">Work</a>
+                <a href="#certifications" class="py-1 px-3 hover:text-white transition-colors rounded-xl">Certifications</a>
+                <a href="#contact" class="py-1 px-3 hover:text-white transition-colors rounded-xl">Contact</a>
+            </div>
+
             <!-- Mobile Toggle Button (Visible only on small screens) -->
             <button id="menu-toggle" class="md:hidden p-2 text-white hover:text-gray-400 transition-colors z-20">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
         </div>
 
-        <!-- Menu Links Container: Decoupled Absolute Dropdown on Mobile -->
-        <!-- top-[76px] is calculated to place it 12px below the pill. -->
-        <!-- max-w-5xl mx-auto ensures it aligns horizontally with the pill container. -->
-        <div id="nav-links" class="hidden md:flex md:w-auto md:relative absolute top-[76px] left-6 right-6 z-10 max-w-5xl mx-auto">
+        <!-- MOBILE DROPDOWN LINKS - Decoupled Absolute Dropdown (Hidden on desktop) -->
+        <!-- The JS will toggle 'hidden' and 'flex' on this container for mobile view. -->
+        <div id="nav-links" class="hidden md:hidden absolute top-[76px] left-6 right-6 z-10 max-w-5xl mx-auto">
             
             <!-- Inner container with the glass effect and links -->
             <div class="glass-panel rounded-2xl p-2 w-full">
-                <!-- Añado 'text-center' aquí para centrar los enlaces en móvil -->
+                <!-- text-center is kept for mobile alignment -->
                 <div class="flex flex-col md:flex-row md:space-x-6 text-sm font-medium text-gray-400 w-full text-center">
-                    <!-- Added rounded-xl to links for better hover contrast -->
                     <a href="#about" class="block py-3 px-4 hover:text-white transition-colors rounded-xl">About</a>
                     <a href="#skills" class="block py-3 px-4 hover:text-white transition-colors rounded-xl">Skills</a>
                     <a href="#ai-track" class="block py-3 px-4 hover:text-white transition-colors rounded-xl">Work</a>
@@ -519,13 +526,13 @@
 
         // Mobile Menu Toggle Logic
         const menuToggle = document.getElementById('menu-toggle');
-        const navLinks = document.getElementById('nav-links');
+        const navLinks = document.getElementById('nav-links'); // This is now the MOBILE DROPDOWN
         const navContainer = document.getElementById('nav-container');
 
         menuToggle.addEventListener('click', () => {
             const isMenuOpen = navLinks.classList.contains('flex');
             
-            // Toggle visibility of links container
+            // Toggle visibility of the MOBILE DROPDOWN container
             navLinks.classList.toggle('hidden');
             navLinks.classList.toggle('flex'); // Uses flex for the mobile dropdown layout
 
@@ -533,15 +540,14 @@
             const icon = menuToggle.querySelector('i');
             icon.outerHTML = lucide.createIcons()[isMenuOpen ? 'menu' : 'x']({ class: 'w-6 h-6' }).outerHTML;
 
-            // IMPORTANT: The top bar (navContainer) now maintains its rounded-full shape 
-            // because the dropdown is a sibling, not a child.
+            // The top bar (navContainer) keeps its rounded-full shape due to the decoupled structure.
         });
 
         // Hide menu on link click (only needed for mobile)
         document.querySelectorAll('#nav-links a').forEach(link => {
             link.addEventListener('click', function() {
-                // Check if it's a mobile view (links are stacked)
-                if (!navLinks.classList.contains('md:flex')) {
+                // Check if it's a mobile view (links are stacked, md:hidden means we are on mobile)
+                if (navLinks.classList.contains('md:hidden')) {
                      // Programmatically click the toggle button to close the menu
                     menuToggle.click();
                 }

@@ -94,11 +94,6 @@
         .icon-white-bg {
              background: linear-gradient(135deg, #F9FAFB, #D1D5DB); color: black;
         }
-        
-        /* The custom media-container fixed height CSS has been removed. 
-           The video wrappers now use the Tailwind `aspect-video` class for 
-           a responsive 16:9 aspect ratio. 
-        */
     </style>
 </head>
 <body class="antialiased selection:bg-blue-500 selection:text-white relative">
@@ -108,23 +103,32 @@
         <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-[100px] opacity-10 animate-blob"></div>
     </div>
 
-    <!-- Navigation (FIXED) -->
+    <!-- Navigation (FIXED) - Updated for Mobile Responsiveness -->
     <nav class="fixed top-0 w-full z-50 px-6 py-4">
-        <div class="max-w-5xl mx-auto glass-panel rounded-full px-6 py-3 flex justify-between items-center">
-            <!-- Updated Navigation Title -->
-            <span class="font-bold text-lg tracking-tight text-white">Martin Barbieri</span>
-            <div class="flex space-x-6 text-sm font-medium text-gray-400">
-                <a href="#about" class="hover:text-white transition-colors">About</a>
-                <a href="#skills" class="hover:text-white transition-colors">Skills</a>
-                <!-- Updated Navigation Link -->
-                <a href="#ai-track" class="hover:text-white transition-colors">Experience</a>
-                <a href="#certifications" class="hover:text-white transition-colors">Certifications</a>
-                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+        <div id="nav-container" class="max-w-5xl mx-auto glass-panel rounded-full md:rounded-3xl px-6 py-3 flex justify-between items-center flex-wrap transition-all duration-300">
+            
+            <!-- Logo/Name -->
+            <span class="font-bold text-lg tracking-tight text-white z-20">Martin Barbieri</span>
+            
+            <!-- Mobile Toggle Button (Visible only on small screens) -->
+            <button id="menu-toggle" class="md:hidden p-2 text-white hover:text-gray-400 transition-colors z-20">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Menu Links (Hidden on mobile by default, shown on desktop) -->
+            <div id="nav-links" class="hidden w-full md:flex md:w-auto mt-3 md:mt-0 md:bg-transparent bg-white/5 rounded-2xl md:p-0 p-4">
+                <div class="flex flex-col md:flex-row md:space-x-6 space-y-2 md:space-y-0 text-sm font-medium text-gray-400">
+                    <a href="#about" class="hover:text-white transition-colors">About</a>
+                    <a href="#skills" class="hover:text-white transition-colors">Skills</a>
+                    <a href="#ai-track" class="hover:text-white transition-colors">Work</a> <!-- Changed Experience to Work -->
+                    <a href="#certifications" class="hover:text-white transition-colors">Certifications</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section (Card Restored and scaled 20% bigger than the previous iteration) -->
+    <!-- Hero Section -->
     <section id="about" class="min-h-screen pt-32 flex items-center justify-center px-4 relative">
         <div class="max-w-4xl w-full text-center z-10 p-4 md:p-8">
             <!-- Restored the card container (glass-panel) -->
@@ -149,13 +153,14 @@
                 <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-white mb-4">
                     Martin Barbieri
                 </h1>
-                <!-- Scaled Subtext Size: text-sm/base -> text-base/lg (approx 20% increase) -->
+                <!-- UPDATED HERO TEXT -->
                 <p class="text-base md:text-lg text-gray-400 font-light leading-relaxed max-w-3xl mx-auto mb-6 px-4">
-                    Senior Product Designer located in Buenos Aires, Argentina. Currently working remotely & globally merging human-centric design with AI innovation to build intelligent products.
+                    Sr Product Designer from Buenos Aires, Argentina. Working remotely & globally with AI innovations to build intelligent products.
                 </p>
                 <div class="flex justify-center gap-4">
+                    <!-- UPDATED CTA TEXT -->
                     <a href="#ai-track" class="px-6 py-2.5 bg-white text-black rounded-full text-sm font-medium hover:bg-gray-200 transition-all hover:scale-105 shadow-lg shadow-white/10">
-                        View AI Work Experience
+                        View AI Work
                     </a>
                 </div>
             </div>
@@ -176,84 +181,84 @@
                     <h3 class="text-lg font-semibold mb-6 text-gray-500 uppercase tracking-widest text-xs">Software</h3>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                         
-                        <!-- Figma -->
+                        <!-- Figma (Data-lucide: figma) -->
                         <div class="flex flex-col items-center gap-2 group cursor-default">
                             <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                 <i data-lucide="figma" class="w-8 h-8"></i>
                             </div>
                             <span class="text-xs font-medium text-gray-400">Figma</span>
                         </div>
-                        <!-- Claude (White/Black) -->
+                        <!-- Claude (Data-lucide: bot) -->
                         <div class="flex flex-col items-center gap-2 group cursor-default">
                             <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                 <i data-lucide="bot" class="w-8 h-8"></i>
                             </div>
                             <span class="text-xs font-medium text-gray-400">Claude</span>
                         </div>
-                        <!-- Gemini (White/Black) -->
+                        <!-- Gemini (Data-lucide: gem) -->
                         <div class="flex flex-col items-center gap-2 group cursor-default">
                             <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                 <i data-lucide="gem" class="w-8 h-8"></i>
                             </div>
                             <span class="text-xs font-medium text-gray-400">Gemini</span>
                         </div>
-                        <!-- Lovable (White/Black) -->
+                        <!-- Lovable (Data-lucide: heart) -->
                         <div class="flex flex-col items-center gap-2 group cursor-default">
                             <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                 <i data-lucide="heart" class="w-8 h-8"></i>
                             </div>
                             <span class="text-xs font-medium text-gray-400">Lovable</span>
                         </div>
-                         <!-- Flora (White/Black) -->
+                         <!-- Flora (Data-lucide: leaf) -->
                         <div class="flex flex-col items-center gap-2 group cursor-default">
                             <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                 <i data-lucide="leaf" class="w-8 h-8"></i>
                             </div>
                             <span class="text-xs font-medium text-gray-400">Flora</span>
                         </div>
-                        <!-- n8n (White/Black) -->
+                        <!-- n8n (Data-lucide: git-branch) -->
                         <div class="flex flex-col items-center gap-2 group cursor-default">
                             <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                 <i data-lucide="git-branch" class="w-8 h-8"></i>
                             </div>
                             <span class="text-xs font-medium text-gray-400">n8n</span>
                         </div>
-                        <!-- Zapier (White/Black) -->
+                        <!-- Zapier (Data-lucide: zap) -->
                         <div class="flex flex-col items-center gap-2 group cursor-default">
                             <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                 <i data-lucide="zap" class="w-8 h-8"></i>
                             </div>
                             <span class="text-xs font-medium text-gray-400">Zapier</span>
                         </div>
-                        <!-- ChatGPT (White/Black) -->
+                        <!-- ChatGPT (Data-lucide: message-square) -->
                         <div class="flex flex-col items-center gap-2 group cursor-default">
                             <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                 <i data-lucide="message-square" class="w-8 h-8"></i>
                             </div>
                             <span class="text-xs font-medium text-gray-400">ChatGPT</span>
                         </div>
-                         <!-- Nano Banana / Image Gen (White/Black) -->
+                         <!-- Nano Banana / Image Gen (Data-lucide: wand-2) -->
                         <div class="flex flex-col items-center gap-2 group cursor-default">
                             <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                 <i data-lucide="wand-2" class="w-8 h-8"></i>
                             </div>
                             <span class="text-xs font-medium text-gray-400">Nano Banana</span>
                         </div>
-                        <!-- Runway (White/Black) -->
+                        <!-- Runway (Data-lucide: film) -->
                         <div class="flex flex-col items-center gap-2 group cursor-default">
                             <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
                                 <i data-lucide="film" class="w-8 h-8"></i>
                             </div>
                             <span class="text-xs font-medium text-gray-400">Runway</span>
                         </div>
-                        <!-- Midjourney (White/Black) -->
+                        <!-- Midjourney (Data-lucide: square-asterisk) -->
                         <div class="flex flex-col items-center gap-2 group cursor-default">
                             <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
                                 <i data-lucide="square-asterisk" class="w-8 h-8"></i>
                             </div>
                             <span class="text-xs font-medium text-gray-400">Midjourney</span>
                         </div>
-                        <!-- Google AI Studio (White/Black) -->
+                        <!-- Google AI Studio (Data-lucide: activity) -->
                         <div class="flex flex-col items-center gap-2 group cursor-default">
                             <div class="w-16 h-16 rounded-2xl icon-white-bg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                 <i data-lucide="activity" class="w-8 h-8"></i>
@@ -267,20 +272,20 @@
                 <div class="glass-panel p-8 rounded-3xl reveal delay-100 flex flex-col justify-center">
                     <!-- Updated Subtitle -->
                     <h3 class="text-lg font-semibold mb-6 text-gray-500 uppercase tracking-widest text-xs">Skills</h3>
-                    <!-- Added justify-center here for centered chips -->
+                    <!-- Updated chip list and order -->
                     <div class="flex flex-wrap gap-3 justify-center">
-                        <!-- Styles removed from these three to match the rest -->
                         <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Prompt Engineering</span>
                         <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">AI Content Generation</span>
-                        <!-- Updated Skill -->
                         <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">AI E-commerce</span>
-
+                        <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Prompt Coding</span>
                         <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">UX Research</span>
                         <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">UI Design</span>
                         <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Prototyping</span>
                         <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Design Systems</span>
                         <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">AI Workflow Design</span>
                         <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Wireframing</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Landing Pages</span>
+                        <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">A/B Testing</span>
                         <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Product Strategy</span>
                     </div>
                 </div>
@@ -301,7 +306,7 @@
             <!-- Main Timeline Container - Constrained to 3xl for very wide cards. Timeline line removed. -->
             <div class="relative max-w-3xl mx-auto"> 
 
-                <!-- AI Experience Item 1: AI Automation & Workflow -->
+                <!-- AI Experience Item 1: AI Workflow Automation (UPDATED) -->
                 <div class="relative mb-16 md:mb-24 reveal">
                     <div class="flex flex-col items-center w-full group">
                         
@@ -322,17 +327,17 @@
                                     ></video>
                                 </div>
                                 <!-- END: Media Container 1 -->
-                                <h3 class="text-xl font-bold text-white">AI Automation & Workflow</h3>
-                                <p class="text-purple-400 font-medium mb-3">n8n, Zapier & Sheet Integration</p>
+                                <h3 class="text-2xl font-bold text-white">AI Workflow Automation</h3> <!-- UPDATED TITLE -->
+                                <p class="text-purple-400 font-medium mb-3">n8n & App Integration</p> <!-- UPDATED SUBTITLE -->
                                 <p class="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto">
-                                    Implemented AI automation workflows using n8n (and/or Zapier) to process form input results, trigger email funnel communications, and log structured data directly into a Sheets document for business intelligence.
-                                </p>
+                                    Implemented AI automation workflows using n8n to process form input results, trigger email funnel communications and log structured data directly into a Sheets document for business intelligence.
+                                </p> <!-- UPDATED DESCRIPTION -->
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- AI Experience Item 2: AI Native UX/UI Design -->
+                <!-- AI Experience Item 2: AI Native UX/UI Design (UPDATED) -->
                 <div class="relative mb-16 md:mb-24 reveal">
                     <div class="flex flex-col items-center w-full group">
                         
@@ -353,17 +358,17 @@
                                     ></video>
                                 </div>
                                 <!-- END: Media Container 2 -->
-                                <h3 class="text-xl font-bold text-white">AI-Native UX/UI Design</h3>
+                                <h3 class="text-2xl font-bold text-white">AI-Native UX/UI Design</h3>
                                 <p class="text-rose-400 font-medium mb-3">Figma & Prototyping</p>
                                 <p class="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto">
-                                    Designed several AI UI features in Figma, including a customer support bot and an AI product comparison tool, leveraging Lovable for idea prototyping and concept validation.
-                                </p>
+                                    Designed several AI UI features in Figma, including a customer support bot and an AI product comparison tool, using Lovable for idea prototyping and concept validation.
+                                </p> <!-- UPDATED DESCRIPTION (leveraging -> using) -->
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- AI Experience Item 3: AI-Powered Product Content -->
+                <!-- AI Experience Item 3: AI Content Generation (UPDATED) -->
                 <div class="relative mb-16 md:mb-24 reveal">
                     <div class="flex flex-col items-center w-full group">
                         
@@ -384,17 +389,17 @@
                                     ></video>
                                 </div>
                                 <!-- END: Media Container 3 -->
-                                <h3 class="text-xl font-bold text-white">AI-Powered Product Content</h3>
-                                <p class="text-teal-400 font-medium mb-3">Image & Video Generation with Flora</p>
+                                <h3 class="text-2xl font-bold text-white">AI Content Generation</h3> <!-- UPDATED TITLE -->
+                                <p class="text-teal-400 font-medium mb-3">Image & Video with Flora</p> <!-- UPDATED SUBTITLE -->
                                 <p class="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto">
-                                    Managed end-to-end content generation for a PDP (Product Detail Page), including cleaning raw product photography, placing it in a realistic scenario, and generating a promotional video, all leveraged by Flora.
-                                </p>
+                                    Managed end-to-end content generation for a PDP (Product Detail Page), including cleaning product photography, placing it in a realistic scenario and generating a promotional video.
+                                </p> <!-- UPDATED DESCRIPTION -->
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- AI Experience Item 4: E-commerce AI UI Guide -->
+                <!-- AI Experience Item 4: AI E-commerce (UPDATED) -->
                  <div class="relative mb-16 md:mb-24 reveal">
                     <div class="flex flex-col items-center w-full group">
                         
@@ -415,18 +420,18 @@
                                     ></video>
                                 </div>
                                 <!-- END: Media Container 4 -->
-                                <h3 class="text-xl font-bold text-white">E-commerce AI UI Guide</h3>
-                                <p class="text-indigo-400 font-medium mb-3">Guidelines and Standard Practices</p>
+                                <h3 class="text-2xl font-bold text-white">AI E-commerce</h3> <!-- UPDATED TITLE -->
+                                <p class="text-indigo-400 font-medium mb-3">Guidelines and New Practices</p> <!-- UPDATED SUBTITLE -->
                                 <p class="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto">
-                                    Researched and documented internal E-commerce AI guidelines and design standards to ensure team consistency, safety, and brand alignment across all AI-driven user interfaces.
-                                </p>
+                                    Researched and documented E-commerce AI guidelines and new design standards to ensure consistency, safety and alignment across AI-driven user interfaces.
+                                </p> <!-- UPDATED DESCRIPTION -->
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- AI Experience Item 5: Social Media Prompt Engineering -->
-                <div class="relative reveal">
+                <!-- AI Experience Item 5: Prompt Engineering (UPDATED) -->
+                <div class="relative mb-16 md:mb-24 reveal">
                     <div class="flex flex-col items-center w-full group">
                         
                         <!-- Card (Full Width within max-w-3xl container) - Added relative z-10 for stacking context -->
@@ -446,11 +451,40 @@
                                     ></video>
                                 </div>
                                 <!-- END: Media Container 5 -->
-                                <!-- UPDATED: Title and Description -->
-                                <h3 class="text-xl font-bold text-white">Prompt Engineering for LLMs</h3>
-                                <p class="text-blue-400 font-medium mb-3">Custom Template for Social Media</p>
+                                <h3 class="text-2xl font-bold text-white">Prompt Engineering</h3> <!-- UPDATED TITLE -->
+                                <p class="text-blue-400 font-medium mb-3">Custom Template for LLMs</p> <!-- UPDATED SUBTITLE -->
                                 <p class="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto">
-                                    Designed, tested and refined LLM prompts creating a customized prompt template to generate comprehensive planning, creative ideas, text copy and monthly calendars for social media channels.
+                                    Designed, tested and refined LLM custom prompt templates to generate ideas, text and calendar planning for social media, product detail, newsletters and sales copywriting.
+                                </p> <!-- UPDATED DESCRIPTION -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Experience Item 6: Prompt Coding (UPDATED TITLE) -->
+                <div class="relative reveal">
+                    <div class="flex flex-col items-center w-full group">
+                        
+                        <!-- Card (Full Width within max-w-3xl container) - Added relative z-10 for stacking context -->
+                        <div class="w-full px-4 sm:px-8 md:px-12 relative z-10">
+                            <div class="glass-card p-6 md:p-8 rounded-3xl text-center">
+                                <!-- START: Media Container 6 (Gemini Demo) -->
+                                <div class="mb-4 overflow-hidden rounded-xl border border-white/10 aspect-video">
+                                    <video 
+                                        src="gemini.mp4" 
+                                        alt="Demo of Prompt Coding Website Design with Gemini" 
+                                        class="w-full h-full object-cover" 
+                                        autoplay 
+                                        loop 
+                                        muted 
+                                        playsinline
+                                    ></video>
+                                </div>
+                                <!-- END: Media Container 6 -->
+                                <h3 class="text-2xl font-bold text-white">Prompt Coding</h3> <!-- UPDATED TITLE -->
+                                <p class="text-emerald-400 font-medium mb-3">Design & Development With Gemini</p>
+                                <p class="text-gray-400 text-sm leading-relaxed max-w-2xl mx-auto">
+                                    This entire website (including the responsive HTML, modern CSS styling and JavaScript interactivity) was built entirely by myself using prompt engineering techniques with Google Gemini as a live demonstration of my AI prompt coding and design capabilities.
                                 </p>
                             </div>
                         </div>
@@ -461,32 +495,19 @@
         </div>
     </section>
 
-    <!-- New Section: Built with Gemini (UPDATED) -->
-    <section class="py-16 px-4">
-        <div class="max-w-4xl mx-auto text-center glass-panel p-10 rounded-3xl reveal">
-            <h3 class="text-2xl font-bold text-white mb-4 flex items-center justify-center gap-3">
-                A Live Example
-            </h3>
-            <p class="text-gray-400 max-w-2xl mx-auto">
-                This website (including the responsive HTML, modern CSS styling and JavaScript interactivity) was built by myself using <b class="text-white font-semibold">Google Gemini</b>.
-            </p>
-            <!-- Diamond icon removed -->
-        </div>
-    </section>
-
-    <!-- Certifications Section (MOVED TO END) -->
+    <!-- Certifications Section -->
     <section id="certifications" class="py-24 px-4">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-3xl font-bold text-center mb-16 tracking-tight text-white reveal">Certifications</h2>
             <div class="glass-panel p-8 rounded-3xl reveal flex flex-col justify-center">
-                <!-- Added justify-center to center the chips -->
-                <div class="flex flex-wrap gap-3 justify-center">
-                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Prompt Engineering at <b class="font-bold">IBM SkillsBuild</b></span>
-                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Technical SEO and AI at <b class="font-bold">Semrush</b></span>
-                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">SEO Certification Course at <b class="font-bold">Hubspot Academy</b></span>
-                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">User Experience Certificate at <b class="font-bold">Google</b></span>
-                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Digital Marketing at <b class="font-bold">Coder House</b></span>
-                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors">Digital Marketing at <b class="font-bold">Google Activate</b></span>
+                <!-- Changed to a grid to enforce two columns (pairs of 2) on medium screens and up -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors text-center w-full">Prompt Engineering at <b class="font-bold">IBM SkillsBuild</b></span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors text-center w-full">Technical SEO and AI at <b class="font-bold">Semrush</b></span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors text-center w-full">SEO Certification Course at <b class="font-bold">Hubspot Academy</b></span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors text-center w-full">User Experience Certificate at <b class="font-bold">Google</b></span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors text-center w-full">Digital Marketing at <b class="font-bold">Coder House</b></span>
+                    <span class="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm text-gray-300 hover:bg-white/10 transition-colors text-center w-full">Digital Marketing at <b class="font-bold">Google Activate</b></span>
                 </div>
             </div>
         </div>
@@ -513,6 +534,46 @@
     <script>
         // Initialize Icons
         lucide.createIcons();
+
+        // Mobile Menu Toggle Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        const navContainer = document.getElementById('nav-container');
+
+        menuToggle.addEventListener('click', () => {
+            const isMenuOpen = navLinks.classList.contains('flex');
+            
+            // Toggle visibility of links
+            navLinks.classList.toggle('hidden');
+            navLinks.classList.toggle('flex');
+
+            // Toggle icon (menu <-> x)
+            const icon = menuToggle.querySelector('i');
+            icon.outerHTML = lucide.createIcons()[isMenuOpen ? 'menu' : 'x']({ class: 'w-6 h-6' }).outerHTML;
+
+            // Adjust nav container rounding for expanded menu
+            if (isMenuOpen) {
+                // Closing menu: return to rounded-full
+                navContainer.classList.add('rounded-full');
+                navContainer.classList.remove('rounded-3xl');
+            } else {
+                // Opening menu: use larger rounded-3xl for full width on mobile
+                navContainer.classList.remove('rounded-full');
+                navContainer.classList.add('rounded-3xl');
+            }
+        });
+
+        // Hide menu on link click (only needed for mobile)
+        document.querySelectorAll('#nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                // Check if it's a mobile view (links are stacked)
+                if (!navLinks.classList.contains('md:flex')) {
+                     // Programmatically click the toggle button to close the menu
+                    menuToggle.click();
+                }
+            });
+        });
+
 
         // Scroll Reveal Animation
         function reveal() {

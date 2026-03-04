@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinfolk Outdoors – Bellroy Transit Backpack PDP Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #F7F5F2;
+            --surface: #FFFFFF;
+            --surface-2: #F0EDE8;
+            --border: #E2DDD7;
+            --text: #1A1916;
+            --text-muted: #6B6760;
+            --accent: #2A5C3F;
+            --accent-light: #EAF3EE;
+            --red: #C0392B;
+            --red-bg: #FDF0EE;
+            --green: #2A5C3F;
+            --green-bg: #EAF3EE;
+            --gold: #B8962E;
+            --cta: #1A1916;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* ─── HEADER + TOGGLE (unified compact bar) ─── */
+        .page-header {
+            background: rgba(20, 19, 17, 0.72);
+            backdrop-filter: blur(16px) saturate(160%);
+            -webkit-backdrop-filter: blur(16px) saturate(160%);
+            color: #fff;
+            padding: 0 24px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .page-header .brand { display: none; }
+        .page-header h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            white-space: nowrap;
+            flex: 1;
+        }
+        .page-header p { display: none; }
+
+        /* Score tooltip trigger in header */
+        .score-trigger {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            transition: background 0.15s;
+            position: relative;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .score-trigger:hover { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); }
+        .score-trigger .score-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        .score-trigger .score-num.bad  { color: #f4766d; }
+        .score-trigger .score-num.good { color: #6ecf8c; }
+
+        /* Score dropdown tooltip */
+        .score-dropdown {
+            position: fixed;
+            min-width: 240px;
+            background: var(--text);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            padding: 14px 16px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.18s;
+            z-index: 9999;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+        }
+        .score-dropdown.visible { opacity: 1; pointer-events: auto; }
+        .score-dropdown-header {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .score-dropdown-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .score-dropdown-num.bad  { color: #f4766d; }
+        .score-dropdown-num.good { color: #6ecf8c; }
+        .score-dropdown-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.5px;
+        }
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.55);
+        }
+        .score-row:last-child { border-bottom: none; }
+        .score-row-val { font-weight: 600; }
+        .score-row-val.bad  { color: #f4766d; }
+        .score-row-val.good { color: #6ecf8c; }
+
+        /* ─── TOGGLE (lives inside .page-header now) ─── */
+        .toggle-wrap { display: none; }
+        .seg-control {
+            display: flex;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 40px;
+            padding: 3px;
+            gap: 3px;
+            flex-shrink: 0;
+        }
+        .seg-opt {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 12.5px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.45);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            white-space: nowrap;
+        }
+        .seg-opt .dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .seg-opt.active {
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* ─── STICKY PRODUCT BAR (after/optimized) ─── */
+        .sticky-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: #fff;
+            border-top: 1px solid var(--border);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            z-index: 90;
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+            display: none;
+        }
+        .sticky-bar.visible { transform: translateY(0); }
+        .sticky-bar-inner {
+            max-width: 100%;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .sticky-thumb {
+            width: 44px; height: 44px;
+            border-radius: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #e8e4de;
+        }
+        .sticky-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+        .sticky-info { flex: 1; min-width: 0; }
+        .sticky-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .sticky-price { font-size: 12px; color: var(--text-muted); }
+        .sticky-cta {
+            padding: 10px 22px;
+            background: var(--text);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        /* ─── SCORE BADGE ─── */
+        .score-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 24px;
+            font-size: 13px;
+            font-weight: 500;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+        .score-label { color: var(--text-muted); }
+        .score-val {
+            font-size: 22px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+        .score-val.bad { color: var(--red); }
+        .score-val.good { color: var(--green); }
+        .score-bar-track {
+            flex: 1;
+            max-width: 160px;
+            height: 6px;
+            background: var(--surface-2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .score-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+        .score-bar-fill.bad { background: var(--red); }
+        .score-bar-fill.good { background: var(--green); }
+
+        /* ─── PDP SECTION ─── */
+        .pdp-section {
+            opacity: 1;
+            transition: opacity 0.4s ease;
+        }
+        .hidden { display: none !important; }
+
+        /* ─── ANNOTATION TAG ─── */
+        .ann {
+            position: absolute;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 8px 3px 6px;
+            border-radius: 20px;
+            cursor: pointer;
+            z-index: 20;
+            user-select: none;
+            letter-spacing: 0.3px;
+        }
+        .ann .dot { width: 7px; height: 7px; border-radius: 50%; }
+        .ann-bad { background: var(--red-bg); color: var(--red); border: 1px solid #f0c8c4; }
+        .ann-bad .dot { background: var(--red); }
+        .ann-good { background: var(--green-bg); color: var(--green); border: 1px solid #b7dfc8; }
+        .ann-good .dot { background: var(--green); }
+
+        /* tooltip */
+        .ann-tip {
+            position: fixed;
+            min-width: 230px;
+            max-width: 280px;
+            background: var(--text);
+            color: #f0ede8;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.5;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 9999;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+        .ann-tip h5 {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .ann-tip.bad h5 { color: #f4a29b; }
+        .ann-tip.good h5 { color: #7ecb9b; }
+        .ann:hover .ann-tip { opacity: 1; }
+        /* right-anchored tips - handled by JS */
+
+        /* ─── STOREFRONT CHROME ─── */
+        .store-chrome {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+        .store-banner {
+            background: var(--text);
+            color: #fff;
+            text-align: center;
+            font-size: 12px;
+            padding: 7px 16px;
+            letter-spacing: 0.5px;
+        }
+        .store-banner a { color: #a0cdb0; text-decoration: underline; }
+        .store-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 32px;
+        }
+        .store-logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.3px;
+        }
+        .store-links {
+            display: flex;
+            gap: 24px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* ─── PRODUCT GRID ─── */
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        @media (max-width: 680px) {
+            .product-grid { grid-template-columns: 1fr; }
+            .store-links { display: none; }
+            .store-nav { padding: 14px 20px; }
+        }
+
+        /* IMAGE GALLERY */
+        .gallery-main {
+            background: #f5f3f0;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .gallery-main-img {
+            background: #e8e4de;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .gallery-main-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-thumbs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+        }
+        .gallery-thumb {
+            background: #ddd9d3;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .gallery-thumb img { width:100%; height:100%; object-fit:cover; }
+
+        /* PRODUCT INFO PANEL */
+        .info-panel {
+            padding: 28px 28px 40px;
+            background: #fff;
+            position: relative;
+        }
+
+        /* ─── BEFORE specific ─── */
+        .before-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-muted);
+        }
+        .before-meta {
+            font-size: 11px;
+            color: #aaa;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+        .before-price {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .before-finance {
+            font-size: 12px;
+            color: #aaa;
+            margin-bottom: 16px;
+        }
+        .before-btn {
+            width: 100%;
+            padding: 14px;
+            background: #f0ede8;
+            border: 1px solid #ddd9d3;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .before-specs h4 {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+        }
+        .before-specs ul { list-style: disc; padding-left: 18px; }
+        .before-specs ul li {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .before-shipping {
+            margin-top: 16px;
+            padding: 12px;
+            background: var(--surface-2);
+            border-radius: 4px;
+            font-size: 12px;
+            color: #aaa;
+        }
+        .before-colors { margin-bottom: 16px; }
+        .before-colors label { font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 6px; }
+        .color-swatch-row { display: flex; gap: 8px; }
+        .swatch {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        .swatch.sel { border-color: #888; }
+
+        /* BEFORE GALLERY – single image, no lifestyle */
+        .before-gallery {
+            background: #e8e5e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 420px;
+            position: relative;
+        }
+        .before-gallery img {
+            width: 70%;
+            object-fit: contain;
+            opacity: 0.7;
+            filter: grayscale(20%);
+        }
+
+        /* ─── AFTER specific ─── */
+        .after-gallery {
+            position: relative;
+        }
+        .after-main-img {
+            height: 320px;
+            background: #e8e4de;
+            overflow: hidden;
+        }
+        .after-main-img img { width:100%; height:100%; object-fit:cover; }
+        .after-thumbs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+        }
+        .after-thumb {
+            height: 80px;
+            background: #ddd9d3;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0.75;
+            transition: opacity 0.2s;
+        }
+        .after-thumb:hover { opacity: 1; }
+        .after-thumb img { width:100%; height:100%; object-fit:cover; }
+
+        .after-brand-line {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .after-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .stars-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+        .stars { color: #E8A020; letter-spacing: 1px; }
+        .review-count { color: var(--text-muted); text-decoration: underline; cursor: pointer; }
+        .after-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+        .after-price { font-size: 26px; font-weight: 600; }
+        .after-was { font-size: 14px; color: #aaa; text-decoration: line-through; }
+        .after-stock { font-size: 12px; color: var(--red); font-weight: 500; }
+        .after-bnpl {
+            font-size: 12px; color: var(--text-muted);
+            display: flex; align-items: center; gap: 5px;
+            margin-bottom: 16px;
+        }
+        .after-bnpl span { color: var(--accent); font-weight: 600; }
+
+        .after-colors { margin-bottom: 14px; }
+        .after-colors label {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 7px;
+        }
+        .after-color-name { font-weight: 600; color: var(--text); }
+
+        .swatch-after {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            transition: outline-color 0.15s;
+        }
+        .swatch-after.sel { outline-color: var(--accent); }
+
+        .size-row { display: flex; gap: 6px; margin-bottom: 16px; }
+        .size-btn {
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            background: #fff;
+        }
+        .size-btn.sel {
+            background: var(--text);
+            color: #fff;
+            border-color: var(--text);
+        }
+        .size-btn.oos {
+            color: #ccc;
+            border-color: #e8e4de;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .cta-primary {
+            width: 100%;
+            padding: 15px;
+            background: var(--text);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+        .cta-secondary {
+            width: 100%;
+            padding: 13px;
+            background: #fff;
+            color: var(--text);
+            border: 1.5px solid var(--text);
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 14px;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            color: var(--text-muted);
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            padding: 5px 9px;
+            border-radius: 4px;
+        }
+        .trust-badge svg { color: var(--accent); }
+
+        .after-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin-bottom: 12px;
+        }
+        .after-features ul {
+            list-style: none;
+            padding: 0;
+        }
+        .after-features ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text);
+            margin-bottom: 7px;
+        }
+        .after-features ul li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ─── SECTIONS BELOW FOLD ─── */
+        .below-fold {
+            background: var(--bg);
+            padding: 0;
+        }
+
+        /* Feature icons */
+        .feature-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: #fff;
+        }
+        @media(max-width:680px) { .feature-strip { grid-template-columns: repeat(2,1fr); } }
+        .feat-item {
+            padding: 20px 16px;
+            text-align: center;
+            border-right: 1px solid var(--border);
+        }
+        .feat-item:last-child { border-right: none; }
+        .feat-icon { font-size: 22px; margin-bottom: 6px; }
+        .feat-name { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
+        .feat-desc { font-size: 11px; color: var(--text-muted); }
+
+        /* Bundle */
+        .bundle-section {
+            padding: 28px 24px;
+            background: #fff;
+            border-top: 1px solid var(--border);
+        }
+        .section-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .section-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .bundle-items {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+        .bundle-card {
+            flex-shrink: 0;
+            width: 140px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .bundle-card-img {
+            height: 90px;
+            background: #ddd9d3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #aaa;
+        }
+        .bundle-card-body { padding: 8px 10px; }
+        .bundle-card-name { font-size: 11px; font-weight: 600; margin-bottom: 2px; }
+        .bundle-card-price { font-size: 11px; color: var(--text-muted); }
+        .bundle-card-cta {
+            width: 100%;
+            padding: 6px;
+            margin-top: 7px;
+            border: 1px solid var(--text);
+            background: transparent;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .bundle-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 2px;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        /* Access section */
+        .access-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--border);
+        }
+        @media(max-width:680px) { .access-section { grid-template-columns: 1fr; } }
+        .access-copy {
+            padding: 32px 28px;
+            background: #fff;
+        }
+        .access-copy h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .access-copy p { font-size: 13px; color: var(--text-muted); margin-bottom: 16px; }
+        .access-img {
+            background: #ddd9d3;
+            min-height: 240px;
+            overflow: hidden;
+        }
+        .access-img img { width:100%; height:100%; object-fit:cover; }
+
+        /* Reviews */
+        .reviews-section {
+            padding: 32px 24px;
+            background: #fff;
+            border-top: 1px solid var(--border);
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+        @media(max-width:600px) { .reviews-grid { grid-template-columns: 1fr; } }
+        .rating-big {
+            font-family: 'Inter', sans-serif;
+            font-size: 52px;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .rating-stars { color: #E8A020; margin: 4px 0; letter-spacing: 2px; }
+        .rating-count { font-size: 12px; color: var(--text-muted); }
+        .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+        .bar-label { font-size: 12px; width: 12px; color: var(--text-muted); }
+        .bar-track { flex: 1; height: 5px; background: var(--surface-2); border-radius: 3px; overflow:hidden; }
+        .bar-fill { height:100%; background: #E8A020; border-radius:3px; }
+        .bar-count { font-size: 12px; color: var(--text-muted); width: 20px; text-align:right; }
+        .review-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+        }
+        .review-card-top { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 12px; }
+        .reviewer { font-weight: 600; }
+        .rev-date { color: var(--text-muted); }
+        .review-card-stars { color: #E8A020; font-size: 12px; margin-bottom: 5px; }
+        .review-title { font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+        .review-body { font-size: 12px; color: var(--text-muted); line-height: 1.55; }
+
+        /* FAQ */
+        .faq-section {
+            padding: 32px 24px;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+        }
+        .faq-q { font-size: 14px; font-weight: 500; cursor: pointer; }
+        .faq-a { font-size: 13px; color: var(--text-muted); margin-top: 8px; display: none; }
+
+        /* Upsell shelf */
+        .upsell-section {
+            padding: 28px 24px;
+            background: #fff;
+            border-top: 1px solid var(--border);
+        }
+        .upsell-shelf {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+        }
+        .upsell-card {
+            flex-shrink: 0;
+            width: 130px;
+        }
+        .upsell-img {
+            height: 110px;
+            background: var(--surface-2);
+            border-radius: 4px;
+            margin-bottom: 7px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #aaa;
+        }
+        .upsell-img img { width:100%; height:100%; object-fit:cover; }
+        .upsell-name { font-size: 12px; font-weight: 500; margin-bottom: 2px; }
+        .upsell-price { font-size: 12px; color: var(--text-muted); }
+        .upsell-was { text-decoration: line-through; margin-right: 4px; color: #bbb; }
+
+        /* Email footer */
+        .email-section {
+            background: var(--text);
+            color: #fff;
+            padding: 40px 24px;
+            text-align: center;
+        }
+        .email-section h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .email-section p { font-size: 13px; color: #888; margin-bottom: 18px; }
+        .email-form { display: flex; gap: 8px; max-width: 360px; margin: 0 auto; }
+        .email-input {
+            flex: 1;
+            padding: 11px 14px;
+            background: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 13px;
+        }
+        .email-btn {
+            padding: 11px 18px;
+            background: #fff;
+            color: var(--text);
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* site footer */
+        .site-footer {
+            background: var(--text);
+            color: #666;
+            padding: 32px 32px 20px;
+        }
+        .footer-cols {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        @media(max-width:680px) { .footer-cols { grid-template-columns: repeat(2,1fr); } }
+        .footer-col h5 {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { font-size: 12px; margin-bottom: 6px; color: #555; }
+        .footer-bottom {
+            border-top: 1px solid #2a2a2a;
+            padding-top: 16px;
+            font-size: 11px;
+            color: #444;
+        }
+
+        /* BEFORE: no lifestyle, less content lower on page */
+        .before-below-fold {
+            background: var(--bg);
+        }
+        .before-basic-desc {
+            padding: 24px;
+            background: #fff;
+            border-top: 1px solid var(--border);
+        }
+        .before-basic-desc h3 { font-size: 14px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+        .before-basic-desc p { font-size: 13px; color: #aaa; line-height: 1.6; }
+        .before-reviews-minimal {
+            padding: 24px;
+            background: #fff;
+            border-top: 1px solid var(--border);
+        }
+        .before-reviews-minimal h3 { font-size: 14px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+        .before-star-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+        .before-star-row .stars { color: #E8A020; }
+        .before-star-row .count { font-size: 12px; color: #aaa; }
+        .see-reviews { font-size: 12px; color: #aaa; text-decoration: underline; cursor: pointer; }
+
+        /* Rating comparison panel */
+        .comparison-panel {
+            display: flex;
+            gap: 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 24px;
+            background: #fff;
+        }
+        .comp-side {
+            flex: 1;
+            padding: 24px 28px;
+            text-align: left;
+        }
+        .comp-side + .comp-side { border-left: 1px solid var(--border); }
+        .comp-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .comp-label.bad { color: var(--red); }
+        .comp-label.good { color: var(--green); }
+        .comp-score {
+            font-family: 'Inter', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .comp-score.bad { color: var(--red); }
+        .comp-score.good { color: var(--green); }
+        .comp-out { font-size: 12px; color: var(--text-muted); }
+        .comp-metrics { margin-top: 14px; text-align: left; }
+        .comp-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            padding: 5px 0;
+            border-bottom: 1px solid var(--surface-2);
+        }
+        .comp-metric:last-child { border-bottom: none; }
+        .metric-name { color: var(--text-muted); }
+        .metric-val.bad { color: var(--red); font-weight: 600; }
+        .metric-val.good { color: var(--green); font-weight: 600; }
+
+    </style>
+</head>
+<body>
+
+<!-- ════ COMPACT HEADER + TOGGLE ════ -->
+<div class="page-header">
+    <h1>PDP Before vs. After</h1>
+
+    <!-- Score tooltip trigger (updates dynamically based on active view) -->
+    <div id="score-trigger" class="score-trigger">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Score:&nbsp;<span id="score-num-display" class="score-num bad">41</span><span style="color:rgba(255,255,255,0.25);font-size:11px;">/100</span>
+    </div>
+    <!-- Score dropdown (fixed-positioned, shown on hover) -->
+    <div id="score-dropdown" class="score-dropdown">
+        <div class="score-dropdown-header">
+            <div id="score-dropdown-num" class="score-dropdown-num bad">41</div>
+            <div>
+                <div id="score-dropdown-label" class="score-dropdown-label">UNOPTIMIZED SCORE</div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.3);">out of 100</div>
+            </div>
+        </div>
+        <div id="score-rows"></div>
+    </div>
+
+    <div id="pdp-toggle" class="seg-control">
+        <div class="seg-opt active" data-view="before">
+            <span class="dot" style="background:var(--red)"></span>
+            Unoptimized
+        </div>
+        <div class="seg-opt" data-view="after">
+            <span class="dot" style="background:var(--green)"></span>
+            Optimized
+        </div>
+    </div>
+</div>
+
+<!-- Sticky product bar (optimized only) -->
+<div id="sticky-bar" class="sticky-bar">
+    <div class="sticky-bar-inner">
+        <div class="sticky-thumb"><img src="o1.jpg" alt="Bellroy Transit Backpack"></div>
+        <div class="sticky-info">
+            <div class="sticky-name">Bellroy Transit Backpack</div>
+            <div class="sticky-price">$189.00 USD · Only 5 left</div>
+        </div>
+        <button class="sticky-cta">Add to cart</button>
+    </div>
+</div>
+
+<!-- ════ PDP CONTAINER ════ -->
+<div id="pdp-container">
+
+    <!-- ══════════════════════════════
+         BEFORE
+    ══════════════════════════════ -->
+    <div id="pdp-before" class="pdp-section">
+        <!-- Store chrome -->
+        <div class="store-chrome">
+            <div class="store-nav">
+                <div class="store-logo">Kinfolk Outdoors</div>
+                <div class="store-links">Backpacks&nbsp; Tents&nbsp; Gear&nbsp; Apparel&nbsp; About</div>
+                <div style="font-size:18px">🛒</div>
+            </div>
+        </div>
+
+        <!-- Product area -->
+        <div class="product-grid" style="border-top:1px solid var(--border); align-items:stretch;">
+            <!-- Gallery: main image + thumbnail strip -->
+            <div style="position:relative; display:flex; flex-direction:column; background:#e8e4de; align-self:stretch;">
+                <!-- Main image fills remaining height -->
+                <div style="flex:1; overflow:hidden; min-height:280px;">
+                    <img src="u1.jpg" alt="Bellroy Transit Backpack front view"
+                         style="width:100%; height:100%; object-fit:cover; display:block;">
+                </div>
+                <!-- Thumbnail strip: square aspect ratio thumbnails -->
+                <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:#d8d4ce;">
+                    <div style="aspect-ratio:1; overflow:hidden;"><img src="u2.jpg" alt="Side view" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+                    <div style="aspect-ratio:1; overflow:hidden;"><img src="u3.jpg" alt="Back view" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+                    <div style="aspect-ratio:1; overflow:hidden;"><img src="u4.jpg" alt="Zipper detail" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+                    <div style="aspect-ratio:1; overflow:hidden;"><img src="u5.jpg" alt="Beige colorway" style="width:100%; height:100%; object-fit:cover; display:block;"></div>
+                </div>
+
+                <!-- Annotation: single low-context image -->
+                <div class="ann ann-bad" style="top:12px;left:12px;">
+                    <span class="dot"></span> Flat Gallery
+                    <div class="ann-tip bad">
+                        <h5>Low Visual Context</h5>
+                        One flat studio shot with repetitive thumbnails fails to show scale, internal organization, or real-world use. Shoppers can't verify fit or capacity, increasing uncertainty and returns.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info panel: sparse, spec-heavy -->
+            <div class="info-panel" style="position:relative;">
+                <div class="before-title">Bellroy Transit Backpack</div>
+                <div class="before-meta">SKU: BEL-TRANSIT-BLK</div>
+
+                <!-- No social proof -->
+                <div class="before-price">$189.00 USD</div>
+                <div class="before-finance">Payment options available at checkout.</div>
+
+                <!-- Colors (unlabeled, no selected state clarity) -->
+                <div class="before-colors">
+                    <label>Color</label>
+                    <div class="color-swatch-row">
+                        <div class="swatch sel" style="background:#1a1916;"></div>
+                        <div class="swatch" style="background:#b8a89a;"></div>
+                    </div>
+                </div>
+
+                <!-- Sizes: no guidance on what they mean -->
+                <div style="margin-bottom:16px;">
+                    <div style="font-size:12px;color:var(--text-muted);margin-bottom:6px;">Capacity</div>
+                    <div style="display:flex;gap:6px;">
+                        <div class="size-btn sel">20L</div>
+                        <div class="size-btn">26L</div>
+                    </div>
+                </div>
+
+                <!-- Weak CTA -->
+                <button class="before-btn">Add to cart</button>
+
+                <!-- Annotation: weak CTA -->
+                <div class="ann ann-bad" style="top:160px;right:10px;" data-right>
+                    <span class="dot"></span> Weak CTA
+                    <div class="ann-tip bad">
+                        <h5>Invisible Conversion Button</h5>
+                        The grey-on-grey "Add to cart" button lacks visual priority. It blends into the background, reducing click-through on the most critical conversion action.
+                    </div>
+                </div>
+
+                <!-- Annotation: no social proof -->
+                <div class="ann ann-bad" style="top:60px;right:10px;" data-right>
+                    <span class="dot"></span> No Social Proof
+                    <div class="ann-tip bad">
+                        <h5>Missing Trust Signals</h5>
+                        No ratings, review count, or star display near the title. Social proof is one of the strongest purchase triggers — its absence leaves buyers unvalidated.
+                    </div>
+                </div>
+
+                <!-- Feature-jargon specs -->
+                <div class="before-specs">
+                    <h4>Specifications</h4>
+                    <ul>
+                        <li>Material: 100% recycled woven fabric</li>
+                        <li>Laptop sleeve: up to 16"</li>
+                        <li>Dimensions: 46 × 30 × 17 cm</li>
+                        <li>Luggage pass-through: Yes</li>
+                        <li>Weight: 1.0 kg</li>
+                    </ul>
+                </div>
+
+                <!-- Annotation: spec jargon -->
+                <div class="ann ann-bad" style="bottom:90px;right:10px;" data-right>
+                    <span class="dot"></span> Spec Jargon
+                    <div class="ann-tip bad">
+                        <h5>Features, Not Benefits</h5>
+                        Raw specs ("46 × 30 × 17 cm") don't answer the buyer's question: "Will this fit my stuff and my carry-on?" Benefit-driven copy converts far better.
+                    </div>
+                </div>
+
+                <!-- Vague shipping -->
+                <div class="before-shipping" style="position:relative;">
+                    Delivery and return information calculated at checkout. See returns policy page.
+                    <div class="ann ann-bad" style="top:-10px;right:-10px;" data-right>
+                        <span class="dot"></span> Hidden Policies
+                        <div class="ann-tip bad">
+                            <h5>Friction-Inducing Vagueness</h5>
+                            Hiding shipping cost and return policies until checkout is a top-3 cause of cart abandonment. Clear, upfront policies build confidence and lower anxiety.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Minimal below-fold -->
+        <div class="before-below-fold">
+            <div class="before-basic-desc" style="position:relative;">
+                <h3>Product Description</h3>
+                <p>The Bellroy Transit Backpack is designed for everyday carry and travel. It is made from recycled woven fabric and features a padded laptop sleeve, multiple compartments, and a luggage pass-through. Available in Black and Beige.</p>
+                <div class="ann ann-bad" style="top:10px;right:10px;" data-right>
+                    <span class="dot"></span> Flat Copy
+                    <div class="ann-tip bad">
+                        <h5>No Benefit-Driven Storytelling</h5>
+                        Generic description lists materials and features without addressing buyer motivations. No FAQ, no lifestyle narrative, no social proof — just a bland spec dump.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Missing sections annotation box -->
+            <div style="padding:24px;background:var(--surface-2);border-top:1px solid var(--border);position:relative;">
+                <div style="border:2px dashed #d0ccc6;border-radius:6px;padding:20px 16px;text-align:center;">
+                    <div style="font-size:12px;color:#bbb;font-style:italic;">[No complementary products · No FAQ · No lifestyle imagery · No bundle offers · No email capture]</div>
+                </div>
+                <div class="ann ann-bad" style="top:10px;right:10px;" data-right>
+                    <span class="dot"></span> Missing Sections
+                    <div class="ann-tip bad">
+                        <h5>Zero Below-Fold Engagement</h5>
+                        No upsells, FAQ, lifestyle content, or email capture means every non-converting visitor is lost permanently. The optimized version converts these same visitors into future buyers.
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div style="background:var(--text);padding:20px 24px;text-align:center;">
+                <div style="font-size:13px;color:#888;">© 2026 Kinfolk Outdoors · Powered by Shopify</div>
+            </div>
+        </div>
+        <!-- Unoptimized score panel -->
+    </div><!-- /before -->
+
+
+    <!-- ══════════════════════════════
+         AFTER
+    ══════════════════════════════ -->
+    <div id="pdp-after" class="pdp-section hidden">
+        <!-- Store chrome -->
+        <div class="store-chrome">
+            <div class="store-banner">New Summer Discount — <a href="#">Claim Code</a> &nbsp;|&nbsp; Free delivery by Friday on orders over $100</div>
+            <div class="store-nav">
+                <div class="store-logo">Kinfolk Outdoors</div>
+                <div class="store-links">Backpacks&nbsp; Tents&nbsp; Gear&nbsp; Apparel&nbsp; About&nbsp; Blog</div>
+                <div style="display:flex;gap:14px;font-size:18px;">🔍 🛒</div>
+            </div>
+        </div>
+
+        <!-- Product area: bento gallery left, info panel right -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--border);">
+
+            <!-- BENTO GALLERY matching PDP.jpg structure -->
+            <!-- 2×2 equal grid: all 4 cells same height -->
+            <div style="position:relative; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:3px; background:#d8d4ce; padding:3px; min-height:480px;">
+                <img src="o1.jpg" alt="Bellroy Transit Backpack front" style="width:100%; height:100%; object-fit:cover; display:block;">
+                <img src="o2.jpg" alt="Interior open view" style="width:100%; height:100%; object-fit:cover; display:block;">
+                <img src="o3.jpg" alt="Back view with luggage sleeve" style="width:100%; height:100%; object-fit:cover; display:block;">
+                <img src="o4.jpg" alt="Strap and comfort detail" style="width:100%; height:100%; object-fit:cover; display:block;">
+
+                <!-- Annotation: rich bento gallery -->
+                <div class="ann ann-good" style="bottom:12px;left:12px;">
+                    <span class="dot"></span> Bento Gallery
+                    <div class="ann-tip good">
+                        <h5>Multi-Angle Visual Confidence</h5>
+                        Studio shots, interior view, lifestyle, and travel context all above the fold. Each image answers a different buyer objection — fewer returns, higher add-to-cart.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Optimized info panel -->
+            <div class="info-panel" style="position:relative;">
+                <div class="after-brand-line">Bellroy</div>
+                <div class="after-title">Transit Backpack</div>
+
+                <!-- Stars inline -->
+                <div class="stars-row" style="position:relative;">
+                    <span class="stars">★★★★★</span>
+                    <span style="font-size:13px;font-weight:600;">4.6</span>
+                    <span class="review-count">(122 reviews)</span>
+                    <span style="font-size:12px;color:var(--text-muted);margin-left:4px;">· 97% recommend</span>
+
+                    <div class="ann ann-good" style="top:-8px;right:0;" data-right>
+                        <span class="dot"></span> Inline Social Proof
+                        <div class="ann-tip good">
+                            <h5>Trust at First Glance</h5>
+                            Star ratings and review counts directly under the title immediately validate purchase intent. "97% recommend" adds powerful peer endorsement above the fold.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="after-price-row">
+                    <div class="after-price">$189.00 USD</div>
+                    <div class="after-stock">Only 5 left</div>
+                </div>
+                <div class="after-bnpl">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+                    or 3 payments of <span>$63.00 USD</span> — no interest
+                </div>
+
+                <!-- Annotation: BNPL / urgency -->
+                <div class="ann ann-good" style="top:130px;right:10px;" data-right>
+                    <span class="dot"></span> Urgency + BNPL
+                    <div class="ann-tip good">
+                        <h5>Price Accessibility & Scarcity</h5>
+                        "Only 5 left" triggers loss aversion. Showing BNPL installments reduces perceived price and removes a major hesitation for considered purchases.
+                    </div>
+                </div>
+
+                <!-- Colors with label -->
+                <div class="after-colors">
+                    <label>Color: <span class="after-color-name">Black</span></label>
+                    <div class="color-swatch-row">
+                        <div class="swatch-after sel" style="background:#1a1916;"></div>
+                        <div class="swatch-after" style="background:#b8a89a;border:1px solid #ddd;"></div>
+                    </div>
+                </div>
+
+                <!-- Capacity with guidance -->
+                <div style="margin-bottom:14px;position:relative;">
+                    <div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:600;color:var(--text-muted);margin-bottom:7px;">Capacity</div>
+                    <div class="size-row">
+                        <div class="size-btn sel">20L — Day use</div>
+                        <div class="size-btn">26L — Weekend</div>
+                    </div>
+                    <div class="ann ann-good" style="top:-8px;right:0;" data-right>
+                        <span class="dot"></span> Guided Sizing
+                        <div class="ann-tip good">
+                            <h5>Context-Driven Variants</h5>
+                            Adding "Day use" / "Weekend" context to capacity removes decision anxiety — buyers immediately know which option suits their needs without guessing.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefit-driven bullets -->
+                <div class="after-features" style="margin-bottom:14px;position:relative;">
+                    <ul>
+                        <li>Padded sleeve fits laptops up to 16" — no more bruised corners</li>
+                        <li>Luggage pass-through for stress-free airport travel</li>
+                        <li>Made from premium recycled woven fabric with water-resistant coating</li>
+                        <li>Hidden valuables pocket for passport and cards</li>
+                    </ul>
+                    <div class="ann ann-good" style="bottom:-8px;right:0;" data-right>
+                        <span class="dot"></span> Benefit Copy
+                        <div class="ann-tip good">
+                            <h5>Outcome-Focused Language</h5>
+                            Reframing specs as outcomes ("no more bruised corners") speaks directly to buyer pain points and accelerates emotional buy-in.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strong CTA -->
+                <button class="cta-primary" style="position:relative;">
+                    Add to cart
+                    <div class="ann ann-good" style="top:-10px;right:-8px;" data-right>
+                        <span class="dot"></span> High-Contrast CTA
+                        <div class="ann-tip good">
+                            <h5>Visual Priority for Conversion</h5>
+                            The solid black full-width button creates unmistakable visual hierarchy. Maximum contrast ensures the conversion action is never missed.
+                        </div>
+                    </div>
+                </button>
+                <button class="cta-secondary">Save to wishlist</button>
+
+                <!-- Trust badges -->
+                <div class="trust-badges" style="position:relative;">
+                    <div class="trust-badge">
+                        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        Free delivery by Friday
+                    </div>
+                    <div class="trust-badge">
+                        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Live tracking
+                    </div>
+                    <div class="trust-badge">
+                        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                        3-year warranty
+                    </div>
+                    <div class="ann ann-good" style="top:-10px;right:0;" data-right>
+                        <span class="dot"></span> Trust Signals
+                        <div class="ann-tip good">
+                            <h5>Upfront Shipping & Guarantees</h5>
+                            Shipping date, live tracking, and warranty visible before checkout eliminate the #1–3 reasons for cart abandonment: hidden fees, delivery uncertainty, and purchase risk.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BELOW FOLD – optimized -->
+        <div class="below-fold">
+            <!-- Feature icons strip -->
+            <div class="feature-strip" style="position:relative;">
+                <div class="feat-item">
+                    <div class="feat-icon">📐</div>
+                    <div class="feat-name">Smart Organization</div>
+                    <div class="feat-desc">Dedicated compartments for laptop, cables, chargers, and daily essentials</div>
+                </div>
+                <div class="feat-item">
+                    <div class="feat-icon">🎒</div>
+                    <div class="feat-name">All-Day Comfort</div>
+                    <div class="feat-desc">Contoured straps and padded back panel reduce shoulder strain</div>
+                </div>
+                <div class="feat-item">
+                    <div class="feat-icon">✈️</div>
+                    <div class="feat-name">Travel Ready</div>
+                    <div class="feat-desc">Luggage pass-through and quick-access pockets for airport ease</div>
+                </div>
+                <div class="feat-item">
+                    <div class="feat-icon">♻️</div>
+                    <div class="feat-name">Sustainable Materials</div>
+                    <div class="feat-desc">Made from durable recycled woven fabric with water-resistant coating</div>
+                </div>
+                <div class="ann ann-good" style="top:10px;right:10px;" data-right>
+                    <span class="dot"></span> Icon Benefits Strip
+                    <div class="ann-tip good">
+                        <h5>Scannable Value Reinforcement</h5>
+                        A visual icon strip below the fold re-anchors key benefits for scrollers. Scannable content dramatically improves comprehension at a glance.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Access & Expansion section (lifestyle) -->
+            <div class="access-section" style="position:relative;">
+                <div class="access-copy">
+                    <div class="section-label">Feature Highlight</div>
+                    <h3>Access &amp; Expansion</h3>
+                    <p>The bag offers multiple access points including rear access, dual side zippers and a front zip panel for additional storage. Pack more, search less.</p>
+                    <div style="display:flex;gap:8px;">
+                        <span class="trust-badge">🔒 Hidden valuables pocket</span>
+                        <span class="trust-badge">💼 Luggage sleeve</span>
+                    </div>
+                </div>
+                <div class="access-img">
+                    <img src="o5.jpg" alt="Lifestyle urban commute" style="width:100%;height:100%;object-fit:cover;display:block;min-height:220px;">
+                </div>
+                <div class="ann ann-good" style="top:10px;right:10px;" data-right>
+                    <span class="dot"></span> Lifestyle Context
+                    <div class="ann-tip good">
+                        <h5>Feature-in-Use Imagery</h5>
+                        Showing the product being packed or worn in context gives buyers a vivid mental model of ownership, closing the imagination gap between browsing and buying.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bundle -->
+            <div class="bundle-section" style="position:relative;">
+                <div class="section-label">Save 10%</div>
+                <div class="section-title">Complete your setup</div>
+                <div class="bundle-items">
+                    <div class="bundle-card">
+                        <div class="bundle-card-img" style="padding:0;overflow:hidden;"><img src="bundle1.jpg" alt="Tech Kit Organizer" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div class="bundle-card-body">
+                            <div class="bundle-tag">SALE</div>
+                            <div class="bundle-card-name">Tech Kit Organizer</div>
+                            <div class="bundle-card-price"><s>$15.00</s> $59.60 USD</div>
+                            <button class="bundle-card-cta">+ Add product</button>
+                        </div>
+                    </div>
+                    <div class="bundle-card">
+                        <div class="bundle-card-img" style="padding:0;overflow:hidden;"><img src="bundle2.jpg" alt="Laptop Sleeve 16&quot;" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div class="bundle-card-body">
+                            <div class="bundle-tag">SALE</div>
+                            <div class="bundle-card-name">Laptop Sleeve 16"</div>
+                            <div class="bundle-card-price"><s>$15.00</s> $69.00 USD</div>
+                            <button class="bundle-card-cta">+ Add product</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="ann ann-good" style="top:10px;right:10px;" data-right>
+                    <span class="dot"></span> Bundle Upsell
+                    <div class="ann-tip good">
+                        <h5>AOV-Boosting Cross-Sell</h5>
+                        A "Complete your setup" bundle with a 10% incentive increases average order value while framing complementary items as a natural part of the purchase decision.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews -->
+            <div class="reviews-section" style="position:relative;">
+                <div class="section-label">Customer Reviews</div>
+                <div class="section-title">What people are saying</div>
+                <div class="reviews-grid">
+                    <div>
+                        <div class="rating-big">4.6</div>
+                        <div class="rating-stars">★★★★★</div>
+                        <div class="rating-count">Based on 122 reviews</div>
+                        <div style="margin-top:14px;">
+                            <div class="bar-row"><span class="bar-label">5</span><div class="bar-track"><div class="bar-fill" style="width:79%"></div></div><span class="bar-count">79</span></div>
+                            <div class="bar-row"><span class="bar-label">4</span><div class="bar-track"><div class="bar-fill" style="width:22%;background:#c8b060;"></div></div><span class="bar-count">27</span></div>
+                            <div class="bar-row"><span class="bar-label">3</span><div class="bar-track"><div class="bar-fill" style="width:10%;background:#c8b060;"></div></div><span class="bar-count">10</span></div>
+                            <div class="bar-row"><span class="bar-label">2</span><div class="bar-track"><div class="bar-fill" style="width:3%;background:#bbb;"></div></div><span class="bar-count">4</span></div>
+                            <div class="bar-row"><span class="bar-label">1</span><div class="bar-track"><div class="bar-fill" style="width:2%;background:#bbb;"></div></div><span class="bar-count">2</span></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="review-card">
+                            <div class="review-card-top"><span class="reviewer">Marcus T.</span><span class="rev-date">Feb 2026</span></div>
+                            <div class="review-card-stars">★★★★★</div>
+                            <div class="review-title">Best travel bag I've owned</div>
+                            <div class="review-body">Used it on a 3-week Europe trip with only carry-on. The luggage sleeve is a genuine game-changer. Fits my 15" MacBook Pro perfectly with room to spare.</div>
+                        </div>
+                        <div class="review-card">
+                            <div class="review-card-top"><span class="reviewer">Priya K.</span><span class="rev-date">Jan 2026</span></div>
+                            <div class="review-card-stars">★★★★★</div>
+                            <div class="review-title">Incredibly organized</div>
+                            <div class="review-body">Everything has its place. Chargers, pens, passport — I never dig around anymore. The recycled fabric feels premium, not "eco-compromise."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ann ann-good" style="top:10px;right:10px;" data-right>
+                    <span class="dot"></span> Rich Reviews
+                    <div class="ann-tip good">
+                        <h5>Detailed Social Proof</h5>
+                        Star distribution bars + narrative reviews with specific use cases dramatically increase purchase confidence. Specificity ("3-week Europe trip") is more convincing than generic praise.
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="faq-section" style="position:relative;">
+                <div class="section-label">Common Questions</div>
+                <div class="section-title" style="margin-bottom:8px;">FAQ</div>
+                <div class="faq-item"><div class="faq-q">Is this backpack suitable for travel? ›</div></div>
+                <div class="faq-item"><div class="faq-q">Does it fit a 16" MacBook Pro? ›</div></div>
+                <div class="faq-item"><div class="faq-q">Is it waterproof? ›</div></div>
+                <div class="faq-item"><div class="faq-q">How many compartments does it have? ›</div></div>
+                <div class="faq-item"><div class="faq-q">Can I use it as a personal item on flights? ›</div></div>
+                <div class="ann ann-good" style="top:10px;right:10px;" data-right>
+                    <span class="dot"></span> On-Page FAQ
+                    <div class="ann-tip good">
+                        <h5>Pre-empting Purchase Blockers</h5>
+                        Answering the top 5 buyer questions on the page eliminates the need to search or contact support — removing a critical exit point before checkout.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upsell shelf -->
+            <div class="upsell-section" style="position:relative;">
+                <div class="section-label">You might also like</div>
+                <div class="section-title">Power up your setup</div>
+                <div class="upsell-shelf">
+                    <div class="upsell-card">
+                        <div class="upsell-img" style="padding:0;"><img src="upsell1.jpg" alt="Smart Folio" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div class="upsell-name">Smart Folio</div>
+                        <div class="upsell-price"><span class="upsell-was">$25</span>$18.00 CAD</div>
+                    </div>
+                    <div class="upsell-card">
+                        <div class="upsell-img" style="padding:0;"><img src="upsell2.jpg" alt="Pencil Pro" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div class="upsell-name">Pencil Pro</div>
+                        <div class="upsell-price"><span class="upsell-was">$25</span>$18.00 CAD</div>
+                    </div>
+                    <div class="upsell-card">
+                        <div class="upsell-img" style="padding:0;"><img src="upsell3.jpg" alt="Magnetic Case" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div class="upsell-name">Magnetic Case</div>
+                        <div class="upsell-price"><span class="upsell-was">$25</span>$18.00 CAD</div>
+                    </div>
+                    <div class="upsell-card">
+                        <div class="upsell-img" style="padding:0;"><img src="upsell4.jpg" alt="Magic Keyboard" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                        <div class="upsell-name">Magic Keyboard</div>
+                        <div class="upsell-price"><span class="upsell-was">$25</span>$18.00 CAD</div>
+                    </div>
+                </div>
+                <div class="ann ann-good" style="top:10px;right:10px;" data-right>
+                    <span class="dot"></span> Recommendation Shelf
+                    <div class="ann-tip good">
+                        <h5>Bottom-of-Funnel AOV Driver</h5>
+                        A curated "You might also like" shelf captures buyers still in the consideration phase and increases average basket size by 15–30% without adding friction.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email capture -->
+            <div class="email-section" style="position:relative;">
+                <h3>Get 20% off your first order</h3>
+                <p>Join our email list for exclusive offers and the latest news.</p>
+                <div class="email-form">
+                    <input class="email-input" type="email" placeholder="Email">
+                    <button class="email-btn">Subscribe</button>
+                </div>
+                <div class="ann ann-good" style="top:10px;right:10px;" data-right>
+                    <span class="dot"></span> Lead Capture
+                    <div class="ann-tip good">
+                        <h5>Non-Buyer Conversion</h5>
+                        An email incentive converts visitors who aren't ready to buy today into a retargetable audience. 20% off creates urgency for a future purchase.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="site-footer">
+                <div class="footer-cols">
+                    <div class="footer-col">
+                        <h5>Products</h5>
+                        <ul><li>iPad Pro</li><li>iPad Air</li><li>iPad</li><li>iPad Mini</li><li>Pencils</li><li>Keyboards</li></ul>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Products</h5>
+                        <ul><li>Home</li><li>About</li><li>Shipping & Returns</li><li>Warranty</li><li>Contact</li><li>Blog</li></ul>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Our Store</h5>
+                        <ul><li>3455 St Laurent Blvd</li><li>Montreal, Quebec H2X 2T9</li><li>Mon–Fri 9am–7pm</li><li>Sat–Sun 10am–6pm</li></ul>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Our Promises</h5>
+                        <ul><li>Premium materials</li><li>Responsible manufacturing</li><li>3-year warranty</li><li>Free returns within 30 days</li></ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">© 2026 Kinfolk Outdoors · Powered by Shopify &nbsp;·&nbsp; 🐦 📘 📷</div>
+            </div>
+        </div>
+
+        <!-- Optimized score panel -->
+    </div><!-- /after -->
+
+</div><!-- /pdp-container -->
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ── Score data ──
+    const scores = {
+        before: {
+            total: 41, label: 'UNOPTIMIZED SCORE', cls: 'bad',
+            rows: [
+                ['Visual confidence',  '2/10', 'bad'],
+                ['Social proof',       '1/10', 'bad'],
+                ['CTA clarity',        '3/10', 'bad'],
+                ['Benefit copy',       '2/10', 'bad'],
+                ['Trust signals',      '2/10', 'bad'],
+                ['AOV opportunities',  '0/10', 'bad'],
+                ['Below-fold content', '3/10', 'bad'],
+            ]
+        },
+        after: {
+            total: 89, label: 'OPTIMIZED SCORE', cls: 'good',
+            rows: [
+                ['Visual confidence',  '9/10',  'good'],
+                ['Social proof',       '9/10',  'good'],
+                ['CTA clarity',        '10/10', 'good'],
+                ['Benefit copy',       '9/10',  'good'],
+                ['Trust signals',      '9/10',  'good'],
+                ['AOV opportunities',  '9/10',  'good'],
+                ['Below-fold content', '9/10',  'good'],
+            ]
+        }
+    };
+
+    // ── Elements ──
+    const toggle     = document.getElementById('pdp-toggle');
+    const before     = document.getElementById('pdp-before');
+    const after      = document.getElementById('pdp-after');
+    const opts       = toggle.querySelectorAll('.seg-opt');
+    const scoreTrig  = document.getElementById('score-trigger');
+    const scoreDD    = document.getElementById('score-dropdown');
+    const scoreNum   = document.getElementById('score-num-display');
+    const scoreDDNum = document.getElementById('score-dropdown-num');
+    const scoreDDLbl = document.getElementById('score-dropdown-label');
+    const scoreRows  = document.getElementById('score-rows');
+    const stickyBar  = document.getElementById('sticky-bar');
+    let current = 'before';
+    let scoreDDOpen = false;
+
+    // ── Populate score dropdown ──
+    const updateScore = (view) => {
+        const d = scores[view];
+        scoreNum.textContent = d.total;
+        scoreNum.className = 'score-num ' + d.cls;
+        scoreDDNum.textContent = d.total;
+        scoreDDNum.className = 'score-dropdown-num ' + d.cls;
+        scoreDDLbl.textContent = d.label;
+        scoreRows.innerHTML = d.rows.map(([name, val, cls]) =>
+            `<div class="score-row"><span>${name}</span><span class="score-row-val ${cls}">${val}</span></div>`
+        ).join('');
+    };
+    updateScore('before');
+
+    // ── Score tooltip position ──
+    const positionDD = () => {
+        const rect = scoreTrig.getBoundingClientRect();
+        const ddW = 240;
+        let left = rect.right - ddW;
+        if (left < 8) left = 8;
+        scoreDD.style.left = left + 'px';
+        scoreDD.style.top  = (rect.bottom + 8) + 'px';
+    };
+
+    scoreTrig.addEventListener('mouseenter', () => {
+        positionDD();
+        scoreDD.classList.add('visible');
+        scoreDDOpen = true;
+    });
+    scoreTrig.addEventListener('mouseleave', (e) => {
+        if (!scoreDD.matches(':hover')) {
+            scoreDD.classList.remove('visible');
+            scoreDDOpen = false;
+        }
+    });
+    scoreDD.addEventListener('mouseleave', () => {
+        scoreDD.classList.remove('visible');
+        scoreDDOpen = false;
+    });
+    scoreTrig.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (scoreDD.classList.contains('visible')) {
+            scoreDD.classList.remove('visible');
+        } else {
+            positionDD();
+            scoreDD.classList.add('visible');
+        }
+    });
+    document.addEventListener('click', () => scoreDD.classList.remove('visible'));
+
+    // ── View switcher ──
+    const switchTo = (view) => {
+        if (current === view) return;
+        opts.forEach(o => o.classList.toggle('active', o.dataset.view === view));
+        updateScore(view);
+
+        // Sticky bar: only show for after/optimized
+        if (view === 'after') {
+            stickyBar.style.display = 'block';
+            before.style.opacity = '0';
+            setTimeout(() => {
+                before.classList.add('hidden');
+                after.classList.remove('hidden');
+                setTimeout(() => { after.style.opacity = '1'; checkScroll(); }, 10);
+            }, 350);
+        } else {
+            stickyBar.classList.remove('visible');
+            stickyBar.style.display = 'none';
+            after.style.opacity = '0';
+            setTimeout(() => {
+                after.classList.add('hidden');
+                before.classList.remove('hidden');
+                setTimeout(() => before.style.opacity = '1', 10);
+            }, 350);
+        }
+        current = view;
+    };
+
+    opts.forEach(o => o.addEventListener('click', () => switchTo(o.dataset.view)));
+
+    // ── Sticky bar scroll logic ──
+    const checkScroll = () => {
+        if (current !== 'after') return;
+        // Show after user scrolls past ~300px
+        stickyBar.classList.toggle('visible', window.scrollY > 300);
+    };
+    window.addEventListener('scroll', checkScroll, { passive: true });
+
+    // ── Annotation tooltip positioning ──
+    const positionTip = (ann, tip) => {
+        const rect = ann.getBoundingClientRect();
+        const tipW = 260;
+        const gap  = 10;
+        const vw   = window.innerWidth;
+
+        let left = rect.left + rect.width / 2 - tipW / 2;
+        if (left < 8) left = 8;
+        if (left + tipW > vw - 8) left = vw - tipW - 8;
+
+        tip.style.visibility = 'hidden';
+        tip.style.opacity = '0';
+        tip.style.left = left + 'px';
+        tip.style.top  = '-9999px';
+
+        const tipH = tip.offsetHeight || 100;
+        let top = rect.top - tipH - gap;
+        if (top < 60) top = rect.bottom + gap;
+
+        tip.style.left = left + 'px';
+        tip.style.top  = top + 'px';
+        tip.style.visibility = '';
+    };
+
+    document.querySelectorAll('.ann').forEach(ann => {
+        const tip = ann.querySelector('.ann-tip');
+        if (!tip) return;
+        ann.addEventListener('mouseenter', () => { positionTip(ann, tip); tip.style.opacity = '1'; });
+        ann.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
+        ann.addEventListener('click', e => {
+            e.stopPropagation();
+            const open = tip.style.opacity === '1';
+            document.querySelectorAll('.ann-tip').forEach(t => t.style.opacity = '0');
+            if (!open) { positionTip(ann, tip); tip.style.opacity = '1'; }
+        });
+    });
+
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.ann-tip').forEach(t => t.style.opacity = '0');
+    });
+
+    before.style.opacity = '1';
+    after.style.opacity  = '0';
+});
+</script>
+</body>
+</html>

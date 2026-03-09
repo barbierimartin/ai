@@ -129,7 +129,7 @@
         /* ── HERO ── */
         .hero {
             min-height: 100vh;
-            padding: 148px 40px 80px;
+            padding: 148px 240px 80px 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -175,8 +175,8 @@
 
         .hero-sub {
             font-size: 1.05rem;
-            color: var(--muted);
-            font-weight: 300;
+            color: #d8d5d0;
+            font-weight: 400;
             max-width: 480px;
             line-height: 1.7;
             margin-bottom: 12px;
@@ -603,7 +603,14 @@
             .menu-toggle { display: flex; }
 
             .hero { padding: 110px 20px 60px; }
-            .hero-image-wrap { display: none; }
+            .hero-image-wrap {
+                position: relative;
+                top: auto;
+                right: auto;
+                transform: none;
+                width: 100px;
+                margin-bottom: 28px;
+            }
 
             .section { padding: 60px 20px; }
             .expertise-section { padding: 60px 20px; }
@@ -655,8 +662,12 @@
     </div>
 
     <!-- HERO -->
-    <section id="about" style="position:relative;overflow:hidden;">
+    <section id="about" style="position:relative;">
         <div class="hero">
+            <div class="hero-image-wrap">
+                <img src="pic.png" alt="Martin Barbieri" onerror="this.style.display='none'">
+            </div>
+
             <p class="hero-eyebrow reveal">Senior Product Designer & E-commerce Specialist</p>
 
             <h1 class="hero-title reveal reveal-d1">
@@ -674,11 +685,6 @@
             <div class="hero-actions reveal reveal-d3">
                 <a href="portfolio.html" class="btn-primary">View Case Studies →</a>
                 <a href="#contact" class="btn-secondary">Get in Touch</a>
-            </div>
-
-            <div class="hero-image-wrap">
-                <div class="hero-image-ring"></div>
-                <img src="pic.png" alt="Martin Barbieri" onerror="this.style.display='none'">
             </div>
         </div>
     </section>
@@ -782,11 +788,15 @@
                         <p class="tag-group-label">Expertise</p>
                         <div class="tag-cloud reveal">
                             <span class="tag">End-to-end Product Design</span>
-                            <span class="tag">E-commerce</span>
+                            <span class="tag">Ecommerce</span>
                             <span class="tag">Design Systems</span>
-                            <span class="tag">Interaction Design</span>
-                            <span class="tag">Wireframing & Prototyping</span>
                             <span class="tag">Design Thinking</span>
+                            <span class="tag">Agile & Scrum</span>
+                            <span class="tag">UX Research</span>
+                            <span class="tag">Wireframing & Prototyping</span>
+                            <span class="tag">Information Architecture</span>
+                            <span class="tag">Usability Testing</span>
+                            <span class="tag">Mobile-First UX</span>
                             <span class="tag">Shopify Customization</span>
                             <span class="tag">Email Marketing</span>
                             <span class="tag">SEO Strategy</span>
@@ -794,12 +804,7 @@
                             <span class="tag">AI Content Generation</span>
                             <span class="tag">Conversion Rate Optimization</span>
                             <span class="tag">A/B Testing</span>
-                            <span class="tag">Technical SEO</span>
-                            <span class="tag">UX Research</span>
-                            <span class="tag">Usability Testing</span>
-                            <span class="tag">Mobile-First UX</span>
                             <span class="tag">B2B / B2C / SaaS</span>
-                            <span class="tag">Agile & Scrum</span>
                             <span class="tag">Stakeholder Management</span>
                         </div>
                     </div>

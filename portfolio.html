@@ -33,91 +33,12 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ── PASSWORD GATE ── */
-        #password-gate {
-            position: fixed;
-            inset: 0;
-            background: var(--bg);
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        .password-container {
-            background: var(--surface);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            width: 100%;
-            max-width: 420px;
-            text-align: center;
-        }
-
-        .password-container h2 {
-            font-family: var(--serif);
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 8px;
-        }
-
-        .password-container p {
-            font-size: 0.88rem;
-            color: var(--muted);
-            line-height: 1.6;
-            margin-bottom: 0;
-        }
-
-        .password-input {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            font-family: var(--sans);
-            font-size: 0.9rem;
-            padding: 14px 20px;
-            border-radius: 100px;
-            width: 100%;
-            margin: 1.5rem 0 1rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .password-input::placeholder { color: var(--muted); }
-        .password-input:focus { border-color: rgba(255,255,255,0.25); }
-
-        .submit-btn {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--bg);
-            background: var(--accent);
-            border: none;
-            padding: 14px 28px;
-            border-radius: 100px;
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .submit-btn:hover { background: linear-gradient(135deg, #4ecdc4 0%, #7bc67a 50%, #2b8ebd 100%); color: #fff; }
-
-        .error-msg {
-            font-size: 0.8rem;
-            color: #f87171;
-            margin-top: 12px;
-            display: none;
-        }
-
         /* ── NAV ── */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 100;
-            padding: 20px 40px;
+            padding: 24px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -131,88 +52,27 @@
             font-size: 1.2rem;
             color: var(--text);
             text-decoration: none;
-        }
-
-        .nav-links {
+            font-weight: 700;
             display: flex;
-            gap: 4px;
-            list-style: none;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        .nav-links a {
-            font-size: 0.78rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
+        .nav-role {
             color: var(--muted);
-            text-decoration: none;
-            padding: 7px 14px;
-            border-radius: 100px;
-            transition: all 0.2s;
+            font-weight: 400;
+            font-family: var(--sans);
+            font-size: 0.88rem;
+            letter-spacing: 0.02em;
         }
-
-        .nav-links a:hover,
-        .nav-links a.active { color: var(--text); background: var(--surface2); }
-
-        .nav-cta {
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--bg);
-            background: var(--accent);
-            text-decoration: none;
-            padding: 9px 22px;
-            border-radius: 100px;
-            transition: all 0.2s;
-        }
-
-        .nav-cta:hover { background: linear-gradient(135deg, #4ecdc4 0%, #7bc67a 50%, #2b8ebd 100%); color: #fff; }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text);
-            padding: 4px;
-        }
-
-        .mobile-nav { display: none; }
-
-        .mobile-nav.open {
-            display: block;
-            position: fixed;
-            top: 61px; left: 0; right: 0;
-            background: rgba(10,10,10,0.97);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            padding: 12px 20px 20px;
-            z-index: 99;
-        }
-
-        .mobile-nav a {
-            display: block;
-            padding: 13px 16px;
-            font-size: 0.82rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--muted);
-            text-decoration: none;
-            border-bottom: 1px solid var(--border);
-            transition: color 0.2s;
-        }
-
-        .mobile-nav a:last-child { border-bottom: none; }
-        .mobile-nav a:hover { color: var(--text); }
 
         /* ── MAIN CONTENT ── */
-        #main-content { display: none; }
+        #main-content { display: block; }
 
         /* ── HERO ── */
         .portfolio-hero {
-            padding: 148px 40px 80px;
+            padding: 160px 40px 80px;
             max-width: 1100px;
             margin: 0 auto;
         }
@@ -434,54 +294,24 @@
         /* ── FOOTER ── */
         footer {
             border-top: 1px solid var(--border);
-            padding: 80px 40px 48px;
+            padding: 60px 40px 48px;
         }
 
         .footer-inner {
             max-width: 1100px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: end;
-            gap: 48px;
-        }
-
-        .footer-title {
-            font-family: var(--serif);
-            font-size: clamp(2.6rem, 5vw, 4rem);
-            line-height: 1.0;
-            letter-spacing: -0.02em;
-            margin-bottom: 36px;
-        }
-
-        .footer-title em { font-style: italic; color: var(--accent); }
-
-        .social-link {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            display: inline-flex;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            color: var(--muted);
-            text-decoration: none;
-            transition: all 0.2s;
+            gap: 24px;
         }
-
-        .social-link:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: rgba(255,255,255,0.07);
-        }
-
-        .footer-byline { text-align: right; }
 
         .footer-byline p:first-child {
             font-family: var(--serif);
-            font-size: 1.05rem;
-            color: var(--muted);
-            margin-bottom: 6px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
         }
 
         .footer-byline p:last-child {
@@ -493,7 +323,7 @@
 
         .footer-copy {
             max-width: 1100px;
-            margin: 40px auto 0;
+            margin: 32px auto 0;
             padding-top: 22px;
             border-top: 1px solid var(--border);
             font-size: 0.74rem;
@@ -569,16 +399,13 @@
 
         /* ── RESPONSIVE ── */
         @media (max-width: 800px) {
-            nav { padding: 16px 20px; }
-            .nav-links, .nav-cta-wrap { display: none !important; }
-            .menu-toggle { display: flex; }
+            nav { padding: 18px 20px; }
 
             .portfolio-hero { padding: 120px 20px 60px; }
             .case-studies-wrapper { padding: 0 20px 80px; }
 
-            footer { padding: 60px 20px 40px; }
-            .footer-inner { grid-template-columns: 1fr; }
-            .footer-byline { text-align: left; margin-top: 16px; }
+            footer { padding: 40px 20px 40px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
 
             .lb-prev { left: 12px; }
             .lb-next { right: 12px; }
@@ -592,44 +419,12 @@
 </head>
 <body>
 
-    <!-- PASSWORD GATE -->
-    <div id="password-gate">
-        <div class="password-container">
-            <h2>Martin Barbieri</h2>
-            <p>This portfolio is password protected. Please enter the password to continue.</p>
-            <input type="password" id="pass-input" class="password-input" placeholder="Password">
-            <button onclick="checkPassword()" class="submit-btn">Unlock Portfolio</button>
-            <p id="error-msg" class="error-msg">Incorrect password. Please try again.</p>
-        </div>
-    </div>
-
     <!-- NAV -->
     <nav>
-        <a href="index.html" class="nav-logo">Martin Barbieri</a>
-
-        <ul class="nav-links">
-            <li><a href="index.html#about">Home</a></li>
-            <li><a href="index.html#skills">Skills</a></li>
-            <li><a href="index.html#certifications">Certifications</a></li>
-            <li><a href="portfolio.html" class="active">Portfolio</a></li>
-        </ul>
-
-        <div class="nav-cta-wrap" style="display:flex;align-items:center;">
-            <a href="index.html#contact" class="nav-cta">Get in Touch</a>
-        </div>
-
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-            <i data-lucide="menu" style="width:22px;height:22px;"></i>
-        </button>
+        <a href="index.html" class="nav-logo">
+            Martin Barbieri <span class="nav-role">— Product Designer</span>
+        </a>
     </nav>
-
-    <div class="mobile-nav" id="mobileNav">
-        <a href="index.html#about">Home</a>
-        <a href="index.html#skills">Skills</a>
-        <a href="index.html#certifications">Certifications</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="index.html#contact">Contact</a>
-    </div>
 
     <!-- MAIN CONTENT -->
     <div id="main-content">
@@ -663,10 +458,10 @@
                         <h3>Process & Key Decisions</h3>
                         <p>Full component inventory first — mapped what existed, what was live, what could go. Rebuilt on a variable-based foundation with per-component Do's and Don'ts, so teams could actually use it correctly without asking.</p>
                     </div>
-                    <div class="item-4 image-container"><img src="3a.jpg" class="gallery-img" alt="Bobcat screenshot"></div>
-                    <div class="item-5 image-container"><img src="3b.jpg" class="gallery-img" alt="Bobcat screenshot"></div>
-                    <div class="item-6 image-container"><img src="3c.jpg" class="gallery-img" alt="Bobcat screenshot"></div>
-                    <div class="item-7 image-container"><img src="3d.jpg" class="gallery-img" alt="Bobcat screenshot"></div>
+                    <div class="item-4 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Bobcat+System+1" class="gallery-img" alt="Bobcat screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Bobcat+Preview'"></div>
+                    <div class="item-5 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Bobcat+System+2" class="gallery-img" alt="Bobcat screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Bobcat+Preview'"></div>
+                    <div class="item-6 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Bobcat+System+3" class="gallery-img" alt="Bobcat screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Bobcat+Preview'"></div>
+                    <div class="item-7 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Bobcat+System+4" class="gallery-img" alt="Bobcat screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Bobcat+Preview'"></div>
                 </section>
                 <div class="outcome-card">
                     <h3>Outcome</h3>
@@ -693,10 +488,10 @@
                         <h3>Process & Key Decisions</h3>
                         <p>Rich internal data, well-defined personas — the work was ruthless prioritization. Same content, restructured around real user needs. Two concepts went to live testing. Option A won.</p>
                     </div>
-                    <div class="item-4 image-container"><img src="5a.jpg" class="gallery-img" alt="Whirlpool screenshot"></div>
-                    <div class="item-5 image-container"><img src="5b.jpg" class="gallery-img" alt="Whirlpool screenshot"></div>
-                    <div class="item-6 image-container"><img src="5c.jpg" class="gallery-img" alt="Whirlpool screenshot"></div>
-                    <div class="item-7 image-container"><img src="5d.jpg" class="gallery-img" alt="Whirlpool screenshot"></div>
+                    <div class="item-4 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Whirlpool+UX+1" class="gallery-img" alt="Whirlpool screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Whirlpool+Preview'"></div>
+                    <div class="item-5 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Whirlpool+UX+2" class="gallery-img" alt="Whirlpool screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Whirlpool+Preview'"></div>
+                    <div class="item-6 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Whirlpool+UX+3" class="gallery-img" alt="Whirlpool screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Whirlpool+Preview'"></div>
+                    <div class="item-7 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Whirlpool+UX+4" class="gallery-img" alt="Whirlpool screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Whirlpool+Preview'"></div>
                 </section>
                 <div class="outcome-card">
                     <h3>Outcome</h3>
@@ -723,10 +518,10 @@
                         <h3>Process & Key Decisions</h3>
                         <p>Promotions weren't reaching users at the right moment. Proposed a "Promo Drawer" carousel — faced pushback. Instead of compromising, pushed for A/B testing to let the data decide. It did.</p>
                     </div>
-                    <div class="item-4 image-container"><img src="4a.jpg" class="gallery-img" alt="KitchenAid screenshot"></div>
-                    <div class="item-5 image-container"><img src="4b.jpg" class="gallery-img" alt="KitchenAid screenshot"></div>
-                    <div class="item-6 image-container"><img src="4c.jpg" class="gallery-img" alt="KitchenAid screenshot"></div>
-                    <div class="item-7 image-container"><img src="4d.jpg" class="gallery-img" alt="KitchenAid screenshot"></div>
+                    <div class="item-4 image-container"><img src="https://placehold.co/600x400/181818/888580?text=KitchenAid+CRO+1" class="gallery-img" alt="KitchenAid screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=KitchenAid+Preview'"></div>
+                    <div class="item-5 image-container"><img src="https://placehold.co/600x400/181818/888580?text=KitchenAid+CRO+2" class="gallery-img" alt="KitchenAid screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=KitchenAid+Preview'"></div>
+                    <div class="item-6 image-container"><img src="https://placehold.co/600x400/181818/888580?text=KitchenAid+CRO+3" class="gallery-img" alt="KitchenAid screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=KitchenAid+Preview'"></div>
+                    <div class="item-7 image-container"><img src="https://placehold.co/600x400/181818/888580?text=KitchenAid+CRO+4" class="gallery-img" alt="KitchenAid screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=KitchenAid+Preview'"></div>
                 </section>
                 <div class="outcome-card">
                     <h3>Outcome</h3>
@@ -753,10 +548,10 @@
                         <h3>Process & Key Decisions</h3>
                         <p>One unified brand system from day one — the same visual logic driving app trust also powered paid creatives and email. In fintech, trust is the conversion mechanism. Every surface was built to reduce friction and signal security.</p>
                     </div>
-                    <div class="item-4 image-container"><img src="cp-a.jpg" class="gallery-img" alt="Chainpay screenshot"></div>
-                    <div class="item-5 image-container"><img src="cp-b.jpg" class="gallery-img" alt="Chainpay screenshot"></div>
-                    <div class="item-6 image-container"><img src="cp-c.jpg" class="gallery-img" alt="Chainpay screenshot"></div>
-                    <div class="item-7 image-container"><img src="cp-d.jpg" class="gallery-img" alt="Chainpay screenshot"></div>
+                    <div class="item-4 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Chainpay+1" class="gallery-img" alt="Chainpay screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Chainpay+Preview'"></div>
+                    <div class="item-5 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Chainpay+2" class="gallery-img" alt="Chainpay screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Chainpay+Preview'"></div>
+                    <div class="item-6 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Chainpay+3" class="gallery-img" alt="Chainpay screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Chainpay+Preview'"></div>
+                    <div class="item-7 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Chainpay+4" class="gallery-img" alt="Chainpay screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Chainpay+Preview'"></div>
                 </section>
                 <div class="outcome-card">
                     <h3>Outcome</h3>
@@ -783,10 +578,10 @@
                         <h3>Process & Key Decisions</h3>
                         <p>160K+ active users, multiple markets — consistency was non-negotiable. Built a visual language that stretched across product UI, global campaigns, and local markets. Strategy stayed centralized; execution was delegated for real team ownership.</p>
                     </div>
-                    <div class="item-4 image-container"><img src="6a.jpg" class="gallery-img" alt="Traders Central screenshot"></div>
-                    <div class="item-5 image-container"><img src="6b.jpg" class="gallery-img" alt="Traders Central screenshot"></div>
-                    <div class="item-6 image-container"><img src="6c.jpg" class="gallery-img" alt="Traders Central screenshot"></div>
-                    <div class="item-7 image-container"><img src="6d.jpg" class="gallery-img" alt="Traders Central screenshot"></div>
+                    <div class="item-4 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Traders+Central+1" class="gallery-img" alt="Traders Central screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Traders+Central+Preview'"></div>
+                    <div class="item-5 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Traders+Central+2" class="gallery-img" alt="Traders Central screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Traders+Central+Preview'"></div>
+                    <div class="item-6 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Traders+Central+3" class="gallery-img" alt="Traders Central screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Traders+Central+Preview'"></div>
+                    <div class="item-7 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Traders+Central+4" class="gallery-img" alt="Traders Central screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Traders+Central+Preview'"></div>
                 </section>
                 <div class="outcome-card">
                     <h3>Outcome</h3>
@@ -813,10 +608,10 @@
                         <h3>Process & Key Decisions</h3>
                         <p>Web and mobile designed in parallel — no mobile afterthought. On content: built a ComfyUI workflow to auto-generate product photography from a single image. No photoshoots, no bottlenecks, optimized for both SEO and AI search.</p>
                     </div>
-                    <div class="item-4 image-container"><img src="0a.jpg" class="gallery-img" alt="Kinfolk screenshot"></div>
-                    <div class="item-5 image-container"><img src="0b.jpg" class="gallery-img" alt="Kinfolk screenshot"></div>
-                    <div class="item-6 image-container"><img src="0c.jpg" class="gallery-img" alt="Kinfolk screenshot"></div>
-                    <div class="item-7 image-container"><img src="0d.jpg" class="gallery-img" alt="Kinfolk screenshot"></div>
+                    <div class="item-4 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Kinfolk+1" class="gallery-img" alt="Kinfolk screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Kinfolk+Preview'"></div>
+                    <div class="item-5 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Kinfolk+2" class="gallery-img" alt="Kinfolk screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Kinfolk+Preview'"></div>
+                    <div class="item-6 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Kinfolk+3" class="gallery-img" alt="Kinfolk screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Kinfolk+Preview'"></div>
+                    <div class="item-7 image-container"><img src="https://placehold.co/600x400/181818/888580?text=Kinfolk+4" class="gallery-img" alt="Kinfolk screenshot" onerror="this.src='https://placehold.co/600x400/181818/888580?text=Kinfolk+Preview'"></div>
                 </section>
                 <div class="outcome-card">
                     <h3>Outcome</h3>
@@ -829,17 +624,6 @@
         <!-- FOOTER -->
         <footer>
             <div class="footer-inner">
-                <div>
-                    <div class="section-label">Contact</div>
-                    <h2 class="footer-title">Let's <em>build</em><br>something great.</h2>
-                    <a href="https://www.linkedin.com/in/barbierimartin/" target="_blank" class="social-link" aria-label="LinkedIn">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                            <rect x="2" y="9" width="4" height="12"/>
-                            <circle cx="4" cy="4" r="2"/>
-                        </svg>
-                    </a>
-                </div>
                 <div class="footer-byline">
                     <p>Martin Barbieri</p>
                     <p>Senior Product Designer</p>
@@ -871,46 +655,7 @@
     <script>
         lucide.createIcons();
 
-        // Password gate
-        const CORRECT_PASSWORD = "portfoliopass";
-
-        function checkPassword() {
-            const input = document.getElementById('pass-input');
-            if (input.value === CORRECT_PASSWORD) {
-                document.getElementById('password-gate').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                // Trigger reveal observer after content is shown
-                document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-            } else {
-                document.getElementById('error-msg').style.display = 'block';
-            }
-        }
-
-        document.getElementById('pass-input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') checkPassword();
-        });
-
-        // Mobile menu
-        const toggle = document.getElementById('menuToggle');
-        const mobileNav = document.getElementById('mobileNav');
-
-        toggle.addEventListener('click', () => {
-            const open = mobileNav.classList.toggle('open');
-            toggle.innerHTML = open
-                ? `<i data-lucide="x" style="width:22px;height:22px;"></i>`
-                : `<i data-lucide="menu" style="width:22px;height:22px;"></i>`;
-            lucide.createIcons();
-        });
-
-        mobileNav.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                mobileNav.classList.remove('open');
-                toggle.innerHTML = `<i data-lucide="menu" style="width:22px;height:22px;"></i>`;
-                lucide.createIcons();
-            });
-        });
-
-        // Scroll reveal
+        // Scroll reveal initialization
         const observer = new IntersectionObserver(entries => {
             entries.forEach(el => {
                 if (el.isIntersecting) {
@@ -919,6 +664,8 @@
                 }
             });
         }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
         // Lightbox
         let currentImageIndex = 0;

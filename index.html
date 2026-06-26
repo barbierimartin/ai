@@ -51,27 +51,13 @@
             font-family: var(--serif);
             font-size: 1.2rem;
             color: var(--text);
+            font-weight: 700;
         }
 
-        .nav-links {
+        .nav-cta-wrap {
             display: flex;
-            gap: 4px;
-            list-style: none;
+            align-items: center;
         }
-
-        .nav-links a {
-            font-size: 0.78rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--muted);
-            text-decoration: none;
-            padding: 7px 14px;
-            border-radius: 100px;
-            transition: all 0.2s;
-        }
-
-        .nav-links a:hover { color: var(--text); background: var(--surface2); }
 
         .nav-cta {
             font-size: 0.78rem;
@@ -83,48 +69,13 @@
             text-decoration: none;
             padding: 9px 22px;
             border-radius: 100px;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
-        .nav-cta:hover { background: linear-gradient(135deg, #4ecdc4 0%, #7bc67a 50%, #2b8ebd 100%); color: #fff; }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text);
-            padding: 4px;
+        .nav-cta:hover { 
+            background: linear-gradient(135deg, #4ecdc4 0%, #7bc67a 50%, #2b8ebd 100%); 
+            color: #fff; 
         }
-
-        .mobile-nav { display: none; }
-
-        .mobile-nav.open {
-            display: block;
-            position: fixed;
-            top: 61px; left: 0; right: 0;
-            background: rgba(10,10,10,0.97);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            padding: 12px 20px 20px;
-            z-index: 99;
-        }
-
-        .mobile-nav a {
-            display: block;
-            padding: 13px 16px;
-            font-size: 0.82rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--muted);
-            text-decoration: none;
-            border-bottom: 1px solid var(--border);
-            transition: color 0.2s;
-        }
-
-        .mobile-nav a:last-child { border-bottom: none; }
-        .mobile-nav a:hover { color: var(--text); }
 
         /* ── HERO ── */
         .hero {
@@ -181,14 +132,6 @@
             line-height: 1.7;
             margin-bottom: 12px;
         }
-
-        .hero-meta {
-            font-size: 0.83rem;
-            color: var(--muted);
-            margin-bottom: 4px;
-        }
-
-        .hero-meta strong { color: var(--text); font-weight: 600; }
 
         .hero-actions {
             display: flex;
@@ -253,10 +196,6 @@
             filter: grayscale(15%);
         }
 
-        .hero-image-ring {
-            display: none;
-        }
-
         /* ── MARQUEE ── */
         .marquee-wrap {
             border-top: 1px solid var(--border);
@@ -295,13 +234,7 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* ── SECTIONS ── */
-        .section {
-            padding: 96px 40px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
+        /* ── SECTIONS & FOOTER ── */
         .section-label {
             font-size: 0.68rem;
             font-weight: 700;
@@ -314,8 +247,6 @@
             gap: 12px;
         }
 
-        .section-label span { color: var(--accent); }
-
         .section-label::after {
             content: '';
             flex: 1;
@@ -323,188 +254,8 @@
             background: var(--border);
         }
 
-        .section-title {
-            font-family: var(--serif);
-            font-size: clamp(2.4rem, 5vw, 3.8rem);
-            line-height: 1.05;
-            letter-spacing: -0.02em;
-            margin-bottom: 20px;
-        }
-
-        .section-title em { font-style: italic; color: var(--accent); }
-
-        /* ── SKILLS GRID ── */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            margin-top: 56px;
-        }
-
-        .skill-card {
-            background: var(--surface);
-            padding: 44px 36px;
-            transition: background 0.25s;
-        }
-
-        .skill-card:nth-child(1) { border-radius: 20px 0 0 0; }
-        .skill-card:nth-child(2) { border-radius: 0 20px 0 0; }
-        .skill-card:nth-child(3) { border-radius: 0 0 0 20px; }
-        .skill-card:nth-child(4) { border-radius: 0 0 20px 0; }
-        .skill-card:hover { background: var(--surface2); }
-
-        .skill-num {
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 18px;
-        }
-
-        .skill-title {
-            font-family: var(--serif);
-            font-size: 1.9rem;
-            line-height: 1.1;
-            color: var(--text);
-            margin-bottom: 8px;
-        }
-
-        .skill-subtitle {
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.04em;
-            margin-bottom: 14px;
-        }
-
-        .skill-desc {
-            font-size: 0.87rem;
-            color: var(--muted);
-            line-height: 1.72;
-            max-width: 340px;
-        }
-
-        .skill-video-wrap {
-            margin-top: 24px;
-            border-radius: 10px;
-            overflow: hidden;
-            aspect-ratio: 16/9;
-            background: var(--surface2);
-        }
-
-        .skill-video-wrap video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .skill-placeholder {
-            width: 100%;
-            height: 100%;
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.72rem;
-            font-weight: 600;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        /* ── EXPERTISE ── */
-        .expertise-section {
-            padding: 96px 40px;
-        }
-
-        #skills {
-            border-top: 1px solid var(--border);
-        }
-
-        .expertise-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .tag-group-label {
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 14px;
-        }
-
-        .tag-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tag {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #c8c4be;
-            border: 1px solid rgba(255,255,255,0.16);
-            border-radius: 100px;
-            padding: 10px 22px;
-            background: var(--surface);
-            transition: all 0.2s;
-            cursor: default;
-        }
-
-        .tag:hover {
-            color: var(--text);
-            border-color: rgba(255,255,255,0.35);
-            background: var(--surface2);
-        }
-
-        .tag.accent {
-            color: var(--accent);
-            border-color: rgba(200,245,58,0.22);
-            background: rgba(200,245,58,0.05);
-        }
-
-        .tag.accent:hover { background: rgba(255,255,255,0.08); }
-
-        /* ── CERTIFICATIONS ── */
-        .certs-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: var(--border);
-            border-radius: 18px;
-            overflow: hidden;
-            margin-top: 52px;
-        }
-
-        .cert-item {
-            background: var(--surface);
-            padding: 30px 26px;
-            transition: background 0.2s;
-        }
-
-        .cert-item:hover { background: var(--surface2); }
-
-        .cert-org {
-            font-size: 0.63rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 9px;
-        }
-
-        .cert-name {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text);
-            line-height: 1.45;
-        }
-
-        /* ── FOOTER ── */
         footer {
-            padding: 80px 0 48px;
+            padding: 120px 0 48px;
         }
 
         .footer-top {
@@ -550,7 +301,7 @@
         .social-link:hover {
             border-color: var(--accent);
             color: var(--accent);
-            background: rgba(200,245,58,0.07);
+            background: rgba(255,255,255,0.07);
         }
 
         .footer-byline {
@@ -581,59 +332,7 @@
             letter-spacing: 0.04em;
         }
 
-        /* ── PORTFOLIO CTA CARD ── */
-        .portfolio-cta-card {
-            display: block;
-            text-decoration: none;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 52px 48px;
-            transition: background 0.25s, border-color 0.25s, transform 0.25s;
-        }
-
-        .portfolio-cta-card:hover {
-            background: var(--surface2);
-            border-color: rgba(255,255,255,0.15);
-            transform: translateY(-2px);
-        }
-
-        .portfolio-cta-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-        }
-
-        .portfolio-cta-label {
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 12px;
-        }
-
-        .portfolio-cta-title {
-            font-family: var(--serif);
-            font-size: clamp(2rem, 4vw, 3rem);
-            line-height: 1.05;
-            letter-spacing: -0.02em;
-            color: var(--text);
-        }
-
-        .portfolio-cta-title em { font-style: italic; color: var(--accent); }
-
-        .portfolio-cta-arrow {
-            font-size: 3rem;
-            color: var(--accent);
-            flex-shrink: 0;
-            transition: transform 0.25s;
-        }
-
-        .portfolio-cta-card:hover .portfolio-cta-arrow { transform: translateX(6px); }
-
-        /* ── REVEAL ── */
+        /* ── REVEAL EFFECTS ── */
         .reveal {
             opacity: 0;
             transform: translateY(22px);
@@ -645,11 +344,9 @@
         .reveal-d2 { transition-delay: 0.2s; }
         .reveal-d3 { transition-delay: 0.3s; }
 
-        /* ── RESPONSIVE ── */
+        /* ── RESPONSIVE MEDIA QUERIES ── */
         @media (max-width: 800px) {
             nav { padding: 16px 20px; }
-            .nav-links, .nav-cta-wrap { display: none !important; }
-            .menu-toggle { display: flex; }
 
             .hero { padding: 160px 20px 60px; }
             .hero-image-wrap {
@@ -662,20 +359,7 @@
             }
             .mobile-hide { display: none !important; }
 
-            .section { padding: 60px 20px; }
-            .expertise-section { padding: 60px 20px; }
-
-            .skills-grid { grid-template-columns: 1fr; }
-            .skill-card:nth-child(1) { border-radius: 20px 20px 0 0; }
-            .skill-card:nth-child(2),
-            .skill-card:nth-child(3) { border-radius: 0; }
-            .skill-card:nth-child(4) { border-radius: 0 0 20px 20px; }
-
-            .expertise-tags-wrap { grid-template-columns: 1fr; gap: 28px; }
-
-            .certs-grid { grid-template-columns: 1fr; }
-
-            footer { padding: 60px 0 40px; }
+            footer { padding: 80px 0 40px; }
             .footer-top { padding: 0 20px; margin-bottom: 32px; }
             .footer-inner { padding: 0 20px; grid-template-columns: 1fr; }
             .footer-copy { padding: 22px 20px 0; }
@@ -689,30 +373,10 @@
     <nav>
         <span class="nav-logo">Martin Barbieri</span>
 
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Expertise</a></li>
-            <li><a href="#software">Software</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-        </ul>
-
-        <div class="nav-cta-wrap" style="display:flex;align-items:center;">
-            <a href="https://barbierimartin.com/portfolio.html" class="nav-cta">View Portfolio</a>
+        <div class="nav-cta-wrap">
+            <a href="https://www.linkedin.com/in/barbierimartin/" target="_blank" class="nav-cta">GET IN TOUCH</a>
         </div>
-
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-            <i data-lucide="menu" style="width:22px;height:22px;"></i>
-        </button>
     </nav>
-
-    <div class="mobile-nav" id="mobileNav">
-        <a href="#about">About</a>
-        <a href="#skills">Expertise</a>
-        <a href="#software">Software</a>
-        <a href="#certifications">Certifications</a>
-        <a href="https://barbierimartin.com/portfolio.html">View Portfolio</a>
-        <a href="#contact">Contact</a>
-    </div>
 
     <!-- HERO -->
     <section id="about" style="position:relative;">
@@ -731,9 +395,8 @@
                 More than 10 years of experience working with global brands including Whirlpool, KitchenAid and Bobcat, creating high-performing digital products.
             </p>
 
-<div class="hero-actions reveal reveal-d3">
-                <a href="portfolio.html" class="btn-primary">View Case Studies →</a>
-                <a href="https://www.linkedin.com/in/barbierimartin/" target="_blank" class="btn-secondary mobile-hide">Get in Touch</a>
+            <div class="hero-actions reveal reveal-d3">
+                <a href="https://www.linkedin.com/in/barbierimartin/" target="_blank" class="btn-primary">Get in Touch →</a>
             </div>
         </div>
     </section>
@@ -764,107 +427,6 @@
         </div>
     </div>
 
-
-
-    <!-- EXPERTISE -->
-    <div id="skills" class="expertise-section">
-        <div class="expertise-inner">
-            <div class="section-label">Expertise</div>
-            <h2 class="section-title reveal">Building <em>high-performing</em> digital products</h2>
-            <div class="tag-cloud reveal" style="margin-top:48px;">
-                <span class="tag">End-to-end Product Design</span>
-                <span class="tag">Design Systems</span>
-                <span class="tag">Design Thinking</span>
-                <span class="tag">Agile & Scrum</span>
-                <span class="tag">Product Discovery</span>
-                <span class="tag">UX Research</span>
-                <span class="tag">Wireframing & Prototyping</span>
-                <span class="tag">Information Architecture</span>
-                <span class="tag">Usability Testing</span>
-                <span class="tag">Responsive Design</span>
-                <span class="tag">AI Integration</span>
-                <span class="tag">Product Strategy</span>
-                <span class="tag">Workflow Automation</span>
-                <span class="tag">AI Content Generation</span>
-                <span class="tag">A/B Testing</span>
-                <span class="tag">B2B / B2C / SaaS</span>
-                <span class="tag">Stakeholder Management</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- SOFTWARE -->
-    <div id="software" class="expertise-section">
-        <div class="expertise-inner">
-            <div class="section-label">Software</div>
-            <h2 class="section-title reveal">Every tool <em>in the kit</em></h2>
-            <div class="tag-cloud reveal" style="margin-top:48px;">
-                <span class="tag">Figma</span>
-                <span class="tag">Claude</span>
-                <span class="tag">n8n</span>
-                <span class="tag">Gemini Canvas</span>
-                <span class="tag">Runway</span>
-                <span class="tag">ComfyUI</span>
-                <span class="tag">Lovable</span>
-                <span class="tag">Webflow</span>
-                <span class="tag">Hotjar</span>
-                <span class="tag">GA4</span>
-                <span class="tag">Looker</span>
-                <span class="tag">Ahrefs</span>
-                <span class="tag">SEMrush</span>
-                <span class="tag">Jira</span>
-                <span class="tag">GitHub</span>
-                <span class="tag">Notion</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- CERTIFICATIONS -->
-    <section id="certifications" class="section">
-        <div class="section-label">Certifications</div>
-        <h2 class="section-title reveal">Credentials that <em>matter</em></h2>
-
-        <div class="certs-grid reveal">
-            <div class="cert-item">
-                <div class="cert-org">Google</div>
-                <div class="cert-name">User Experience Certificate</div>
-            </div>
-            <div class="cert-item">
-                <div class="cert-org">IBM SkillsBuild</div>
-                <div class="cert-name">Prompt Engineering</div>
-            </div>
-            <div class="cert-item">
-                <div class="cert-org">Semrush</div>
-                <div class="cert-name">Technical SEO & AI</div>
-            </div>
-            <div class="cert-item">
-                <div class="cert-org">Coder House</div>
-                <div class="cert-name">Digital Marketing</div>
-            </div>
-            <div class="cert-item">
-                <div class="cert-org">Google Activate</div>
-                <div class="cert-name">Digital Marketing</div>
-            </div>
-            <div class="cert-item">
-                <div class="cert-org">Palermo University</div>
-                <div class="cert-name">Graphic Design</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PORTFOLIO CTA -->
-    <section class="section" style="padding-top:0;">
-        <a href="https://barbierimartin.com/portfolio.html" class="portfolio-cta-card reveal">
-            <div class="portfolio-cta-inner">
-                <div>
-                    <p class="portfolio-cta-label">Selected Work</p>
-                    <h2 class="portfolio-cta-title">View my <em>Portfolio</em></h2>
-                </div>
-                <div class="portfolio-cta-arrow">→</div>
-            </div>
-        </a>
-    </section>
-
     <!-- FOOTER / CONTACT -->
     <footer id="contact">
         <div class="footer-top">
@@ -892,35 +454,7 @@
     <script>
         lucide.createIcons();
 
-        // Mobile menu
-        const toggle = document.getElementById('menuToggle');
-        const mobileNav = document.getElementById('mobileNav');
-
-        toggle.addEventListener('click', () => {
-            const open = mobileNav.classList.toggle('open');
-            toggle.innerHTML = open
-                ? `<i data-lucide="x" style="width:22px;height:22px;"></i>`
-                : `<i data-lucide="menu" style="width:22px;height:22px;"></i>`;
-            lucide.createIcons();
-        });
-
-        mobileNav.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                mobileNav.classList.remove('open');
-                toggle.innerHTML = `<i data-lucide="menu" style="width:22px;height:22px;"></i>`;
-                lucide.createIcons();
-            });
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
-                const t = document.querySelector(a.getAttribute('href'));
-                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
-            });
-        });
-
-        // Scroll reveal
+        // Scroll reveal animation observer
         const observer = new IntersectionObserver(entries => {
             entries.forEach(el => {
                 if (el.isIntersecting) {

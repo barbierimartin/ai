@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martin Barbieri — Case Studies</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --surface2: #181818;
+            --border: rgba(255,255,255,0.07);
+            --accent: #ffffff;
+            --text: #f0ede8;
+            --muted: #888580;
+            --serif: 'Bricolage Grotesque', sans-serif;
+            --sans: 'DM Sans', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { background: var(--bg); }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10,10,10,0.88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .nav-role {
+            color: var(--muted);
+            font-weight: 400;
+            font-family: var(--sans);
+            font-size: 0.88rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── MAIN CONTENT ── */
+        #main-content { display: block; }
+
+        /* ── HERO ── */
+        .portfolio-hero {
+            padding: 160px 40px 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 1px;
+            background: var(--muted);
+        }
+
+        .portfolio-hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(3.4rem, 7.5vw, 6.8rem);
+            line-height: 1.0;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 24px;
+        }
+
+        .portfolio-hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .portfolio-hero p {
+            font-size: 1.05rem;
+            color: #d8d5d0;
+            max-width: 480px;
+            line-height: 1.7;
+        }
+
+        /* ── SECTION LABEL ── */
+        .section-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 48px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label span { color: var(--accent); }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── CASE STUDIES ── */
+        .case-studies-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px 120px;
+        }
+
+        .case-study-block {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .case-study-block:first-child {
+            border-top: none;
+        }
+
+        .case-study-header {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .case-study-num {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .case-study-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        /* ── BENTO GRID ── */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2px;
+            margin-bottom: 2px;
+        }
+
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(12, 1fr);
+                grid-template-rows: auto 300px;
+                gap: 2px;
+            }
+            .item-1 { grid-area: 1 / 1 / 2 / 5; }
+            .item-2 { grid-area: 1 / 5 / 2 / 9; }
+            .item-3 { grid-area: 1 / 9 / 2 / 13; }
+            .item-4 { grid-area: 2 / 1 / 3 / 5; }
+            .item-5 { grid-area: 2 / 5 / 3 / 9; }
+            .item-6 { grid-area: 2 / 9 / 3 / 13; }
+        }
+
+        /* ── TEXT CARDS ── */
+        .text-card {
+            background: var(--surface);
+            padding: 36px;
+            transition: background 0.2s;
+        }
+
+        .text-card:hover { background: var(--surface2); }
+
+        .text-card h3 {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .text-card p {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        /* Corner rounding for bento grid */
+        .bento-grid .item-1 { border-radius: 20px 0 0 0; }
+        .bento-grid .item-2 { border-radius: 0; }
+        .bento-grid .item-3 { border-radius: 0 20px 0 0; }
+        .bento-grid .item-4 { border-radius: 0 0 0 20px; }
+        .bento-grid .item-5 { border-radius: 0; }
+        .bento-grid .item-6 { border-radius: 0 0 20px 0; }
+
+        @media (max-width: 767px) {
+            .bento-grid .item-1 { border-radius: 20px 20px 0 0; }
+            .bento-grid .item-2,
+            .bento-grid .item-3,
+            .bento-grid .item-4,
+            .bento-grid .item-5 { border-radius: 0; }
+            .bento-grid .item-6 { border-radius: 0 0 20px 20px; }
+        }
+
+        /* ── IMAGE CONTAINERS ── */
+        .image-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: var(--surface2);
+            min-height: 180px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+
+        .image-container:hover img { transform: scale(1.03); }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 60px 40px 48px;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .footer-byline p:first-child {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .footer-byline p:last-child {
+            font-size: 0.74rem;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .footer-copy {
+            max-width: 1100px;
+            margin: 32px auto 0;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+            font-size: 0.74rem;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+        }
+
+        /* ── LIGHTBOX ── */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.98);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #lightbox.active { display: flex; }
+
+        .lb-ui-btn {
+            position: absolute;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            color: var(--text);
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 3010;
+        }
+
+        .lb-ui-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.18); }
+
+        .lb-prev { left: 32px; top: 50%; transform: translateY(-50%); }
+        .lb-next { right: 32px; top: 50%; transform: translateY(-50%); }
+        .lb-close { top: 32px; right: 32px; }
+
+        .lb-image-wrapper {
+            max-width: 90vw;
+            max-height: 85vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+        }
+
+        .lb-image-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: opacity 0.25s ease;
+        }
+
+        /* ── REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+
+        .reveal.visible { opacity: 1; transform: none; }
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 800px) {
+            nav { padding: 18px 20px; }
+
+            .portfolio-hero { padding: 120px 20px 60px; }
+            .case-studies-wrapper { padding: 0 20px 80px; }
+
+            footer { padding: 40px 20px 40px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+            .lb-prev { left: 12px; }
+            .lb-next { right: 12px; }
+            .lb-close { top: 12px; right: 12px; }
+            .lb-ui-btn { width: 44px; height: 44px; }
+
+            .text-card { padding: 28px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            Martin Barbieri <span class="nav-role">— AI-Powered Marketing Designer</span>
+        </a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div id="main-content">
+
+        <!-- HERO -->
+        <div class="portfolio-hero">
+            <p class="hero-eyebrow reveal">Case Studies</p>
+            <h1 class="reveal reveal-d1">Design <em>Portfolio</em></h1>
+            <p class="reveal reveal-d2">Marketing and brand projects powered by AI — from generative photography to landing pages, email systems and full campaigns.</p>
+        </div>
+
+        <!-- CASE STUDIES -->
+        <div class="case-studies-wrapper">
+
+            <!-- CASE STUDY 01: PADEL COLLECTIONS -->
+            <div class="case-study-block reveal">
+                <div class="case-study-header">
+                    <span class="case-study-num">01 — AI Photography</span>
+                    <h2 class="case-study-title">Padel Collections</h2>
+                </div>
+                <section class="bento-grid">
+                    <div class="item-1 text-card">
+                        <h3>My Role</h3>
+                        <p>AI creative director — turned a single product image into a full photoshoot, ad creative, and landing page.</p>
+                    </div>
+                    <div class="item-2 text-card">
+                        <h3>Software</h3>
+                        <p>Generative AI (Midjourney, ComfyUI) for photography and ad variations, Figma for the landing page build.</p>
+                    </div>
+                    <div class="item-3 text-card">
+                        <h3>Process</h3>
+                        <p>One product photo, zero physical shoot. Generated a full lifestyle photoshoot with AI, then built ad creative and a landing page around the same imagery. Turnaround dropped from weeks to days, with a full asset library ready for every future drop.</p>
+                    </div>
+                    <div class="item-4 image-container"><img src="padel-a.jpg" class="gallery-img" alt="Padel Collections screenshot"></div>
+                    <div class="item-5 image-container"><img src="padel-b.jpg" class="gallery-img" alt="Padel Collections screenshot"></div>
+                    <div class="item-6 image-container"><img src="padel-c.jpg" class="gallery-img" alt="Padel Collections screenshot"></div>
+                </section>
+            </div>
+
+            <!-- CASE STUDY 02: KINFOLK OUTDOORS -->
+            <div class="case-study-block reveal">
+                <div class="case-study-header">
+                    <span class="case-study-num">02 — D2C / Email</span>
+                    <h2 class="case-study-title">Kinfolk Outdoors</h2>
+                </div>
+                <section class="bento-grid">
+                    <div class="item-1 text-card">
+                        <h3>My Role</h3>
+                        <p>D2C designer — PDP photography, full email marketing system, and Shopify template design.</p>
+                    </div>
+                    <div class="item-2 text-card">
+                        <h3>Software</h3>
+                        <p>Shopify for the custom theme and templates, Figma for a modular email component library, AI image generation for product photography.</p>
+                    </div>
+                    <div class="item-3 text-card">
+                        <h3>Process</h3>
+                        <p>Built a reusable Figma component system so new email sends — park lunch promos, seasonal drops, product launches — could be assembled in hours instead of days. Paired with refreshed PDP imagery and a custom Shopify template, giving the brand a self-sufficient content system it could keep running without outside help.</p>
+                    </div>
+                    <div class="item-4 image-container"><img src="0a.jpg" class="gallery-img" alt="Kinfolk Outdoors screenshot"></div>
+                    <div class="item-5 image-container"><img src="0b.jpg" class="gallery-img" alt="Kinfolk Outdoors screenshot"></div>
+                    <div class="item-6 image-container"><img src="0c.jpg" class="gallery-img" alt="Kinfolk Outdoors screenshot"></div>
+                </section>
+            </div>
+
+            <!-- CASE STUDY 03: KITCHENAID -->
+            <div class="case-study-block reveal">
+                <div class="case-study-header">
+                    <span class="case-study-num">03 — CRO</span>
+                    <h2 class="case-study-title">KitchenAid</h2>
+                </div>
+                <section class="bento-grid">
+                    <div class="item-1 text-card">
+                        <h3>My Role</h3>
+                        <p>UX designer — research, concept development, and A/B testing.</p>
+                    </div>
+                    <div class="item-2 text-card">
+                        <h3>Software</h3>
+                        <p>Figma for concepting within KitchenAid's existing design system, live A/B testing tools to validate against real traffic.</p>
+                    </div>
+                    <div class="item-3 text-card">
+                        <h3>Process</h3>
+                        <p>Promotions weren't reaching users at the right moment. Proposed a "Promo Drawer" carousel — faced pushback, so instead of compromising, pushed for A/B testing to let the data decide. It did: +60% in sale-page visits, +13% lift in orders.</p>
+                    </div>
+                    <div class="item-4 image-container"><img src="4a.jpg" class="gallery-img" alt="KitchenAid screenshot"></div>
+                    <div class="item-5 image-container"><img src="4b.jpg" class="gallery-img" alt="KitchenAid screenshot"></div>
+                    <div class="item-6 image-container"><img src="4c.jpg" class="gallery-img" alt="KitchenAid screenshot"></div>
+                </section>
+            </div>
+
+            <!-- CASE STUDY 04: BOBCAT -->
+            <div class="case-study-block reveal">
+                <div class="case-study-header">
+                    <span class="case-study-num">04 — Design System</span>
+                    <h2 class="case-study-title">Bobcat</h2>
+                </div>
+                <section class="bento-grid">
+                    <div class="item-1 text-card">
+                        <h3>My Role</h3>
+                        <p>Solo lead: audit, governance definition, full rebuild, and documentation.</p>
+                    </div>
+                    <div class="item-2 text-card">
+                        <h3>Software</h3>
+                        <p>Figma — variables-based component architecture, shared libraries, and Do's-and-Don'ts documentation.</p>
+                    </div>
+                    <div class="item-3 text-card">
+                        <h3>Process</h3>
+                        <p>Full component inventory first — mapped what existed, what was live, what could go. Rebuilt on a variable-based foundation with per-component Do's and Don'ts, so teams could use it correctly without asking. The result: a scalable, living system any stakeholder can navigate — fragmented turned into shared.</p>
+                    </div>
+                    <div class="item-4 image-container"><img src="3a.jpg" class="gallery-img" alt="Bobcat screenshot"></div>
+                    <div class="item-5 image-container"><img src="3b.jpg" class="gallery-img" alt="Bobcat screenshot"></div>
+                    <div class="item-6 image-container"><img src="3c.jpg" class="gallery-img" alt="Bobcat screenshot"></div>
+                </section>
+            </div>
+
+            <!-- CASE STUDY 05: WHIRLPOOL -->
+            <div class="case-study-block reveal">
+                <div class="case-study-header">
+                    <span class="case-study-num">05 — UX</span>
+                    <h2 class="case-study-title">Whirlpool</h2>
+                </div>
+                <section class="bento-grid">
+                    <div class="item-1 text-card">
+                        <h3>My Role</h3>
+                        <p>Lead UX designer — research synthesis, concept development, and user testing.</p>
+                    </div>
+                    <div class="item-2 text-card">
+                        <h3>Software</h3>
+                        <p>Figma for concept development, live user testing tools to validate against a constrained budget with no new features or content allowed.</p>
+                    </div>
+                    <div class="item-3 text-card">
+                        <h3>Process</h3>
+                        <p>Rich internal data, well-defined personas — the work was ruthless prioritization. Same content, restructured around real user needs. Two concepts went to live testing; Option A won, delivering clearer navigation, faster paths to purchase, and stronger brand perception.</p>
+                    </div>
+                    <div class="item-4 image-container"><img src="5a.jpg" class="gallery-img" alt="Whirlpool screenshot"></div>
+                    <div class="item-5 image-container"><img src="5b.jpg" class="gallery-img" alt="Whirlpool screenshot"></div>
+                    <div class="item-6 image-container"><img src="5c.jpg" class="gallery-img" alt="Whirlpool screenshot"></div>
+                </section>
+            </div>
+
+            <!-- CASE STUDY 06: CHAINPAY -->
+            <div class="case-study-block reveal">
+                <div class="case-study-header">
+                    <span class="case-study-num">06 — Fintech / Growth</span>
+                    <h2 class="case-study-title">Chainpay</h2>
+                </div>
+                <section class="bento-grid">
+                    <div class="item-1 text-card">
+                        <h3>My Role</h3>
+                        <p>Marketing designer — email campaigns, paid ad creative, and landing pages.</p>
+                    </div>
+                    <div class="item-2 text-card">
+                        <h3>Software</h3>
+                        <p>Figma for the shared design system and layouts, email platform templates for campaign builds, native specs for Meta and Google ad creative.</p>
+                    </div>
+                    <div class="item-3 text-card">
+                        <h3>Process</h3>
+                        <p>Extended the app's existing brand system into every growth channel — email, paid ads, and landing pages built on the same visual logic that powered in-app trust. In fintech, trust is the conversion mechanism, so every surface was built to reduce friction and signal security. Result: a cohesive brand presence from first ad impression to landing page conversion.</p>
+                    </div>
+                    <div class="item-4 image-container"><img src="cp-a.jpg" class="gallery-img" alt="Chainpay screenshot"></div>
+                    <div class="item-5 image-container"><img src="cp-b.jpg" class="gallery-img" alt="Chainpay screenshot"></div>
+                    <div class="item-6 image-container"><img src="cp-c.jpg" class="gallery-img" alt="Chainpay screenshot"></div>
+                </section>
+            </div>
+
+            <!-- CASE STUDY 07: TRADERS CENTRAL -->
+            <div class="case-study-block reveal">
+                <div class="case-study-header">
+                    <span class="case-study-num">07 — Fintech</span>
+                    <h2 class="case-study-title">Traders Central</h2>
+                </div>
+                <section class="bento-grid">
+                    <div class="item-1 text-card">
+                        <h3>My Role</h3>
+                        <p>Design lead and team lead — recruited and mentored 5 designers while owning product, campaigns, and brand system.</p>
+                    </div>
+                    <div class="item-2 text-card">
+                        <h3>Software</h3>
+                        <p>Figma as the single source of truth across a distributed team, shared libraries to keep product UI, campaigns, and local markets in sync.</p>
+                    </div>
+                    <div class="item-3 text-card">
+                        <h3>Process</h3>
+                        <p>160K+ active users, multiple markets — consistency was non-negotiable. Built a visual language that stretched across product UI, global campaigns, and local markets. Strategy stayed centralized; execution was delegated for real team ownership. Scaled across international markets with a coherent identity, continuously improved through testing.</p>
+                    </div>
+                    <div class="item-4 image-container"><img src="6a.jpg" class="gallery-img" alt="Traders Central screenshot"></div>
+                    <div class="item-5 image-container"><img src="6b.jpg" class="gallery-img" alt="Traders Central screenshot"></div>
+                    <div class="item-6 image-container"><img src="6c.jpg" class="gallery-img" alt="Traders Central screenshot"></div>
+                </section>
+            </div>
+
+        </div><!-- /case-studies-wrapper -->
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-inner">
+                <div class="footer-byline">
+                    <p>Martin Barbieri</p>
+                    <p>AI-Powered Marketing Designer</p>
+                </div>
+            </div>
+            <div class="footer-copy">
+                © 2026 Martin Barbieri. All rights reserved.
+            </div>
+        </footer>
+
+    </div><!-- /main-content -->
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox">
+        <div class="lb-ui-btn lb-close" onclick="closeLightbox()">
+            <i data-lucide="x" style="width:20px;height:20px;"></i>
+        </div>
+        <div class="lb-ui-btn lb-prev" onclick="changeImage(-1)">
+            <i data-lucide="chevron-left" style="width:20px;height:20px;"></i>
+        </div>
+        <div class="lb-image-wrapper">
+            <img id="lb-main-img" src="" alt="Gallery View">
+        </div>
+        <div class="lb-ui-btn lb-next" onclick="changeImage(1)">
+            <i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Scroll reveal initialization
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(el => {
+                if (el.isIntersecting) {
+                    el.target.classList.add('visible');
+                    observer.unobserve(el.target);
+                }
+            });
+        }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Lightbox state
+        let currentImageIndex = 0;
+        let currentGallery = [];
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lb-main-img');
+
+        document.querySelectorAll('.case-study-block').forEach((block) => {
+            const blockImages = Array.from(block.querySelectorAll('.gallery-img'));
+            blockImages.forEach((img, index) => {
+                img.addEventListener('click', () => {
+                    currentGallery = blockImages.map(i => i.src);
+                    currentImageIndex = index;
+                    openLightbox();
+                });
+            });
+        });
+
+        function openLightbox() {
+            lbImg.src = currentGallery[currentImageIndex];
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeImage(step) {
+            currentImageIndex = (currentImageIndex + step + currentGallery.length) % currentGallery.length;
+            lbImg.style.opacity = '0';
+            setTimeout(() => {
+                lbImg.src = currentGallery[currentImageIndex];
+                lbImg.onload = () => lbImg.style.opacity = '1';
+            }, 150);
+        }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+    </script>
+</body>
+</html>

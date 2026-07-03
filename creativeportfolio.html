@@ -200,6 +200,14 @@
             .item-4 { grid-area: 2 / 1 / 3 / 5; }
             .item-5 { grid-area: 2 / 5 / 3 / 9; }
             .item-6 { grid-area: 2 / 9 / 3 / 13; }
+
+            /* Full-width stacked image variant, for high-impact opening case studies */
+            .bento-grid.fw {
+                grid-template-rows: auto 460px 460px 460px;
+            }
+            .bento-grid.fw .item-4 { grid-area: 2 / 1 / 3 / 13; }
+            .bento-grid.fw .item-5 { grid-area: 3 / 1 / 4 / 13; }
+            .bento-grid.fw .item-6 { grid-area: 4 / 1 / 5 / 13; }
         }
 
         /* ── TEXT CARDS ── */
@@ -240,6 +248,12 @@
             .bento-grid .item-4,
             .bento-grid .item-5 { border-radius: 0; }
             .bento-grid .item-6 { border-radius: 0 0 20px 20px; }
+        }
+
+        @media (min-width: 768px) {
+            .bento-grid.fw .item-4 { border-radius: 0; }
+            .bento-grid.fw .item-5 { border-radius: 0; }
+            .bento-grid.fw .item-6 { border-radius: 0 0 20px 20px; }
         }
 
         /* ── IMAGE CONTAINERS ── */
@@ -415,7 +429,7 @@
                     <span class="case-study-num">01 — AI Photography</span>
                     <h2 class="case-study-title">Padel Collections</h2>
                 </div>
-                <section class="bento-grid">
+                <section class="bento-grid fw">
                     <div class="item-1 text-card">
                         <h3>My Role</h3>
                         <p>AI creative director — turned a single product image into a full photoshoot, ad creative, and landing page.</p>
@@ -440,7 +454,7 @@
                     <span class="case-study-num">02 — D2C / Email</span>
                     <h2 class="case-study-title">Kinfolk Outdoors</h2>
                 </div>
-                <section class="bento-grid">
+                <section class="bento-grid fw">
                     <div class="item-1 text-card">
                         <h3>My Role</h3>
                         <p>D2C designer — PDP photography, full email marketing system, and Shopify template design.</p>
@@ -459,10 +473,35 @@
                 </section>
             </div>
 
-            <!-- CASE STUDY 03: KITCHENAID -->
+            <!-- CASE STUDY 03: CHAINPAY -->
             <div class="case-study-block reveal">
                 <div class="case-study-header">
-                    <span class="case-study-num">03 — CRO</span>
+                    <span class="case-study-num">03 — Fintech / Growth</span>
+                    <h2 class="case-study-title">Chainpay</h2>
+                </div>
+                <section class="bento-grid fw">
+                    <div class="item-1 text-card">
+                        <h3>My Role</h3>
+                        <p>Marketing designer — email campaigns, paid ad creative, and landing pages.</p>
+                    </div>
+                    <div class="item-2 text-card">
+                        <h3>Software</h3>
+                        <p>Figma for the shared design system and layouts, email platform templates for campaign builds, native specs for Meta and Google ad creative.</p>
+                    </div>
+                    <div class="item-3 text-card">
+                        <h3>Process</h3>
+                        <p>Extended the app's existing brand system into every growth channel — email, paid ads, and landing pages built on the same visual logic that powered in-app trust. In fintech, trust is the conversion mechanism, so every surface was built to reduce friction and signal security. Result: a cohesive brand presence from first ad impression to landing page conversion.</p>
+                    </div>
+                    <div class="item-4 image-container"><img src="cp-a.jpg" class="gallery-img" alt="Chainpay screenshot"></div>
+                    <div class="item-5 image-container"><img src="cp-b.jpg" class="gallery-img" alt="Chainpay screenshot"></div>
+                    <div class="item-6 image-container"><img src="cp-c.jpg" class="gallery-img" alt="Chainpay screenshot"></div>
+                </section>
+            </div>
+
+            <!-- CASE STUDY 04: KITCHENAID -->
+            <div class="case-study-block reveal">
+                <div class="case-study-header">
+                    <span class="case-study-num">04 — CRO</span>
                     <h2 class="case-study-title">KitchenAid</h2>
                 </div>
                 <section class="bento-grid">
@@ -481,31 +520,6 @@
                     <div class="item-4 image-container"><img src="4a.jpg" class="gallery-img" alt="KitchenAid screenshot"></div>
                     <div class="item-5 image-container"><img src="4b.jpg" class="gallery-img" alt="KitchenAid screenshot"></div>
                     <div class="item-6 image-container"><img src="4c.jpg" class="gallery-img" alt="KitchenAid screenshot"></div>
-                </section>
-            </div>
-
-            <!-- CASE STUDY 04: BOBCAT -->
-            <div class="case-study-block reveal">
-                <div class="case-study-header">
-                    <span class="case-study-num">04 — Design System</span>
-                    <h2 class="case-study-title">Bobcat</h2>
-                </div>
-                <section class="bento-grid">
-                    <div class="item-1 text-card">
-                        <h3>My Role</h3>
-                        <p>Solo lead: audit, governance definition, full rebuild, and documentation.</p>
-                    </div>
-                    <div class="item-2 text-card">
-                        <h3>Software</h3>
-                        <p>Figma — variables-based component architecture, shared libraries, and Do's-and-Don'ts documentation.</p>
-                    </div>
-                    <div class="item-3 text-card">
-                        <h3>Process</h3>
-                        <p>Full component inventory first — mapped what existed, what was live, what could go. Rebuilt on a variable-based foundation with per-component Do's and Don'ts, so teams could use it correctly without asking. The result: a scalable, living system any stakeholder can navigate — fragmented turned into shared.</p>
-                    </div>
-                    <div class="item-4 image-container"><img src="3a.jpg" class="gallery-img" alt="Bobcat screenshot"></div>
-                    <div class="item-5 image-container"><img src="3b.jpg" class="gallery-img" alt="Bobcat screenshot"></div>
-                    <div class="item-6 image-container"><img src="3c.jpg" class="gallery-img" alt="Bobcat screenshot"></div>
                 </section>
             </div>
 
@@ -534,28 +548,28 @@
                 </section>
             </div>
 
-            <!-- CASE STUDY 06: CHAINPAY -->
+            <!-- CASE STUDY 06: BOBCAT -->
             <div class="case-study-block reveal">
                 <div class="case-study-header">
-                    <span class="case-study-num">06 — Fintech / Growth</span>
-                    <h2 class="case-study-title">Chainpay</h2>
+                    <span class="case-study-num">06 — Design System</span>
+                    <h2 class="case-study-title">Bobcat</h2>
                 </div>
                 <section class="bento-grid">
                     <div class="item-1 text-card">
                         <h3>My Role</h3>
-                        <p>Marketing designer — email campaigns, paid ad creative, and landing pages.</p>
+                        <p>Solo lead: audit, governance definition, full rebuild, and documentation.</p>
                     </div>
                     <div class="item-2 text-card">
                         <h3>Software</h3>
-                        <p>Figma for the shared design system and layouts, email platform templates for campaign builds, native specs for Meta and Google ad creative.</p>
+                        <p>Figma — variables-based component architecture, shared libraries, and Do's-and-Don'ts documentation.</p>
                     </div>
                     <div class="item-3 text-card">
                         <h3>Process</h3>
-                        <p>Extended the app's existing brand system into every growth channel — email, paid ads, and landing pages built on the same visual logic that powered in-app trust. In fintech, trust is the conversion mechanism, so every surface was built to reduce friction and signal security. Result: a cohesive brand presence from first ad impression to landing page conversion.</p>
+                        <p>Full component inventory first — mapped what existed, what was live, what could go. Rebuilt on a variable-based foundation with per-component Do's and Don'ts, so teams could use it correctly without asking. The result: a scalable, living system any stakeholder can navigate — fragmented turned into shared.</p>
                     </div>
-                    <div class="item-4 image-container"><img src="cp-a.jpg" class="gallery-img" alt="Chainpay screenshot"></div>
-                    <div class="item-5 image-container"><img src="cp-b.jpg" class="gallery-img" alt="Chainpay screenshot"></div>
-                    <div class="item-6 image-container"><img src="cp-c.jpg" class="gallery-img" alt="Chainpay screenshot"></div>
+                    <div class="item-4 image-container"><img src="3a.jpg" class="gallery-img" alt="Bobcat screenshot"></div>
+                    <div class="item-5 image-container"><img src="3b.jpg" class="gallery-img" alt="Bobcat screenshot"></div>
+                    <div class="item-6 image-container"><img src="3c.jpg" class="gallery-img" alt="Bobcat screenshot"></div>
                 </section>
             </div>
 

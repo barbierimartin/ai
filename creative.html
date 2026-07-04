@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Martin Barbieri Creative Portfolio</title>
+    <title>Martin Barbieri — Senior Designer</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         :root {
@@ -38,6 +37,8 @@
         }
 
         img { max-width: 100%; display: block; }
+
+        #about, #work, #certificates, #contact { scroll-margin-top: 96px; }
 
         /* ── NAV ── */
         nav {
@@ -82,9 +83,93 @@
             padding: 12px 26px;
             border-radius: 999px;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
             transition: transform 0.2s ease, filter 0.2s ease;
         }
         .nav-cta:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+        .nav-menu {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.86rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            opacity: 0.85;
+            transition: opacity 0.2s ease;
+        }
+        .nav-menu a:hover { opacity: 1; }
+
+        .nav-right { display: flex; align-items: center; gap: 14px; }
+
+        .nav-burger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 34px; height: 34px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 0;
+        }
+        .nav-burger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--text);
+            border-radius: 2px;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-burger.open span:nth-child(2) { opacity: 0; }
+        .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .nav-mobile-panel {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 190;
+            background: rgba(10,10,10,0.98);
+            backdrop-filter: blur(16px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            text-align: center;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.35s ease, opacity 0.3s ease;
+            padding: 0 20px;
+        }
+        .nav-mobile-panel.open {
+            max-height: 400px;
+            opacity: 1;
+            padding: 110px 20px 40px;
+        }
+        .nav-mobile-panel a {
+            color: var(--text);
+            text-decoration: none;
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+
+        @media (max-width: 800px) {
+            .nav-menu { display: none; }
+            .nav-burger { display: flex; }
+        }
 
         /* ── HERO ── */
         .hero {
@@ -102,9 +187,10 @@
 
         .hero-heading {
             position: absolute;
-            top: 34%;
-            left: 19%;
-            width: 60%;
+            top: 29%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 56%;
             z-index: 5;
             font-family: var(--serif);
             font-weight: 800;
@@ -112,10 +198,9 @@
             line-height: 1.02;
             letter-spacing: -0.02em;
             color: #ffffff;
-            text-align: left;
+            text-align: center;
         }
         .hero-heading span { display: block; }
-        .hero-heading span:last-child { margin-left: 12%; }
 
         .collage-item {
             position: absolute;
@@ -132,16 +217,16 @@
         }
         .collage-item:hover img { transform: scale(1.04); }
 
-        .ci-shoe   { left: 0%;   top: 16%;  width: 13%;  height: 42%; z-index: 2; }
-        .ci-phone  { left: 15%;  top: 0%;   width: 15%;  height: 56%; z-index: 3; }
-        .ci-action { right: 0%;  top: 0%;   width: 15%;  height: 40%; z-index: 3; }
-        .ci-cans   { right: 6%;  top: 30%;  width: 19%;  height: 50%; z-index: 4; background: #ececec; padding: 6px; }
+        .ci-shoe   { left: 7%;   top: 26%;  width: 12%;  height: 29%; z-index: 2; }
+        .ci-phone  { left: 22%;  top: 3%;   width: 15%;  height: 41%; z-index: 3; }
+        .ci-action { right: 9%;  top: 9%;   width: 17%;  height: 33%; z-index: 3; }
+        .ci-cans   { right: 18%; top: 52%;  width: 20%;  height: 39%; z-index: 4; background: #ececec; padding: 6px; }
         .ci-cans img { border-radius: 12px; object-fit: contain; }
 
         .collage-brand {
             position: absolute;
             left: 17%;
-            top: 62%;
+            top: 60%;
             z-index: 4;
             display: flex;
             align-items: center;
@@ -153,7 +238,7 @@
 
         .collage-figma {
             position: absolute;
-            right: 3%;
+            right: 8%;
             top: 38%;
             z-index: 6;
             width: 30px;
@@ -161,29 +246,17 @@
 
         @media (max-width: 900px) {
             .hero-collage { display: none; }
-            .hero-mobile-grid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
-                margin-bottom: 28px;
-            }
-            .hero-mobile-grid img {
-                width: 100%; height: 140px; object-fit: cover; border-radius: 14px; cursor: pointer;
-            }
             .hero-heading-mobile {
                 font-family: var(--serif);
                 font-weight: 800;
                 font-size: clamp(2.2rem, 9vw, 3rem);
                 line-height: 1.04;
                 letter-spacing: -0.02em;
-                margin-bottom: 20px;
+                text-align: center;
             }
-            .collage-brand-mobile { display: flex; align-items: center; gap: 10px; color: #fff; margin-bottom: 10px; }
-            .collage-brand-mobile svg { width: 32px; height: 32px; }
-            .collage-brand-mobile span { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; }
         }
         @media (min-width: 901px) {
-            .hero-mobile-grid, .hero-heading-mobile, .collage-brand-mobile { display: none; }
+            .hero-heading-mobile { display: none; }
         }
 
         /* ── SECTION SHELL ── */
@@ -247,7 +320,7 @@
         .pill.orange { background: var(--orange); color: #1c0d05; }
 
         /* ── WORK SAMPLES ── */
-        .work { padding: 60px 0 40px; }
+        .work { padding: 170px 0 40px; }
 
         .ghost-label {
             font-family: var(--serif);
@@ -494,40 +567,49 @@
 
     <!-- NAV -->
     <nav>
-        <a href="https://www.linkedin.com/in/barbierimartin/" class="nav-logo">Martin Barbieri <span class="nav-role">Senior Designer</span></a>
-        <button class="nav-cta">Get in touch</button>
+        <a href="#" class="nav-logo">Martin Barbieri <span class="nav-role">Senior Designer</span></a>
+        <ul class="nav-menu">
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+            <a class="nav-cta" href="https://www.linkedin.com/in/barbierimartin/" target="_blank" rel="noopener noreferrer">Let's talk</a>
+            <button class="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </nav>
+
+    <div class="nav-mobile-panel">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact">Contact</a>
+    </div>
 
     <!-- HERO -->
     <div class="hero">
-        <!-- Mobile-friendly fallback -->
-        <div class="collage-brand-mobile">
-            <svg viewBox="0 0 100 100" fill="none"><g fill="#D97757"><rect x="47" y="0" width="6" height="100" rx="3"/><rect x="47" y="0" width="6" height="100" rx="3" transform="rotate(30 50 50)"/><rect x="47" y="0" width="6" height="100" rx="3" transform="rotate(60 50 50)"/><rect x="47" y="0" width="6" height="100" rx="3" transform="rotate(90 50 50)"/><rect x="47" y="0" width="6" height="100" rx="3" transform="rotate(120 50 50)"/><rect x="47" y="0" width="6" height="100" rx="3" transform="rotate(150 50 50)"/></g></svg>
-            <span>Claude</span>
-        </div>
-        <h1 class="hero-heading-mobile reveal visible">Design Craft Meets AI</h1>
-        <div class="hero-mobile-grid">
-            <img src="https://picsum.photos/seed/sneaker1/300/300" class="gallery-img">
-            <img src="https://picsum.photos/seed/phonepadel/300/300" class="gallery-img">
-            <img src="https://picsum.photos/seed/padelaction/300/300" class="gallery-img">
-        </div>
+        <!-- Mobile fallback: title only -->
+        <h1 class="hero-heading-mobile">Design Craft Meets AI</h1>
 
         <!-- Desktop collage -->
         <div class="hero-collage">
             <div class="collage-item ci-shoe">
-                <img src="hero1.jpg" class="gallery-img">
+                <img src="hero1.jpg" class="gallery-img" alt="Sneaker product shot">
             </div>
             <div class="collage-item ci-phone">
-                <img src="hero2.jpg" class="gallery-img">
+                <img src="hero2.jpg" class="gallery-img" alt="Phone in hand mockup">
             </div>
             <div class="collage-item ci-action">
-                <img src="hero3.jpg" class="gallery-img">
+                <img src="hero3.jpg" class="gallery-img" alt="Padel action shot">
             </div>
             <div class="collage-item ci-cans">
-                <img src="hero4.jpg" class="gallery-img">
+                <img src="hero4.jpg" class="gallery-img" alt="Beverage can product shot">
             </div>
 
-            <h1 class="hero-heading reveal visible"><span>Design Craft</span><span>Meets AI</span></h1>
+            <h1 class="hero-heading"><span>Design Craft</span><span>Meets AI</span></h1>
 
             <div class="collage-brand">
                 <svg viewBox="0 0 100 100" fill="none"><g fill="#D97757"><rect x="47" y="0" width="6" height="100" rx="3"/><rect x="47" y="0" width="6" height="100" rx="3" transform="rotate(30 50 50)"/><rect x="47" y="0" width="6" height="100" rx="3" transform="rotate(60 50 50)"/><rect x="47" y="0" width="6" height="100" rx="3" transform="rotate(90 50 50)"/><rect x="47" y="0" width="6" height="100" rx="3" transform="rotate(120 50 50)"/><rect x="47" y="0" width="6" height="100" rx="3" transform="rotate(150 50 50)"/></g></svg>
@@ -545,7 +627,7 @@
     </div>
 
     <!-- ABOUT -->
-    <section class="about wrap">
+    <section class="about wrap" id="about">
         <h2 class="section-title reveal">About myself</h2>
         <div class="about-row reveal">
             <img class="about-photo" src="pic.png" alt="Martin Barbieri portrait">
@@ -573,13 +655,13 @@
     </section>
 
     <!-- WORK SAMPLES -->
-    <section class="work wrap">
+    <section class="work wrap" id="work">
         <h2 class="section-title reveal">Work Samples</h2>
 
         <div class="case-studies-list">
 
             <!-- 01 — PADEL COLLECTIONS (open by default) -->
-            <div class="case-card is-open reveal" data-title="Padel Collections">
+            <div class="case-card reveal" data-title="Padel Collections">
                 <div class="cs-header">
                     <div class="cs-title-group">
                         <h3 class="cs-title">Padel Collections</h3>
@@ -596,7 +678,7 @@
                                     <svg viewBox="0 0 100 100" fill="none"><g fill="#D97757"><rect x="47" y="6" width="6" height="88" rx="3"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(30 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(60 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(90 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(120 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(150 50 50)"/></g></svg>
                                 </span>
                                 <span class="tool-badge tool-blue">
-                                    <i data-lucide="chrome" style="color:#fff;width:16px;height:16px;"></i>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#fff;width:16px;height:16px;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20"/></svg>
                                 </span>
                             </div>
                         </div>
@@ -611,6 +693,8 @@
                     <div class="cs-img"><img src="padel3.jpg" class="gallery-img" alt="Padel Collections screenshot 3"></div>
                 </div>
             </div>
+
+            <div class="ghost-label"></div>
 
             <!-- 02 — KINFOLK OUTDOORS -->
             <div class="case-card reveal" data-title="Kinfolk Outdoors">
@@ -630,7 +714,7 @@
                                     <svg viewBox="0 0 100 100" fill="none"><g fill="#D97757"><rect x="47" y="6" width="6" height="88" rx="3"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(30 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(60 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(90 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(120 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(150 50 50)"/></g></svg>
                                 </span>
                                 <span class="tool-badge tool-blue">
-                                    <i data-lucide="shopping-bag" style="color:#fff;width:16px;height:16px;"></i>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#fff;width:16px;height:16px;"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                                 </span>
                             </div>
                         </div>
@@ -645,6 +729,8 @@
                     <div class="cs-img"><img src="kinfolk3.jpg" class="gallery-img" alt="Kinfolk Outdoors screenshot 3"></div>
                 </div>
             </div>
+
+            <div class="ghost-label"></div>
 
             <!-- 03 — CHAINPAY -->
             <div class="case-card reveal" data-title="Chainpay">
@@ -664,7 +750,7 @@
                                     <svg viewBox="0 0 100 100" fill="none"><g fill="#D97757"><rect x="47" y="6" width="6" height="88" rx="3"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(30 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(60 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(90 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(120 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(150 50 50)"/></g></svg>
                                 </span>
                                 <span class="tool-badge tool-blue">
-                                    <i data-lucide="mail" style="color:#fff;width:16px;height:16px;"></i>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#fff;width:16px;height:16px;"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                                 </span>
                             </div>
                         </div>
@@ -674,11 +760,13 @@
                     </div>
                 </div>
                 <div class="cs-images">
-                    <div class="cs-img"><img src="https://picsum.photos/seed/chainpaya/900/900" class="gallery-img" alt="Chainpay screenshot 1"></div>
-                    <div class="cs-img"><img src="https://picsum.photos/seed/chainpayb/900/900" class="gallery-img" alt="Chainpay screenshot 2"></div>
-                    <div class="cs-img"><img src="https://picsum.photos/seed/chainpayc/900/900" class="gallery-img" alt="Chainpay screenshot 3"></div>
+                    <div class="cs-img"><img src="chainpay1.jpg" class="gallery-img" alt="Chainpay screenshot 1"></div>
+                    <div class="cs-img"><img src="chainpay2.jpg" class="gallery-img" alt="Chainpay screenshot 2"></div>
+                    <div class="cs-img"><img src="chainpay3.jpg" class="gallery-img" alt="Chainpay screenshot 3"></div>
                 </div>
             </div>
+
+            <div class="ghost-label"></div>
 
             <!-- 04 — KITCHENAID -->
             <div class="case-card reveal" data-title="KitchenAid">
@@ -698,7 +786,7 @@
                                     <svg viewBox="0 0 100 100" fill="none"><g fill="#D97757"><rect x="47" y="6" width="6" height="88" rx="3"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(30 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(60 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(90 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(120 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(150 50 50)"/></g></svg>
                                 </span>
                                 <span class="tool-badge tool-blue">
-                                    <i data-lucide="flask-conical" style="color:#fff;width:16px;height:16px;"></i>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#fff;width:16px;height:16px;"><path d="M10 2v6.29a2 2 0 0 1-.55 1.38L3.65 16.6A2 2 0 0 0 5.16 20h13.68a2 2 0 0 0 1.51-3.4l-5.8-6.93A2 2 0 0 1 14 8.29V2"/><path d="M6.5 2h11"/><path d="M6.5 12h11"/></svg>
                                 </span>
                             </div>
                         </div>
@@ -708,11 +796,13 @@
                     </div>
                 </div>
                 <div class="cs-images">
-                    <div class="cs-img"><img src="https://picsum.photos/seed/kitchenaida/900/900" class="gallery-img" alt="KitchenAid screenshot 1"></div>
-                    <div class="cs-img"><img src="https://picsum.photos/seed/kitchenaidb/900/900" class="gallery-img" alt="KitchenAid screenshot 2"></div>
-                    <div class="cs-img"><img src="https://picsum.photos/seed/kitchenaidc/900/900" class="gallery-img" alt="KitchenAid screenshot 3"></div>
+                    <div class="cs-img"><img src="kitchenaid1.jpg" class="gallery-img" alt="KitchenAid screenshot 1"></div>
+                    <div class="cs-img"><img src="kitchenaid2.jpg" class="gallery-img" alt="KitchenAid screenshot 2"></div>
+                    <div class="cs-img"><img src="kitchenaid3.jpg" class="gallery-img" alt="KitchenAid screenshot 3"></div>
                 </div>
             </div>
+
+            <div class="ghost-label"></div>
 
             <!-- 05 — WHIRLPOOL -->
             <div class="case-card reveal" data-title="Whirlpool">
@@ -732,7 +822,7 @@
                                     <svg viewBox="0 0 100 100" fill="none"><g fill="#D97757"><rect x="47" y="6" width="6" height="88" rx="3"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(30 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(60 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(90 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(120 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(150 50 50)"/></g></svg>
                                 </span>
                                 <span class="tool-badge tool-blue">
-                                    <i data-lucide="users" style="color:#fff;width:16px;height:16px;"></i>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#fff;width:16px;height:16px;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                                 </span>
                             </div>
                         </div>
@@ -742,11 +832,13 @@
                     </div>
                 </div>
                 <div class="cs-images">
-                    <div class="cs-img"><img src="https://picsum.photos/seed/whirlpoola/900/900" class="gallery-img" alt="Whirlpool screenshot 1"></div>
-                    <div class="cs-img"><img src="https://picsum.photos/seed/whirlpoolb/900/900" class="gallery-img" alt="Whirlpool screenshot 2"></div>
-                    <div class="cs-img"><img src="https://picsum.photos/seed/whirlpoolc/900/900" class="gallery-img" alt="Whirlpool screenshot 3"></div>
+                    <div class="cs-img"><img src="whirlpool1.jpg" class="gallery-img" alt="Whirlpool screenshot 1"></div>
+                    <div class="cs-img"><img src="whirlpool2.jpg" class="gallery-img" alt="Whirlpool screenshot 2"></div>
+                    <div class="cs-img"><img src="whirlpool3.jpg" class="gallery-img" alt="Whirlpool screenshot 3"></div>
                 </div>
             </div>
+
+            <div class="ghost-label"></div>
 
             <!-- 06 — BOBCAT -->
             <div class="case-card reveal" data-title="Bobcat">
@@ -766,7 +858,7 @@
                                     <svg viewBox="0 0 100 100" fill="none"><g fill="#D97757"><rect x="47" y="6" width="6" height="88" rx="3"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(30 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(60 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(90 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(120 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(150 50 50)"/></g></svg>
                                 </span>
                                 <span class="tool-badge tool-blue">
-                                    <i data-lucide="component" style="color:#fff;width:16px;height:16px;"></i>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#fff;width:16px;height:16px;"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
                                 </span>
                             </div>
                         </div>
@@ -776,11 +868,13 @@
                     </div>
                 </div>
                 <div class="cs-images">
-                    <div class="cs-img"><img src="https://picsum.photos/seed/bobcata/900/900" class="gallery-img" alt="Bobcat screenshot 1"></div>
-                    <div class="cs-img"><img src="https://picsum.photos/seed/bobcatb/900/900" class="gallery-img" alt="Bobcat screenshot 2"></div>
-                    <div class="cs-img"><img src="https://picsum.photos/seed/bobcatc/900/900" class="gallery-img" alt="Bobcat screenshot 3"></div>
+                    <div class="cs-img"><img src="bobcat1.jpg" class="gallery-img" alt="Bobcat screenshot 1"></div>
+                    <div class="cs-img"><img src="bobcat2.jpg" class="gallery-img" alt="Bobcat screenshot 2"></div>
+                    <div class="cs-img"><img src="bobcat3.jpg" class="gallery-img" alt="Bobcat screenshot 3"></div>
                 </div>
             </div>
+
+            <div class="ghost-label"></div>
 
             <!-- 07 — TRADERS CENTRAL -->
             <div class="case-card reveal" data-title="Traders Central">
@@ -800,7 +894,7 @@
                                     <svg viewBox="0 0 100 100" fill="none"><g fill="#D97757"><rect x="47" y="6" width="6" height="88" rx="3"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(30 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(60 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(90 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(120 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(150 50 50)"/></g></svg>
                                 </span>
                                 <span class="tool-badge tool-blue">
-                                    <i data-lucide="globe" style="color:#fff;width:16px;height:16px;"></i>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#fff;width:16px;height:16px;"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg>
                                 </span>
                             </div>
                         </div>
@@ -810,9 +904,9 @@
                     </div>
                 </div>
                 <div class="cs-images">
-                    <div class="cs-img"><img src="https://picsum.photos/seed/traderscentrala/900/900" class="gallery-img" alt="Traders Central screenshot 1"></div>
-                    <div class="cs-img"><img src="https://picsum.photos/seed/traderscentralb/900/900" class="gallery-img" alt="Traders Central screenshot 2"></div>
-                    <div class="cs-img"><img src="https://picsum.photos/seed/traderscentralc/900/900" class="gallery-img" alt="Traders Central screenshot 3"></div>
+                    <div class="cs-img"><img src="traders1.jpg" class="gallery-img" alt="Traders Central screenshot 1"></div>
+                    <div class="cs-img"><img src="traders2.jpg" class="gallery-img" alt="Traders Central screenshot 2"></div>
+                    <div class="cs-img"><img src="traders3.jpg" class="gallery-img" alt="Traders Central screenshot 3"></div>
                 </div>
             </div>
 
@@ -821,15 +915,7 @@
 
     <!-- SKILLS + CERTIFICATES (post work) -->
     <section class="post-work wrap">
-        <h2 class="section-title reveal">Skills</h2>
-        <div class="pill-group reveal">
-            <span class="pill green">Product Design</span>
-            <span class="pill green">Design Systems</span>
-            <span class="pill green">Art Direction</span>
-            <span class="pill green">AI Workflows</span>
-        </div>
-
-        <h2 class="section-title reveal">Certificates</h2>
+        <h2 class="section-title reveal" id="certificates">Certificates</h2>
         <div class="pill-group reveal">
             <span class="pill green">Google UX Design</span>
             <span class="pill green">Figma Advanced</span>
@@ -839,13 +925,15 @@
     </section>
 
     <!-- CONTACT -->
-    <section class="contact">
+    <section class="contact" id="contact">
         <div class="contact-inner">
             <p class="contact-eyebrow reveal">Contact</p>
             <h2 class="contact-heading reveal">Let's <em>build</em><br>something great.</h2>
             <div class="contact-bottom reveal">
-                <a href="#" class="contact-linkedin" aria-label="LinkedIn">
-                    <i data-lucide="linkedin" style="width:20px;height:20px;"></i>
+                <a href="https://www.linkedin.com/in/barbierimartin/" target="_blank" rel="noopener noreferrer" class="contact-linkedin" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/>
+                    </svg>
                 </a>
                 <div class="contact-byline">
                     <p>Martin Barbieri</p>
@@ -862,21 +950,35 @@
     <!-- LIGHTBOX -->
     <div id="lightbox">
         <div class="lb-ui-btn lb-close" onclick="closeLightbox()">
-            <i data-lucide="x" style="width:20px;height:20px;"></i>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </div>
         <div class="lb-ui-btn lb-prev" onclick="changeImage(-1)">
-            <i data-lucide="chevron-left" style="width:20px;height:20px;"></i>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="m15 18-6-6 6-6"/></svg>
         </div>
         <div class="lb-image-wrapper">
             <img id="lb-main-img" src="" alt="Gallery View">
         </div>
         <div class="lb-ui-btn lb-next" onclick="changeImage(1)">
-            <i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;"><path d="m9 18 6-6-6-6"/></svg>
         </div>
     </div>
 
     <script>
-        try { if (window.lucide) lucide.createIcons(); } catch (err) { console.warn('lucide icons failed to load', err); }
+        // ── Mobile nav toggle ──
+        const burger = document.querySelector('.nav-burger');
+        const mobilePanel = document.querySelector('.nav-mobile-panel');
+        burger.addEventListener('click', () => {
+            const isOpen = burger.classList.toggle('open');
+            mobilePanel.classList.toggle('open', isOpen);
+            burger.setAttribute('aria-expanded', String(isOpen));
+        });
+        mobilePanel.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                burger.classList.remove('open');
+                mobilePanel.classList.remove('open');
+                burger.setAttribute('aria-expanded', 'false');
+            });
+        });
 
         // Scroll reveal
         const observer = new IntersectionObserver(entries => {
@@ -889,22 +991,22 @@
         }, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // ── Case study open/close accordion ──
-        document.querySelectorAll('.case-card').forEach(card => {
+        // ── Case study open/close accordion (only one open at a time) ──
+        const allCaseCards = document.querySelectorAll('.case-card');
+        allCaseCards.forEach(card => {
             const header = card.querySelector('.cs-header');
             const toggleBtn = card.querySelector('.cs-toggle');
 
-            function toggle(e) {
-                // avoid double-toggling when clicking the button (bubbles from header too)
-                e.stopPropagation();
-                card.classList.toggle('is-open');
+            function toggle() {
+                const willOpen = !card.classList.contains('is-open');
+                allCaseCards.forEach(c => c.classList.remove('is-open'));
+                if (willOpen) card.classList.add('is-open');
             }
 
-            toggleBtn.addEventListener('click', toggle);
+            toggleBtn.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
             header.addEventListener('click', (e) => {
-                // clicking directly on an image inside header shouldn't happen, but guard anyway
                 if (e.target.closest('.cs-toggle')) return;
-                card.classList.toggle('is-open');
+                toggle();
             });
         });
 
@@ -915,6 +1017,7 @@
         const lbImg = document.getElementById('lb-main-img');
 
         function wireGallery(container) {
+            if (!container) return;
             const imgs = Array.from(container.querySelectorAll('.gallery-img'));
             imgs.forEach((img, index) => {
                 img.addEventListener('click', (e) => {
@@ -928,7 +1031,6 @@
 
         document.querySelectorAll('.case-card').forEach(wireGallery);
         wireGallery(document.querySelector('.hero-collage'));
-        wireGallery(document.querySelector('.hero-mobile-grid'));
 
         function openLightbox() {
             lbImg.src = currentGallery[currentImageIndex];

@@ -179,6 +179,32 @@
             padding: 130px 40px 60px;
         }
 
+        .scroll-cue {
+            position: absolute;
+            left: 50%;
+            bottom: 6px;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+        .scroll-cue:hover { color: var(--text); }
+        .scroll-cue svg { animation: scrollCueBounce 1.8s ease-in-out infinite; }
+
+        @keyframes scrollCueBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
         .hero-collage {
             position: relative;
             width: 100%;
@@ -246,6 +272,12 @@
 
         @media (max-width: 900px) {
             .hero-collage { display: none; }
+            .scroll-cue {
+                position: static;
+                transform: none;
+                width: fit-content;
+                margin: 32px auto 0;
+            }
             .hero-heading-mobile {
                 font-family: var(--serif);
                 font-weight: 800;
@@ -254,6 +286,7 @@
                 letter-spacing: -0.02em;
                 text-align: center;
             }
+            .hero-heading-mobile span { display: block; }
         }
         @media (min-width: 901px) {
             .hero-heading-mobile { display: none; }
@@ -276,7 +309,7 @@
         }
 
         /* ── ABOUT ── */
-        .about { padding: 100px 0 40px; }
+        .about { padding-top: 100px; padding-bottom: 40px; }
 
         .about-row {
             display: flex;
@@ -320,7 +353,7 @@
         .pill.orange { background: var(--orange); color: #1c0d05; }
 
         /* ── WORK SAMPLES ── */
-        .work { padding: 170px 0 40px; }
+        .work { padding-top: 170px; padding-bottom: 40px; }
 
         .ghost-label {
             font-family: var(--serif);
@@ -345,7 +378,6 @@
             align-items: flex-start;
             gap: 24px;
             padding: 40px 40px 28px;
-            cursor: pointer;
         }
 
         .cs-title-group { max-width: 560px; }
@@ -452,23 +484,15 @@
         }
 
         /* ── SECOND SKILLS + CERTIFICATES ── */
-        .post-work { padding: 90px 0 40px; }
+        .post-work { padding-top: 130px; padding-bottom: 40px; }
 
         /* ── CONTACT ── */
         .contact {
-            background: #000000;
+            background: var(--bg);
             padding: 90px 40px 70px;
             margin-top: 60px;
         }
         .contact-inner { max-width: 1100px; margin: 0 auto; }
-
-        .contact-eyebrow {
-            display: flex; align-items: center; gap: 16px;
-            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
-            text-transform: uppercase; color: var(--muted);
-            margin-bottom: 40px;
-        }
-        .contact-eyebrow::after { content:''; flex:1; height:1px; background: var(--border); }
 
         .contact-heading {
             font-family: var(--serif);
@@ -497,7 +521,7 @@
         .contact-byline p:last-child { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
 
         footer {
-            background: #000000;
+            background: var(--bg);
             padding: 22px 40px 40px;
             border-top: 1px solid var(--border);
         }
@@ -552,8 +576,13 @@
 
         @media (max-width: 800px) {
             nav { padding: 16px 20px; }
+            .nav-right .nav-cta { display: none; }
+            .nav-mobile-panel .nav-cta { margin-top: 8px; }
             .hero { padding: 110px 20px 40px; }
-            .wrap { padding: 0 20px; }
+            .wrap { padding-left: 20px; padding-right: 20px; }
+            .about { padding-top: 210px; }
+            .about-title { text-align: center; }
+            .about-row { margin-bottom: 210px; }
             .contact { padding: 70px 20px 50px; }
             .contact-bottom { flex-direction: column; align-items: flex-start; gap: 24px; }
             .contact-byline { text-align: left; }
@@ -587,12 +616,13 @@
         <a href="#work">Work</a>
         <a href="#certificates">Certificates</a>
         <a href="#contact">Contact</a>
+        <a class="nav-cta" href="https://www.linkedin.com/in/barbierimartin/" target="_blank" rel="noopener noreferrer">Let's talk</a>
     </div>
 
     <!-- HERO -->
     <div class="hero">
         <!-- Mobile fallback: title only -->
-        <h1 class="hero-heading-mobile">Design Craft Meets AI</h1>
+        <h1 class="hero-heading-mobile"><span>Design Craft</span><span>Meets AI</span></h1>
 
         <!-- Desktop collage -->
         <div class="hero-collage">
@@ -624,11 +654,16 @@
                 <path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" fill="#a259ff"/>
             </svg>
         </div>
+
+        <a href="#about" class="scroll-cue" aria-label="Scroll down to About section">
+            <span>Scroll down</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        </a>
     </div>
 
     <!-- ABOUT -->
     <section class="about wrap" id="about">
-        <h2 class="section-title reveal">About myself</h2>
+        <h2 class="section-title about-title reveal">About myself</h2>
         <div class="about-row reveal">
             <img class="about-photo" src="pic.png" alt="Martin Barbieri portrait">
             <p><b>Senior Designer</b> with more than 10 years of experience working with global brands including Whirlpool, KitchenAid and Bobcat, creating high-performing digital products.</p>
@@ -927,7 +962,6 @@
     <!-- CONTACT -->
     <section class="contact" id="contact">
         <div class="contact-inner">
-            <p class="contact-eyebrow reveal">Contact</p>
             <h2 class="contact-heading reveal">Let's <em>build</em><br>something great.</h2>
             <div class="contact-bottom reveal">
                 <a href="https://www.linkedin.com/in/barbierimartin/" target="_blank" rel="noopener noreferrer" class="contact-linkedin" aria-label="LinkedIn">
@@ -994,7 +1028,6 @@
         // ── Case study open/close accordion (only one open at a time) ──
         const allCaseCards = document.querySelectorAll('.case-card');
         allCaseCards.forEach(card => {
-            const header = card.querySelector('.cs-header');
             const toggleBtn = card.querySelector('.cs-toggle');
 
             function toggle() {
@@ -1004,10 +1037,6 @@
             }
 
             toggleBtn.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
-            header.addEventListener('click', (e) => {
-                if (e.target.closest('.cs-toggle')) return;
-                toggle();
-            });
         });
 
         // ── Lightbox (per case-study gallery + hero collage) ──

@@ -84,7 +84,7 @@
             line-height: 1.0;
             letter-spacing: -0.02em;
             color: var(--text);
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .portfolio-hero h1 em {
@@ -92,14 +92,123 @@
             color: var(--accent);
         }
 
+        .hero-bio-row {
+            display: flex;
+            align-items: stretch;
+            gap: 28px;
+            max-width: 780px;
+            margin-top: 8px;
+        }
+
+        .hero-portrait {
+            width: 156px;
+            flex-shrink: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            display: flex;
+        }
+
+        .hero-portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .hero-bio-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
         .portfolio-hero p {
             font-size: 1.05rem;
             color: var(--muted);
-            max-width: 540px;
-            line-height: 1.7;
+            max-width: 620px;
+            line-height: 1.75;
         }
 
-        /* ── CASE STUDIES (IMAGELESS EDITORIAL LAYOUT) ── */
+        .portfolio-hero p strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .hero-bio-row {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .hero-portrait {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        /* ── SOFTWARE & INTRO SECTIONS ── */
+        .software-section {
+            max-width: 1100px;
+            margin: 0 auto 48px;
+            padding: 0 40px;
+        }
+
+        .software-divider {
+            padding-top: 8px;
+        }
+
+        .software-label {
+            font-family: var(--serif);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .software-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .software-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .software-item svg {
+            width: 28px;
+            height: 28px;
+            display: block;
+        }
+
+        .software-item span {
+            font-size: 0.76rem;
+            font-weight: 500;
+            color: #c2bfb9;
+            letter-spacing: 0.02em;
+        }
+
+        .portfolio-intro-section {
+            max-width: 1100px;
+            margin: 0 auto 36px;
+            padding: 0 40px;
+        }
+
+        .portfolio-intro-text {
+            font-size: 1.05rem;
+            color: #c2bfb9;
+            max-width: 680px;
+            line-height: 1.75;
+        }
+
+        /* ── CASE STUDIES ── */
         .case-studies-wrapper {
             max-width: 1100px;
             margin: 0 auto;
@@ -107,20 +216,14 @@
         }
 
         .case-study-block {
-            padding: 64px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .case-study-block:first-child {
-            border-top: none;
+            padding: 56px 0;
         }
 
         .case-study-top {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 24px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 14px;
             margin-bottom: 24px;
         }
 
@@ -130,6 +233,28 @@
             line-height: 1.05;
             letter-spacing: -0.02em;
             color: var(--text);
+        }
+
+        /* ── CATEGORY PILLS ── */
+        .case-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .case-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #c2bfb9;
+            background: var(--surface);
+            border: 1px solid var(--border);
         }
 
         /* ── ACTION BUTTONS ── */
@@ -191,26 +316,34 @@
 
         @media (min-width: 900px) {
             .info-grid {
-                grid-template-columns: 38% 1fr;
+                grid-template-columns: 42% 1fr;
                 align-items: stretch;
             }
         }
 
         .cover-card {
-            background: var(--surface);
+            background: var(--surface2);
             position: relative;
             overflow: hidden;
-            min-height: 260px;
-            height: 100%;
-            cursor: pointer;
+            min-height: 360px;
             display: flex;
+            align-items: stretch;
         }
 
         .cover-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             display: block;
+            flex: 1;
+        }
+
+        @media (max-width: 899px) {
+            .cover-card {
+                aspect-ratio: 4 / 3;
+                min-height: 240px;
+            }
         }
 
         .card-details-stack {
@@ -218,18 +351,17 @@
             flex-direction: column;
             gap: 2px;
             background: var(--border);
+            height: 100%;
         }
 
         .text-card {
             background: var(--surface);
-            padding: 28px 36px;
-            transition: background 0.2s;
+            padding: 26px 36px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            flex: 1;
         }
-
-        .text-card:hover { background: var(--surface2); }
 
         .text-card h3 {
             font-family: var(--serif);
@@ -238,19 +370,19 @@
             text-transform: uppercase;
             letter-spacing: 0.12em;
             color: var(--accent);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             opacity: 0.9;
         }
 
         .text-card p {
             font-size: 0.94rem;
             color: #c2bfb9;
-            line-height: 1.7;
+            line-height: 1.65;
         }
 
         .cta-row {
             background: var(--surface);
-            padding: 24px 36px;
+            padding: 22px 36px;
             display: flex;
             align-items: center;
         }
@@ -396,8 +528,12 @@
         @media (max-width: 800px) {
             nav { padding: 18px 20px; }
 
-            .portfolio-hero { padding: 120px 20px 40px; }
+            .portfolio-hero { padding: 120px 20px 36px; }
+            .software-section { padding: 0 20px; margin-bottom: 36px; }
+            .software-grid { gap: 24px; }
+            .portfolio-intro-section { padding: 0 20px; margin-bottom: 28px; }
             .case-studies-wrapper { padding: 0 20px 80px; }
+            .case-study-block { padding: 40px 0; }
             .case-study-block { padding: 48px 0; }
             .case-study-top { align-items: flex-start; flex-direction: column; gap: 18px; }
 
@@ -430,9 +566,92 @@
         <!-- HERO -->
         <div class="portfolio-hero">
             <h1 class="reveal reveal-d1"><em>Design Portfolio</em></h1>
-            <p class="reveal reveal-d2">Senior Designer crafting high-performing digital experiences for CPG and DTC brands, from landing pages and email campaigns to Shopify storefronts.
-10+ years of global experience working with agencies and B2C brands, including KitchenAid, Bobcat and Fortune 500 company Whirlpool Corporation. Selected brand systems, ecommerce experiences, CRO initiatives, and AI-powered creative campaigns.</p>
+            <div class="hero-bio-row reveal reveal-d2">
+                <div class="hero-portrait">
+                    <img src="martinportrait.jpg" alt="Martin Barbieri portrait" onerror="this.onerror=null; this.src=generatePortraitFallbackSvg();">
+                </div>
+                <div class="hero-bio-copy">
+                    <p><strong>Senior Designer</strong> crafting high-performing digital experiences for DTC brands, from landing pages and email campaigns to Shopify storefronts. <strong>10+ years of global experience</strong> working with agencies and B2C brands, including KitchenAid, Bobcat, and <strong>Fortune 500</strong> company Whirlpool Corporation.</p>
+                </div>
+            </div>
         </div>
+
+        <!-- FREQUENTLY USED SOFTWARE -->
+        <section class="software-section reveal reveal-d2" aria-label="Frequently Used Software">
+            <div class="software-divider">
+                <h2 class="software-label">Frequently Used Software</h2>
+                <div class="software-grid">
+                    <!-- Figma -->
+                    <div class="software-item">
+                        <svg viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#1ABCFE"/>
+                            <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/>
+                            <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262"/>
+                            <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E"/>
+                            <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF"/>
+                        </svg>
+                        <span>Figma</span>
+                    </div>
+
+                    <!-- Claude -->
+                    <div class="software-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="24" height="24" rx="6" fill="#D97757"/>
+                            <path d="M12 4.5V19.5M4.5 12H19.5M6.7 6.7L17.3 17.3M17.3 6.7L6.7 17.3M9.1 5.1L14.9 18.9M18.9 9.1L5.1 14.9" stroke="#FFF8F4" stroke-width="1.65" stroke-linecap="round"/>
+                        </svg>
+                        <span>Claude</span>
+                    </div>
+
+                    <!-- ChatGPT -->
+                    <div class="software-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="24" height="24" rx="6" fill="#10A37F"/>
+                            <path d="M17.6 10.3C17.9 9.3 17.8 8.2 17.3 7.3C16.5 6 15 5.3 13.5 5.6C12.8 4.8 11.8 4.4 10.7 4.4C9.2 4.4 7.9 5.3 7.4 6.7C6.4 6.9 5.5 7.6 5 8.5C4.2 9.8 4.4 11.5 5.3 12.6C5 13.6 5.1 14.7 5.6 15.6C6.4 16.9 7.9 17.6 9.4 17.3C10.1 18.1 11.1 18.5 12.2 18.5C13.7 18.5 15 17.6 15.5 16.2C16.5 16 17.4 15.3 17.9 14.4C18.7 13.1 18.5 11.4 17.6 10.3Z" stroke="#FFFFFF" stroke-width="1.4" stroke-linejoin="round"/>
+                            <path d="M12 8.2V14.8M9.1 9.8L14.9 13.2M14.9 9.8L9.1 13.2" stroke="#FFFFFF" stroke-width="1.35" stroke-linecap="round"/>
+                        </svg>
+                        <span>ChatGPT</span>
+                    </div>
+
+                    <!-- Notion -->
+                    <div class="software-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M4.8 4.2L15.4 3.4C16.3 3.3 16.8 3.6 17.4 4.1L19.7 5.8C20.1 6.1 20.3 6.5 20.3 7.1V18.8C20.3 19.7 19.7 20.3 18.7 20.4L7.2 21.1C6.4 21.1 5.9 20.8 5.4 20.2L4.1 18.5C3.7 18 3.5 17.4 3.5 16.7V5.6C3.5 4.8 4 4.3 4.8 4.2Z" fill="#FFFFFF"/>
+                            <path d="M7.2 6.8L16.8 6.1C17.4 6.1 17.8 6.5 17.8 7.1V17.9C17.8 18.5 17.4 18.9 16.8 19L7.2 19.6C6.6 19.6 6.2 19.2 6.2 18.6V7.8C6.2 7.2 6.6 6.8 7.2 6.8Z" stroke="#111111" stroke-width="1.3"/>
+                            <path d="M9.2 16.4V9.8L14.4 16.1V9.5" stroke="#111111" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Notion</span>
+                    </div>
+
+                    <!-- Jira -->
+                    <div class="software-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M20.2 11.3L12.7 3.8L12 3.1L6.3 8.8L3.8 11.3C3.4 11.7 3.4 12.3 3.8 12.7L9.5 18.4L12 20.9L17.7 15.2L17.8 15.1L20.2 12.7C20.6 12.3 20.6 11.7 20.2 11.3ZM12 14.6L9.4 12L12 9.4L14.6 12L12 14.6Z" fill="#2684FF"/>
+                            <path d="M12 9.4C10.3 7.7 10.3 4.9 12 3.1L6.3 8.8L9.4 12L12 9.4Z" fill="#0052CC"/>
+                            <path d="M14.6 12L12 14.6C13.7 16.3 13.7 19.1 12 20.9L17.7 15.2L14.6 12Z" fill="#0052CC"/>
+                        </svg>
+                        <span>Jira</span>
+                    </div>
+
+                    <!-- Microsoft Clarity -->
+                    <div class="software-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="24" height="24" rx="6" fill="#0078D4"/>
+                            <path d="M15.8 8.6C14.8 7.6 13.5 7 12 7C9.2 7 7 9.2 7 12C7 14.8 9.2 17 12 17C13.5 17 14.8 16.4 15.8 15.4" stroke="#50E6FF" stroke-width="2.4" stroke-linecap="round"/>
+                            <circle cx="16.8" cy="12" r="2.1" fill="#FFFFFF"/>
+                        </svg>
+                        <span>Clarity</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO INTRODUCTION -->
+        <section class="portfolio-intro-section reveal reveal-d2" aria-label="Portfolio Introduction">
+            <div class="software-divider">
+                <h2 class="software-label">Portfolio Introduction</h2>
+                <p class="portfolio-intro-text">This is a summary of my most recent design experiences, including selected brand systems, ecommerce experiences, CRO initiatives, and AI-powered creative campaigns.</p>
+            </div>
+        </section>
 
         <!-- CASE STUDIES -->
         <div class="case-studies-wrapper" id="case-studies-container">
@@ -475,92 +694,111 @@
     </div>
 
     <script>
+        function generatePortraitFallbackSvg() {
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+                    <rect width="320" height="320" fill="#181818"/>
+                    <circle cx="160" cy="120" r="46" fill="#2a2a2a"/>
+                    <path d="M84 268C84 222 118 192 160 192C202 192 236 222 236 268" fill="#2a2a2a"/>
+                    <text x="160" y="298" fill="#888580" font-family="sans-serif" font-size="13" text-anchor="middle">martinportrait.jpg</text>
+                </svg>
+            `;
+            return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+
         /**
          * Portfolio Case Studies Configuration
-         * Edit the `images` array for each brand to point to your local Figma screenshots / assets.
+         * All image names follow the hyphen-free naming convention (e.g., starlinocover.jpg, starlino1.jpg).
          */
         const portfolioData = [
             {
-                name: "Hotel Starlino",
-                brandDetail: "Italian aperitivo brand crafted in Torino, bringing classic Italian aperitivo hour and vintage hospitality aesthetics to modern cocktail culture.",
-                jobDescription: "Shopify Design — Audit & optimization of storefront experience.",
-                responsibility: "Improved homepage, PLP and PDP. Owned end-to-end execution in Figma, translating the heritage hospitality identity into high-converting digital experience.",
-                liveUrl: "https://thestarlino.com/",
-                coverImage: "starlino-cover.jpg",
-                images: ["starlino1.jpg", "starlino2.jpg", "starlino3.jpg"]
-            },
-            {
                 name: "Kiki Milk",
+                tags: ["Storefront", "Landing Pages", "Emails", "Design System"],
                 brandDetail: "Certified organic, plant-based milk formulated with whole-food ingredients—oats, hemp seeds, and coconuts—without gums, refined sugars, or seed oils.",
                 jobDescription: "Ecommerce UX/UI & Retention Design — Product detail pages, subscription flows, and modular email design systems.",
                 responsibility: "Designed responsive web templates and reusable Figma email components focused on playful family storytelling, nutritional clarity, and subscription conversion.",
                 liveUrl: "https://www.kikimilk.com/",
-                coverImage: "kikimilkcover.jpg",
+                coverImage: "KikiMilkCover.jpg",
                 images: ["kikimilk1.jpg", "kikimilk2.jpg", "kikimilk3.jpg"]
             },
             {
-                name: "Dogfolk",
-                brandDetail: "Human-grade, small-batch oven-baked dog treats built around a functional AM/PM daily wellness routine for digestion, energy, and coat health.",
-                jobDescription: "Brand Digital Experience & CRO — Storefront architecture, bundle builders, and lifecycle marketing creative.",
-                responsibility: "Led Figma UI design for product pages, recurring subscription flows, and paid acquisition creatives highlighting clean ingredients and daily treat rituals.",
-                liveUrl: "https://www.dogfolktreats.com/",
-                coverImage: "dogfolk-cover.jpg",
-                images: ["dogfolk-1.jpg", "dogfolk-2.jpg", "dogfolk-3.jpg"]
-            },
-            {
                 name: "POINTS!",
+                tags: ["Landing Pages", "Emails", "CRO"],
                 brandDetail: "Low-sugar, low-calorie, plant-based chocolate candies by Hummii Snacks, made with natural dyes and prebiotic fiber for guilt-free snacking.",
                 jobDescription: "Conversion Landing Pages & Ad Creative — Direct-to-consumer funnel design, comparison modules, and performance ads.",
                 responsibility: "Created high-energy landing pages and multi-channel ad creative in Figma tailored to health-conscious and keto-friendly shoppers.",
                 liveUrl: "https://hummii.com/pages/points-lp-1",
-                coverImage: "points-cover.jpg",
-                images: ["points-1.jpg", "points-2.jpg", "points-3.jpg"]
+                coverImage: "PointsCover.jpg",
+                images: ["points1.jpg", "points2.jpg", "points3.jpg"]
+            },
+            {
+                name: "Dogfolk",
+                tags: ["Ecommerce", "CRO", "Shopify"],
+                brandDetail: "Human-grade, small-batch oven-baked dog treats built around a functional AM/PM daily wellness routine for digestion, energy, and coat health.",
+                jobDescription: "Brand Digital Experience & CRO — Storefront architecture, bundle builders, and lifecycle marketing creative.",
+                responsibility: "Led Figma UI design for product pages, recurring subscription flows, and paid acquisition creatives highlighting clean ingredients and daily treat rituals.",
+                liveUrl: "https://www.dogfolktreats.com/",
+                coverImage: "DogfolkCover.jpg",
+                images: ["dogfolk1.jpg", "dogfolk2.jpg", "dogfolk3.jpg"]
+            },
+            {
+                name: "Hotel Starlino",
+                tags: ["Ecommerce", "Shopify", "CRO"],
+                brandDetail: "Italian aperitivo brand crafted in Torino, bringing classic Italian aperitivo hour and vintage hospitality aesthetics to modern cocktail culture.",
+                jobDescription: "Shopify Design — Audit & optimization of storefront experience.",
+                responsibility: "Improved homepage, PLP and PDP. Owned end-to-end execution in Figma, translating the heritage hospitality identity into high-converting digital experience.",
+                liveUrl: "https://thestarlino.com/",
+                coverImage: "HotelStarlinoCover.jpg",
+                images: ["starlino1.jpg", "starlino2.jpg", "starlino3.jpg"]
             },
             {
                 name: "Human Improvement",
+                tags: ["Ecommerce", "Landing Pages", "Design System", "Emails"],
                 brandDetail: "Science-backed cellular wellness and performance supplement company formulating third-party tested plant proteins, creatine, and daily detox essentials.",
                 jobDescription: "Product Storytelling & Ecommerce Design — PDP redesign, clinical benefit breakdowns, and digital brand system.",
                 responsibility: "Architected clean, editorial Figma layouts and conversion-focused product modules that communicate clinical efficacy and transparent sourcing.",
                 liveUrl: "https://buyhi.co/",
-                coverImage: "human-improvement-cover.jpg",
-                images: ["human-improvement-1.jpg", "human-improvement-2.jpg", "human-improvement-3.jpg"]
+                coverImage: "HumanImprovementCover.jpg",
+                images: ["humanimprovement1.jpg", "humanimprovement2.jpg", "humanimprovement3.jpg"]
             },
             {
                 name: "KitchenAid",
+                tags: ["Ecommerce", "CRO", "A/B Testing"],
                 brandDetail: "Iconic culinary appliance brand known globally for precision stand mixers and flagship kitchen equipment.",
                 jobDescription: "UX & CRO Designer — User research, conversion concepting, and live A/B experimentation.",
                 responsibility: "Designed and championed a 'Promo Drawer' carousel within KitchenAid's design system; validated via A/B testing to achieve +60% sale-page visits and +13% lift in orders.",
                 liveUrl: null,
-                coverImage: "4a.jpg",
-                images: ["4a.jpg", "4b.jpg", "4c.jpg"]
+                coverImage: "KitchenAidCover.jpg",
+                images: ["kitchenaid1.jpg", "kitchenaid2.jpg", "kitchenaid3.jpg"]
             },
             {
                 name: "Whirlpool",
+                tags: ["Ecommerce", "UX Research", "Landing Pages"],
                 brandDetail: "Global home appliance leader delivering connected, everyday laundry and kitchen solutions.",
                 jobDescription: "Lead UX Designer — Research synthesis, information architecture, and moderated user testing.",
                 responsibility: "Restructured product discovery around real user personas without adding new content; live testing proved the winning concept delivered clearer navigation and faster paths to purchase.",
                 liveUrl: null,
-                coverImage: "5a.jpg",
-                images: ["5a.jpg", "5b.jpg", "5c.jpg"]
+                coverImage: "WhirlpoolCover.jpg",
+                images: ["whirlpool1.jpg", "whirlpool2.jpg", "whirlpool3.jpg"]
             },
             {
                 name: "Bobcat",
+                tags: ["UX Design", "Design System", "Figma"],
                 brandDetail: "Industry-defining compact construction and agricultural equipment manufacturer.",
                 jobDescription: "Design Systems Lead — Full component audit, token architecture, governance, and documentation.",
                 responsibility: "Solo lead on a variable-based Figma component rebuild with comprehensive Do's-and-Don'ts documentation, unifying fragmented digital properties into one shared system.",
                 liveUrl: null,
-                coverImage: "3a.jpg",
-                images: ["3a.jpg", "3b.jpg", "3c.jpg"]
+                coverImage: "BobcatCover.jpg",
+                images: ["bobcat1.jpg", "bobcat2.jpg", "bobcat3.jpg"]
             }
         ];
 
         function generateCoverFallbackSvg(projectName, fileName) {
             const svg = `
-                <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
-                    <rect width="800" height="600" fill="#161616"/>
-                    <rect x="24" y="24" width="752" height="552" rx="16" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-dasharray="8 8"/>
-                    <text x="400" y="290" fill="#f0ede8" font-family="sans-serif" font-size="26" font-weight="700" text-anchor="middle">${projectName}</text>
-                    <text x="400" y="328" fill="#888580" font-family="sans-serif" font-size="15" text-anchor="middle">Cover: ${fileName}</text>
+                <svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
+                    <rect width="800" height="800" fill="#161616"/>
+                    <text x="400" y="390" fill="#f0ede8" font-family="sans-serif" font-size="26" font-weight="700" text-anchor="middle">${projectName}</text>
+                    <text x="400" y="428" fill="#888580" font-family="sans-serif" font-size="15" text-anchor="middle">${fileName}</text>
                 </svg>
             `;
             return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
@@ -580,14 +818,19 @@
                    </a>`
                 : '';
 
+            const pillsHtml = (item.tags || [])
+                .map(tag => `<span class="case-pill">${tag}</span>`)
+                .join('');
+
             const coverFallback = generateCoverFallbackSvg(item.name, item.coverImage);
 
             block.innerHTML = `
                 <div class="case-study-top">
                     <h2 class="case-study-title">${item.name}</h2>
+                    <div class="case-pills">${pillsHtml}</div>
                 </div>
                 <section class="info-grid">
-                    <div class="cover-card" onclick="openProjectGallery(${idx})" title="Click to view ${item.name} gallery">
+                    <div class="cover-card">
                         <img src="${item.coverImage}" alt="${item.name} cover" onerror="this.onerror=null; this.src='${coverFallback}';">
                     </div>
                     <div class="card-details-stack">
@@ -647,9 +890,8 @@
             const svg = `
                 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
                     <rect width="1400" height="900" fill="#141414"/>
-                    <rect x="40" y="40" width="1320" height="820" rx="24" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2" stroke-dasharray="10 10"/>
-                    <text x="700" y="410" fill="#f0ede8" font-family="sans-serif" font-size="42" font-weight="700" text-anchor="middle">${projectName} — Figma / Work Artifact 0${slideNumber}</text>
-                    <text x="700" y="465" fill="#888580" font-family="sans-serif" font-size="22" text-anchor="middle">Replace "${fileName}" in your project folder to display your screenshot</text>
+                    <text x="700" y="420" fill="#f0ede8" font-family="sans-serif" font-size="42" font-weight="700" text-anchor="middle">${projectName} — Work Artifact 0${slideNumber}</text>
+                    <text x="700" y="475" fill="#888580" font-family="sans-serif" font-size="22" text-anchor="middle">Place "${fileName}" in your project folder to display your screenshot</text>
                 </svg>
             `;
             return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);

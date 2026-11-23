@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martin Barbieri Creative Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --surface2: #181818;
+            --border: rgba(255,255,255,0.07);
+            --border-hover: rgba(255,255,255,0.18);
+            --accent: #ffffff;
+            --text: #f0ede8;
+            --muted: #888580;
+            --serif: 'Bricolage Grotesque', sans-serif;
+            --sans: 'DM Sans', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { background: var(--bg); }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10,10,10,0.88);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-family: var(--serif);
+            font-size: 1.2rem;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .nav-role {
+            color: var(--muted);
+            font-weight: 400;
+            font-family: var(--sans);
+            font-size: 0.88rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── MAIN CONTENT ── */
+        #main-content { display: block; }
+
+        /* ── HERO ── */
+        .portfolio-hero {
+            padding: 160px 40px 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .portfolio-hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(3.4rem, 7.5vw, 6.8rem);
+            line-height: 1.0;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .portfolio-hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .portfolio-hero p {
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 540px;
+            line-height: 1.7;
+        }
+
+        /* ── CASE STUDIES (IMAGELESS EDITORIAL LAYOUT) ── */
+        .case-studies-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px 120px;
+        }
+
+        .case-study-block {
+            padding: 64px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .case-study-block:first-child {
+            border-top: none;
+        }
+
+        .case-study-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .case-study-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        /* ── ACTION BUTTONS ── */
+        .case-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            font-family: var(--sans);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--border);
+        }
+
+        .btn-primary {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+        }
+
+        .btn-primary:hover {
+            background: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(255,255,255,0.12);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--surface2);
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+
+        /* ── CASE STUDY CARD LAYOUT (FULL-HEIGHT COVER + HORIZONTAL ROWS) ── */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        @media (min-width: 900px) {
+            .info-grid {
+                grid-template-columns: 38% 1fr;
+                align-items: stretch;
+            }
+        }
+
+        .cover-card {
+            background: var(--surface);
+            position: relative;
+            overflow: hidden;
+            min-height: 260px;
+            height: 100%;
+            cursor: pointer;
+            display: flex;
+        }
+
+        .cover-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-details-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            background: var(--border);
+        }
+
+        .text-card {
+            background: var(--surface);
+            padding: 28px 36px;
+            transition: background 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .text-card:hover { background: var(--surface2); }
+
+        .text-card h3 {
+            font-family: var(--serif);
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .text-card p {
+            font-size: 0.94rem;
+            color: #c2bfb9;
+            line-height: 1.7;
+        }
+
+        .cta-row {
+            background: var(--surface);
+            padding: 24px 36px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 60px 40px 48px;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .footer-byline p:first-child {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .footer-byline p:last-child {
+            font-size: 0.74rem;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .footer-copy {
+            max-width: 1100px;
+            margin: 32px auto 0;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+            font-size: 0.74rem;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+        }
+
+        /* ── LIGHTBOX GALLERY ── */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(5,5,5,0.97);
+            backdrop-filter: blur(16px);
+            z-index: 3000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+
+        #lightbox.active { display: flex; }
+
+        .lb-header {
+            position: absolute;
+            top: 28px;
+            left: 36px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            z-index: 3010;
+        }
+
+        .lb-title {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .lb-counter {
+            font-size: 0.8rem;
+            color: var(--muted);
+            background: rgba(255,255,255,0.06);
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+        }
+
+        .lb-ui-btn {
+            position: absolute;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            color: var(--text);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 3010;
+        }
+
+        .lb-ui-btn:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.22); }
+
+        .lb-prev { left: 32px; top: 50%; transform: translateY(-50%); }
+        .lb-next { right: 32px; top: 50%; transform: translateY(-50%); }
+        .lb-close { top: 24px; right: 32px; }
+
+        .lb-image-wrapper {
+            max-width: 86vw;
+            max-height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.85);
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .lb-image-wrapper img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+            transition: opacity 0.22s ease;
+        }
+
+        /* ── REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+
+        .reveal.visible { opacity: 1; transform: none; }
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 800px) {
+            nav { padding: 18px 20px; }
+
+            .portfolio-hero { padding: 120px 20px 40px; }
+            .case-studies-wrapper { padding: 0 20px 80px; }
+            .case-study-block { padding: 48px 0; }
+            .case-study-top { align-items: flex-start; flex-direction: column; gap: 18px; }
+
+            footer { padding: 40px 20px 40px; }
+            .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+            .lb-header { top: 20px; left: 20px; }
+            .lb-prev { left: 12px; }
+            .lb-next { right: 12px; }
+            .lb-close { top: 16px; right: 16px; }
+            .lb-ui-btn { width: 44px; height: 44px; }
+
+            .text-card { padding: 24px 24px; }
+            .cta-row { padding: 20px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            Martin Barbieri <span class="nav-role">Senior Designer</span>
+        </a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div id="main-content">
+
+        <!-- HERO -->
+        <div class="portfolio-hero">
+            <h1 class="reveal reveal-d1">Design <em>Portfolio</em></h1>
+            <p class="reveal reveal-d2">Selected brand systems, ecommerce experiences, CRO initiatives, and AI-powered creative campaigns.</p>
+        </div>
+
+        <!-- CASE STUDIES -->
+        <div class="case-studies-wrapper" id="case-studies-container">
+            <!-- Populated dynamically from the portfolioData array below for clean editing -->
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-inner">
+                <div class="footer-byline">
+                    <p>Martin Barbieri</p>
+                    <p>AI-Powered Marketing Designer</p>
+                </div>
+            </div>
+            <div class="footer-copy">
+                © 2026 Martin Barbieri. All rights reserved.
+            </div>
+        </footer>
+
+    </div><!-- /main-content -->
+
+    <!-- LIGHTBOX GALLERY -->
+    <div id="lightbox">
+        <div class="lb-header">
+            <span class="lb-title" id="lb-project-title">Project</span>
+            <span class="lb-counter" id="lb-counter">1 / 3</span>
+        </div>
+        <button class="lb-ui-btn lb-close" onclick="closeLightbox()" aria-label="Close Gallery">
+            <i data-lucide="x" style="width:20px;height:20px;"></i>
+        </button>
+        <button class="lb-ui-btn lb-prev" onclick="changeImage(-1)" aria-label="Previous Image">
+            <i data-lucide="chevron-left" style="width:20px;height:20px;"></i>
+        </button>
+        <div class="lb-image-wrapper">
+            <img id="lb-main-img" src="" alt="Gallery View">
+        </div>
+        <button class="lb-ui-btn lb-next" onclick="changeImage(1)" aria-label="Next Image">
+            <i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
+        </button>
+    </div>
+
+    <script>
+        /**
+         * Portfolio Case Studies Configuration
+         * Edit the `images` array for each brand to point to your local Figma screenshots / assets.
+         */
+        const portfolioData = [
+            {
+                name: "Hotel Starlino",
+                brandDetail: "Italian aperitivo and maraschino cherry brand crafted in Torino, bringing classic Italian aperitivo hour and vintage hospitality aesthetics to modern cocktail culture.",
+                jobDescription: "Digital & Ecommerce Design — Storefront experience, promotional campaign visuals, and digital brand touchpoints.",
+                responsibility: "Owned end-to-end visual execution in Figma, translating the heritage hospitality identity into high-converting digital layouts and social assets.",
+                liveUrl: "https://thestarlino.com/",
+                coverImage: "starlino-cover.jpg",
+                images: ["starlino-1.jpg", "starlino-2.jpg", "starlino-3.jpg"]
+            },
+            {
+                name: "Kiki Milk",
+                brandDetail: "Certified organic, plant-based milk formulated with whole-food ingredients—oats, hemp seeds, and coconuts—without gums, refined sugars, or seed oils.",
+                jobDescription: "Ecommerce UX/UI & Retention Design — Product detail pages, subscription flows, and modular email design systems.",
+                responsibility: "Designed responsive web templates and reusable Figma email components focused on playful family storytelling, nutritional clarity, and subscription conversion.",
+                liveUrl: "https://www.kikimilk.com/",
+                coverImage: "kikimilk-cover.jpg",
+                images: ["kikimilk-1.jpg", "kikimilk-2.jpg", "kikimilk-3.jpg"]
+            },
+            {
+                name: "Dogfolk",
+                brandDetail: "Human-grade, small-batch oven-baked dog treats built around a functional AM/PM daily wellness routine for digestion, energy, and coat health.",
+                jobDescription: "Brand Digital Experience & CRO — Storefront architecture, bundle builders, and lifecycle marketing creative.",
+                responsibility: "Led Figma UI design for product pages, recurring subscription flows, and paid acquisition creatives highlighting clean ingredients and daily treat rituals.",
+                liveUrl: "https://www.dogfolktreats.com/",
+                coverImage: "dogfolk-cover.jpg",
+                images: ["dogfolk-1.jpg", "dogfolk-2.jpg", "dogfolk-3.jpg"]
+            },
+            {
+                name: "POINTS!",
+                brandDetail: "Low-sugar, low-calorie, plant-based chocolate candies by Hummii Snacks, made with natural dyes and prebiotic fiber for guilt-free snacking.",
+                jobDescription: "Conversion Landing Pages & Ad Creative — Direct-to-consumer funnel design, comparison modules, and performance ads.",
+                responsibility: "Created high-energy landing pages and multi-channel ad creative in Figma tailored to health-conscious and keto-friendly shoppers.",
+                liveUrl: "https://hummii.com/pages/points-lp-1",
+                coverImage: "points-cover.jpg",
+                images: ["points-1.jpg", "points-2.jpg", "points-3.jpg"]
+            },
+            {
+                name: "Human Improvement",
+                brandDetail: "Science-backed cellular wellness and performance supplement company formulating third-party tested plant proteins, creatine, and daily detox essentials.",
+                jobDescription: "Product Storytelling & Ecommerce Design — PDP redesign, clinical benefit breakdowns, and digital brand system.",
+                responsibility: "Architected clean, editorial Figma layouts and conversion-focused product modules that communicate clinical efficacy and transparent sourcing.",
+                liveUrl: "https://buyhi.co/",
+                coverImage: "human-improvement-cover.jpg",
+                images: ["human-improvement-1.jpg", "human-improvement-2.jpg", "human-improvement-3.jpg"]
+            },
+            {
+                name: "KitchenAid",
+                brandDetail: "Iconic culinary appliance brand known globally for precision stand mixers and flagship kitchen equipment.",
+                jobDescription: "UX & CRO Designer — User research, conversion concepting, and live A/B experimentation.",
+                responsibility: "Designed and championed a 'Promo Drawer' carousel within KitchenAid's design system; validated via A/B testing to achieve +60% sale-page visits and +13% lift in orders.",
+                liveUrl: null,
+                coverImage: "4a.jpg",
+                images: ["4a.jpg", "4b.jpg", "4c.jpg"]
+            },
+            {
+                name: "Whirlpool",
+                brandDetail: "Global home appliance leader delivering connected, everyday laundry and kitchen solutions.",
+                jobDescription: "Lead UX Designer — Research synthesis, information architecture, and moderated user testing.",
+                responsibility: "Restructured product discovery around real user personas without adding new content; live testing proved the winning concept delivered clearer navigation and faster paths to purchase.",
+                liveUrl: null,
+                coverImage: "5a.jpg",
+                images: ["5a.jpg", "5b.jpg", "5c.jpg"]
+            },
+            {
+                name: "Bobcat",
+                brandDetail: "Industry-defining compact construction and agricultural equipment manufacturer.",
+                jobDescription: "Design Systems Lead — Full component audit, token architecture, governance, and documentation.",
+                responsibility: "Solo lead on a variable-based Figma component rebuild with comprehensive Do's-and-Don'ts documentation, unifying fragmented digital properties into one shared system.",
+                liveUrl: null,
+                coverImage: "3a.jpg",
+                images: ["3a.jpg", "3b.jpg", "3c.jpg"]
+            }
+        ];
+
+        function generateCoverFallbackSvg(projectName, fileName) {
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+                    <rect width="800" height="600" fill="#161616"/>
+                    <rect x="24" y="24" width="752" height="552" rx="16" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2" stroke-dasharray="8 8"/>
+                    <text x="400" y="290" fill="#f0ede8" font-family="sans-serif" font-size="26" font-weight="700" text-anchor="middle">${projectName}</text>
+                    <text x="400" y="328" fill="#888580" font-family="sans-serif" font-size="15" text-anchor="middle">Cover: ${fileName}</text>
+                </svg>
+            `;
+            return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+
+        // Render Case Studies
+        const container = document.getElementById('case-studies-container');
+
+        portfolioData.forEach((item, idx) => {
+            const block = document.createElement('article');
+            block.className = 'case-study-block reveal';
+
+            const liveBtnHtml = item.liveUrl
+                ? `<a href="${item.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn-action btn-secondary">
+                        <span>See Live Website</span>
+                        <i data-lucide="arrow-up-right" style="width:16px;height:16px;"></i>
+                   </a>`
+                : '';
+
+            const coverFallback = generateCoverFallbackSvg(item.name, item.coverImage);
+
+            block.innerHTML = `
+                <div class="case-study-top">
+                    <h2 class="case-study-title">${item.name}</h2>
+                </div>
+                <section class="info-grid">
+                    <div class="cover-card" onclick="openProjectGallery(${idx})" title="Click to view ${item.name} gallery">
+                        <img src="${item.coverImage}" alt="${item.name} cover" onerror="this.onerror=null; this.src='${coverFallback}';">
+                    </div>
+                    <div class="card-details-stack">
+                        <div class="text-card">
+                            <h3>About the Brand</h3>
+                            <p>${item.brandDetail}</p>
+                        </div>
+                        <div class="text-card">
+                            <h3>Job Description</h3>
+                            <p>${item.jobDescription}</p>
+                        </div>
+                        <div class="text-card">
+                            <h3>My Responsibility</h3>
+                            <p>${item.responsibility}</p>
+                        </div>
+                        <div class="cta-row">
+                            <div class="case-actions">
+                                <button type="button" class="btn-action btn-primary" onclick="openProjectGallery(${idx})">
+                                    <i data-lucide="layers" style="width:16px;height:16px;"></i>
+                                    <span>View Work Images</span>
+                                </button>
+                                ${liveBtnHtml}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+
+            container.appendChild(block);
+        });
+
+        lucide.createIcons();
+
+        // Scroll Reveal Observer
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(el => {
+                if (el.isIntersecting) {
+                    el.target.classList.add('visible');
+                    observer.unobserve(el.target);
+                }
+            });
+        }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Lightbox Gallery Logic
+        let currentImageIndex = 0;
+        let currentGallery = [];
+        let currentProjectName = '';
+
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lb-main-img');
+        const lbTitle = document.getElementById('lb-project-title');
+        const lbCounter = document.getElementById('lb-counter');
+
+        function generatePlaceholderSvg(projectName, slideNumber, fileName) {
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+                    <rect width="1400" height="900" fill="#141414"/>
+                    <rect x="40" y="40" width="1320" height="820" rx="24" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2" stroke-dasharray="10 10"/>
+                    <text x="700" y="410" fill="#f0ede8" font-family="sans-serif" font-size="42" font-weight="700" text-anchor="middle">${projectName} — Figma / Work Artifact 0${slideNumber}</text>
+                    <text x="700" y="465" fill="#888580" font-family="sans-serif" font-size="22" text-anchor="middle">Replace "${fileName}" in your project folder to display your screenshot</text>
+                </svg>
+            `;
+            return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+
+        function loadLightboxImage(index) {
+            const src = currentGallery[index];
+            lbCounter.textContent = `${index + 1} / ${currentGallery.length}`;
+            lbImg.style.opacity = '0';
+
+            lbImg.onerror = function() {
+                this.onerror = null;
+                this.src = generatePlaceholderSvg(currentProjectName, index + 1, src);
+                this.style.opacity = '1';
+            };
+
+            lbImg.onload = function() {
+                this.style.opacity = '1';
+            };
+
+            lbImg.src = src;
+        }
+
+        function openProjectGallery(projectIndex) {
+            const project = portfolioData[projectIndex];
+            if (!project || !project.images || project.images.length === 0) return;
+
+            currentProjectName = project.name;
+            currentGallery = project.images;
+            currentImageIndex = 0;
+
+            lbTitle.textContent = currentProjectName;
+            loadLightboxImage(currentImageIndex);
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeImage(step) {
+            if (!currentGallery.length) return;
+            currentImageIndex = (currentImageIndex + step + currentGallery.length) % currentGallery.length;
+            setTimeout(() => {
+                loadLightboxImage(currentImageIndex);
+            }, 120);
+        }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+    </script>
+</body>
+</html>

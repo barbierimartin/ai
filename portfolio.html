@@ -1216,15 +1216,15 @@
 <body>
 
     <!-- PASSWORD GATE -->
-    <div id="pw-gate" class="pw-gate" role="dialog" aria-modal="true" aria-labelledby="pw-title">
-        <div class="pw-card">
-            <h2 id="pw-title" class="pw-title">Welcome, please enter password</h2>
-            <p class="pw-subtext">This portfolio is password protected, please enter password to access.</p>
+    <div id="pw-gate" class="pw-gate" role="dialog" aria-modal="true" aria-labelledby="pw-heading">
+        <div class="pw-box">
+            <h1 id="pw-heading" class="pw-title">Welcome, please enter password</h1>
+            <p class="pw-subtext">This portfolio is password protected,<br>please enter password to access.</p>
             <form id="pw-form" class="pw-form" novalidate>
-                <input id="pw-input" class="pw-input" type="password" placeholder="Enter password" autocomplete="current-password" required>
+                <input id="pw-input" class="pw-input" type="password" placeholder="Password" autocomplete="current-password" required>
                 <button type="submit" class="pw-btn">Unlock Portfolio</button>
             </form>
-            <p id="pw-error" class="pw-error" aria-live="polite"></p>
+            <p id="pw-error" class="pw-error" role="alert"></p>
         </div>
     </div>
 
@@ -2369,19 +2369,6 @@
         <div class="footer-copy">© 2026 Martin Barbieri. All rights reserved.</div>
     </footer>
 
-    <!-- PASSWORD GATE -->
-    <div id="pw-gate" class="pw-gate" role="dialog" aria-modal="true" aria-labelledby="pw-heading">
-        <div class="pw-box">
-            <h1 id="pw-heading" class="pw-title">Welcome, please enter password</h1>
-            <p class="pw-subtext">This portfolio is password protected,<br>please enter password to access.</p>
-            <form id="pw-form" class="pw-form" novalidate>
-                <input id="pw-input" class="pw-input" type="password" placeholder="Password" autocomplete="current-password" required>
-                <button type="submit" class="pw-btn">Unlock Portfolio</button>
-            </form>
-            <p id="pw-error" class="pw-error" role="alert"></p>
-        </div>
-    </div>
-
     <!-- CASE STUDY FULLSCREEN VIEWER -->
     <div id="case-fullscreen" class="cs-fullscreen">
         <button class="cs-fs-close" aria-label="Close case study" onclick="closeCaseStudy()">
@@ -2391,47 +2378,6 @@
     </div>
 
     <script>
-        // ── Password Gate ──
-        const PORTFOLIO_PASS = 'seeportfolio';
-        const pwGate = document.getElementById('pw-gate');
-        const pwForm = document.getElementById('pw-form');
-        const pwInput = document.getElementById('pw-input');
-        const pwError = document.getElementById('pw-error');
-
-        function isUnlocked() {
-            try {
-                return sessionStorage.getItem('portfolio_unlocked') === '1';
-            } catch (_) {
-                return false;
-            }
-        }
-
-        function unlockPortfolio() {
-            pwGate.classList.add('unlocked');
-            document.body.style.overflow = 'auto';
-            try {
-                sessionStorage.setItem('portfolio_unlocked', '1');
-            } catch (_) {}
-        }
-
-        if (isUnlocked()) {
-            pwGate.classList.add('unlocked');
-        } else {
-            document.body.style.overflow = 'hidden';
-            window.addEventListener('DOMContentLoaded', () => pwInput.focus());
-        }
-
-        pwForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (pwInput.value.trim() === PORTFOLIO_PASS) {
-                pwError.textContent = '';
-                unlockPortfolio();
-            } else {
-                pwError.textContent = 'Incorrect password. Please try again.';
-                pwInput.select();
-            }
-        });
-
         // ── Mobile nav toggle ──
         const burger = document.querySelector('.nav-burger');
         const mobilePanel = document.querySelector('.nav-mobile-panel');
@@ -2538,6 +2484,7 @@
 
             function unlock() {
                 gate.classList.add('unlocked');
+                document.body.classList.remove('locked');
                 document.body.style.overflow = 'auto';
                 try {
                     sessionStorage.setItem(STORAGE_KEY, '1');
@@ -2555,6 +2502,7 @@
 
             if (alreadyUnlocked) {
                 gate.classList.add('unlocked');
+                document.body.classList.remove('locked');
                 document.body.style.overflow = 'auto';
             } else {
                 document.body.style.overflow = 'hidden';
@@ -2563,7 +2511,7 @@
 
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                if (input.value === PASSWORD) {
+                if (input.value.trim() === PASSWORD) {
                     errorEl.textContent = '';
                     unlock();
                 } else {

@@ -655,6 +655,138 @@
             cursor: default;
         }
 
+        /* ── Editorial Case Study Layout (Kiki Milk & Points) ── */
+        .cs-editorial {
+            background: #0a0a0a;
+            color: #f3f0ea;
+            border-radius: 0 0 26px 26px;
+            padding: 56px 56px 64px;
+            display: flex;
+            flex-direction: column;
+            gap: 56px;
+        }
+        .cs-ed-block {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .cs-ed-eyebrow {
+            font-family: var(--sans);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ed-accent, #25A4FF);
+        }
+        .cs-ed-heading {
+            font-family: var(--serif);
+            font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+            color: #ffffff;
+            max-width: 720px;
+        }
+        .cs-ed-copy {
+            font-family: var(--sans);
+            font-size: 0.98rem;
+            line-height: 1.65;
+            color: #c7c4be;
+            max-width: 700px;
+        }
+        .cs-ed-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .cs-ed-tag {
+            font-family: var(--sans);
+            font-size: 0.74rem;
+            font-weight: 500;
+            color: #d6d3cd;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            padding: 5px 13px;
+        }
+        .cs-ed-media {
+            margin-top: 10px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #141414;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .cs-ed-media img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .cs-ed-compare {
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .cs-ed-compare-col {
+            background: #141414;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .cs-ed-compare-label {
+            font-family: var(--sans);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #9e9b94;
+        }
+        .cs-ed-compare-col img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+        .cs-ed-stats {
+            margin-top: 12px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .cs-ed-stat {
+            background: #070707;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 24px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .cs-ed-stat-num {
+            font-family: var(--serif);
+            font-size: clamp(2.1rem, 3.6vw, 2.85rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: var(--ed-accent, #25A4FF);
+        }
+        .cs-ed-stat-desc {
+            font-family: var(--sans);
+            font-size: 0.84rem;
+            line-height: 1.5;
+            color: #b8b5ae;
+        }
+        .cs-ed-footnote {
+            font-family: var(--sans);
+            font-size: 0.72rem;
+            color: #7c7973;
+            margin-top: 4px;
+        }
+
         .cs-fs-back-wrap {
             display: flex;
             justify-content: center;
@@ -695,6 +827,9 @@
             .cs-fs-content { padding: 90px 16px 90px; }
             .cs-fs-header { flex-direction: column; padding: 32px 24px 26px; border-radius: 18px 18px 0 0; }
             .cs-fs-images { border-radius: 0 0 18px 18px; }
+            .cs-editorial { padding: 36px 22px 42px; gap: 40px; border-radius: 0 0 18px 18px; }
+            .cs-ed-compare { grid-template-columns: 1fr; }
+            .cs-ed-stats { grid-template-columns: 1fr; }
         }
 
         /* ── SECOND SKILLS + CERTIFICATES ── */
@@ -921,6 +1056,12 @@
                                         <span class="tool-name">Figma</span>
                                     </div>
                                     <div class="tool-item">
+                                        <span class="tool-badge tool-claude" title="Claude">
+                                            <svg viewBox="0 0 100 100" fill="none"><g fill="#D97757"><rect x="47" y="6" width="6" height="88" rx="3"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(30 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(60 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(90 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(120 50 50)"/><rect x="47" y="6" width="6" height="88" rx="3" transform="rotate(150 50 50)"/></g></svg>
+                                        </span>
+                                        <span class="tool-name">Claude</span>
+                                    </div>
+                                    <div class="tool-item">
                                         <span class="tool-badge tool-shopify" title="Shopify">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                                         </span>
@@ -936,9 +1077,81 @@
                             </div>
                         </div>
                     </div>
-                    <div class="cs-fs-images">
-                        <div class="cs-img"><img src="kikimilk1.jpg" class="gallery-img" alt="Kiki Milk"></div>
-                        <div class="cs-img"><img src="kikimilk2.jpg" class="gallery-img" alt="Kiki Milk"></div>
+                    <div class="cs-editorial" style="--ed-accent: #25A4FF;">
+                        <div class="cs-ed-block">
+                            <span class="cs-ed-eyebrow">INTRO</span>
+                            <h4 class="cs-ed-heading">Designing a Subscription Engine for Kiki Milk</h4>
+                            <p class="cs-ed-copy">Kiki Milk is an organic plant-based milk brand with a recurring delivery model. I worked across the site and lifecycle to turn first-time buyers into repeat subscribers.</p>
+                            <div class="cs-ed-tags">
+                                <span class="cs-ed-tag">Design system (Figma)</span>
+                                <span class="cs-ed-tag">Seasonal campaign themes</span>
+                                <span class="cs-ed-tag">Subscription landing pages</span>
+                                <span class="cs-ed-tag">Email & SMS</span>
+                                <span class="cs-ed-tag">Ad & site visuals</span>
+                                <span class="cs-ed-tag">A/B testing</span>
+                                <span class="cs-ed-tag">Subscription retention</span>
+                            </div>
+                            <div class="cs-ed-media">
+                                <img src="kikimilkcover.jpg" class="gallery-img" alt="Kiki Milk overview">
+                            </div>
+                        </div>
+
+                        <div class="cs-ed-block">
+                            <span class="cs-ed-eyebrow">THE FOUNDATION</span>
+                            <h4 class="cs-ed-heading">A design system built for speed</h4>
+                            <p class="cs-ed-copy">I started by setting up a design system in Figma so seasonal landing pages, emails and ad assets could be built consistently and turned around quickly.</p>
+                            <div class="cs-ed-media">
+                                <img src="kikimilk1.jpg" class="gallery-img" alt="Kiki Milk design system">
+                            </div>
+                        </div>
+
+                        <div class="cs-ed-block">
+                            <span class="cs-ed-eyebrow">STOREFRONT & LANDING PAGES</span>
+                            <h4 class="cs-ed-heading">Seasonal themes built around subscriptions</h4>
+                            <p class="cs-ed-copy">I came up with and designed themed versions of the site for Kiki's calendar and landing pages, including Black Friday, Halloween and Christmas. Every theme had a hook and a subscription discount.</p>
+                            <div class="cs-ed-media">
+                                <img src="kikimilk2.jpg" class="gallery-img" alt="Kiki Milk seasonal storefront and landing pages">
+                            </div>
+                        </div>
+
+                        <div class="cs-ed-block">
+                            <span class="cs-ed-eyebrow">EMAILS & VISUALS</span>
+                            <h4 class="cs-ed-heading">One story, from inbox to checkout</h4>
+                            <p class="cs-ed-copy">The same themes carried into full email campaigns so customers saw a consistent message at every step. That meant writing, designing illustrations and mockups for the landing pages, emails and social ads, and running a set of ads for every campaign.</p>
+                            <div class="cs-ed-media">
+                                <img src="kikimilk3.jpg" class="gallery-img" alt="Kiki Milk email campaigns and visuals">
+                            </div>
+                        </div>
+
+                        <div class="cs-ed-block">
+                            <span class="cs-ed-eyebrow">TESTING & OPTIMIZING</span>
+                            <h4 class="cs-ed-heading">Let the data pick the winner</h4>
+                            <p class="cs-ed-copy">Alongside the design work, I ran A/B tests on landing pages and email campaigns to see what worked, using that data to make changes and move on.</p>
+                            <div class="cs-ed-media">
+                                <img src="kikimilk4.jpg" class="gallery-img" alt="Kiki Milk A/B testing and optimization">
+                            </div>
+                        </div>
+
+                        <div class="cs-ed-block">
+                            <span class="cs-ed-eyebrow">OUTCOME</span>
+                            <h4 class="cs-ed-heading">Subscriptions led the way</h4>
+                            <p class="cs-ed-copy">The campaigns drove a consistent increase in subscribers. In October, subscription sales went up 67% month-on-month and the subscriber base rose by 215, with the majority of orders coming through the site.</p>
+                            <div class="cs-ed-stats">
+                                <div class="cs-ed-stat">
+                                    <span class="cs-ed-stat-num">215</span>
+                                    <span class="cs-ed-stat-desc">New subscribers added in October (vs. 180 the prior month)</span>
+                                </div>
+                                <div class="cs-ed-stat">
+                                    <span class="cs-ed-stat-num">67%</span>
+                                    <span class="cs-ed-stat-desc">of October recurring revenue came from the site</span>
+                                </div>
+                                <div class="cs-ed-stat">
+                                    <span class="cs-ed-stat-num">$10.5K</span>
+                                    <span class="cs-ed-stat-desc">Added monthly recurring sales in October (vs. $7.9K the prior month)</span>
+                                </div>
+                            </div>
+                            <p class="cs-ed-footnote">Source: Kiki Milk subscription &amp; analytics reporting, Oct 2025.</p>
+                        </div>
                     </div>
                 </template>
             </div>
@@ -988,13 +1201,101 @@
                                         </span>
                                         <span class="tool-name">Claude</span>
                                     </div>
+                                    <div class="tool-item">
+                                        <span class="tool-badge tool-shopify" title="Shopify">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                                        </span>
+                                        <span class="tool-name">Shopify</span>
+                                    </div>
+                                    <div class="tool-item">
+                                        <span class="tool-badge tool-klaviyo" title="Klaviyo">
+                                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5h18l-5.5 7L21 19H3V5z"/></svg>
+                                        </span>
+                                        <span class="tool-name">Klaviyo</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="cs-fs-images">
-                        <div class="cs-img"><img src="points1.jpg" class="gallery-img" alt="Points"></div>
-                        <div class="cs-img"><img src="points2.jpg" class="gallery-img" alt="Points"></div>
+                    <div class="cs-editorial" style="--ed-accent: #642FC0;">
+                        <div class="cs-ed-block">
+                            <span class="cs-ed-eyebrow">INTRO</span>
+                            <h4 class="cs-ed-heading">Making Product Benefits Impossible to Miss</h4>
+                            <p class="cs-ed-copy">POINTS is a low-glycemic, dairy-free, low-sugar, low-carb chocolate brand made for people who want a treat without the sugar crash and using blood glucose and blood sugar. My goal was to move the site and landing pages past that 1%.</p>
+                            <div class="cs-ed-tags">
+                                <span class="cs-ed-tag">CRO &amp; UX</span>
+                                <span class="cs-ed-tag">Landing pages</span>
+                                <span class="cs-ed-tag">Shopify storefront</span>
+                                <span class="cs-ed-tag">Email campaigns</span>
+                                <span class="cs-ed-tag">Conversion copywriting</span>
+                                <span class="cs-ed-tag">A/B testing</span>
+                                <span class="cs-ed-tag">Post-purchase retention</span>
+                            </div>
+                            <div class="cs-ed-media">
+                                <img src="pointscover.jpg" class="gallery-img" alt="Points overview">
+                            </div>
+                        </div>
+
+                        <div class="cs-ed-block">
+                            <span class="cs-ed-eyebrow">THE CHALLENGE</span>
+                            <h4 class="cs-ed-heading">A better-for-you candy that didn't look like one</h4>
+                            <p class="cs-ed-copy">The product's biggest selling points — being low-sugar and diabetic-friendly — were buried through on the landing pages or in the copy. At the same time, the brand was rolling out new packaging around health metrics and no longer matched what a customer expected.</p>
+                            <div class="cs-ed-media">
+                                <img src="points1.jpg" class="gallery-img" alt="Points landing page before optimization">
+                            </div>
+                        </div>
+
+                        <div class="cs-ed-block">
+                            <span class="cs-ed-eyebrow">DESIGN &amp; UX</span>
+                            <h4 class="cs-ed-heading">A refresh that matches the new packaging</h4>
+                            <p class="cs-ed-copy">I moved the value to cover more of the copy to make it simpler and to set it up so the new packaging would fit in on the landing pages. The illustrations and imagery were created with AI and then worked up to fit the rest of the brand.</p>
+                            <div class="cs-ed-compare">
+                                <div class="cs-ed-compare-col">
+                                    <span class="cs-ed-compare-label">Before</span>
+                                    <img src="points2.jpg" class="gallery-img" alt="Points before design refresh">
+                                </div>
+                                <div class="cs-ed-compare-col">
+                                    <span class="cs-ed-compare-label">After</span>
+                                    <img src="points3.jpg" class="gallery-img" alt="Points after design refresh">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cs-ed-block">
+                            <span class="cs-ed-eyebrow">EMAIL</span>
+                            <h4 class="cs-ed-heading">Benefits first, in every send</h4>
+                            <p class="cs-ed-copy">The full email campaigns had been automated in 2024. From there, we built on that with automated flows and seasonal campaigns like Halloween and Black Friday, each one built around the benefits of the new product.</p>
+                            <div class="cs-ed-media">
+                                <img src="points4.jpg" class="gallery-img" alt="Points email campaigns">
+                            </div>
+                        </div>
+
+                        <div class="cs-ed-block">
+                            <span class="cs-ed-eyebrow">CONVERSION OPTIMIZATION</span>
+                            <h4 class="cs-ed-heading">Simpler choices, clearer value</h4>
+                            <p class="cs-ed-copy">The PDP has been simplified to focus on the benefits and the product in a clearer way, so first-time shoppers can see what they are buying when they decide what they want to pick up.</p>
+                        </div>
+
+                        <div class="cs-ed-block">
+                            <span class="cs-ed-eyebrow">OUTCOME</span>
+                            <h4 class="cs-ed-heading">Emails that earn their place</h4>
+                            <p class="cs-ed-copy">Putting product benefits front and center in the email campaigns showed how much the email program could do for the site. Campaign revenue doubled in a month and the number of emails sent per month went from their initial range to their peak monthly revenue in August.</p>
+                            <div class="cs-ed-stats">
+                                <div class="cs-ed-stat">
+                                    <span class="cs-ed-stat-num">+99%</span>
+                                    <span class="cs-ed-stat-desc">Campaign revenue in August vs. the prior month</span>
+                                </div>
+                                <div class="cs-ed-stat">
+                                    <span class="cs-ed-stat-num">69%</span>
+                                    <span class="cs-ed-stat-desc">of revenue attributed to email in the first month</span>
+                                </div>
+                                <div class="cs-ed-stat">
+                                    <span class="cs-ed-stat-num">+13%</span>
+                                    <span class="cs-ed-stat-desc">New order rate in August vs. July 2024</span>
+                                </div>
+                            </div>
+                            <p class="cs-ed-footnote">Source: Points analytics &amp; email reporting, Jul-Aug 2024.</p>
+                        </div>
                     </div>
                 </template>
             </div>
